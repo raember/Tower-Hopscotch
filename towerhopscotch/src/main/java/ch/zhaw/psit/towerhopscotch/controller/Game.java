@@ -1,4 +1,6 @@
-package ch.zhaw.psit.towerhopscotch;
+package ch.zhaw.psit.towerhopscotch.controller;
+
+import ch.zhaw.psit.towerhopscotch.gui.Display;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;

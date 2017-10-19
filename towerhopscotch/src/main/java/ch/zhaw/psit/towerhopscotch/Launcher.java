@@ -1,5 +1,6 @@
 package ch.zhaw.psit.towerhopscotch;
 
+import ch.zhaw.psit.towerhopscotch.controller.Game;
 import com.sun.media.jfxmedia.logging.Logger;
 
 public class Launcher {
