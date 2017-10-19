@@ -1,39 +1,39 @@
-package ch.zhaw.psit.towerhopscotch.controller;
+package ch.zhaw.psit.towerhopscotch;
 
-class Clock {
+public class Clock {
     private static int FPS = 60;
     private double timePerTick = 1000000000 / FPS;
     private double deltaTime;
     private long lastTime, timer;
     private int ticks;
 
-    Clock() {
+    public Clock() {
         lastTime = System.nanoTime();
         deltaTime = 0;
         timer = 0;
         ticks = 0;
     }
 
-    void tick() {
+    public void tick() {
         long currentTime = System.nanoTime();
         deltaTime += (currentTime - lastTime) / timePerTick;
         timer += currentTime - lastTime;
         lastTime = currentTime;
     }
 
-    double getDeltaTime() {
+    public double getDeltaTime() {
         return deltaTime;
     }
 
-    void increaseTicks() {
+    public void increaseTicks() {
         ticks++;
     }
 
-    void decreaseDeltaTime() {
+    public void decreaseDeltaTime() {
         deltaTime--;
     }
 
-    void printFPS() {
+    public void printFPS() {
         if(timer >= 1000000000) {
             System.out.println(ticks);
             ticks = 0;

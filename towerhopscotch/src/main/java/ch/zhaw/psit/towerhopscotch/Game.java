@@ -1,6 +1,10 @@
-package ch.zhaw.psit.towerhopscotch.controller;
+package ch.zhaw.psit.towerhopscotch;
 
 import ch.zhaw.psit.towerhopscotch.gui.Display;
+import ch.zhaw.psit.towerhopscotch.states.GameState;
+import ch.zhaw.psit.towerhopscotch.states.MenuState;
+import ch.zhaw.psit.towerhopscotch.states.State;
+import ch.zhaw.psit.towerhopscotch.gfx.Assets;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -14,27 +18,35 @@ public class Game implements Runnable {
     private Thread thread;
 
     private BufferStrategy bufferStrategy;
-    private Graphics g;
+    private Graphics graphicsObject;
 
-    // x position of the testing rectangle
-    private int rectXPos = 0;
+    // All game states
+    private State gameState;
+    private State menuState;
 
-    public Game(String title, int width, int height) {
+    Game(String title, int width, int height) {
         this.title = title;
         this.width = width;
         this.height = height;
     }
 
     private void init() {
+        // Initialize the display, initialize the game clock and the assets
         display = new Display(title, width, height);
         clock = new Clock();
+        Assets.init();
+
+        // Initialize the game states
+        gameState = new GameState();
+        menuState = new MenuState();
+
+        // Set the current state
+        State.setState(gameState);
     }
 
     private void update() {
-        rectXPos++;
-        if(rectXPos > width-50) {
-            rectXPos = 0;
-        }
+        if(State.getState() != null)
+            State.getState().update();
     }
 
     private void render() {
@@ -44,14 +56,14 @@ public class Game implements Runnable {
             return;
         }
 
-        g = bufferStrategy.getDrawGraphics();
-        g.clearRect(0, 0, width, height);
+        graphicsObject = bufferStrategy.getDrawGraphics();
+        graphicsObject.clearRect(0, 0, width, height);
 
-        // DRAW HERE
-        g.fillRect(rectXPos,height / 2 - 25, 50, 50);
+        if(State.getState() != null)
+            State.getState().render(graphicsObject);
 
         bufferStrategy.show();
-        g.dispose();
+        graphicsObject.dispose();
     }
 
     public void run() {
@@ -74,7 +86,7 @@ public class Game implements Runnable {
         stop();
     }
 
-    public synchronized void start() {
+    synchronized void start() {
         if(running)
             return;
 
@@ -83,7 +95,7 @@ public class Game implements Runnable {
         thread.start();
     }
 
-    public synchronized void stop() {
+    synchronized void stop() {
         if(!running)
             return;
 
