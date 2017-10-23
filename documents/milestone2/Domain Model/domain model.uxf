@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>207</x>
+      <y>288</y>
+      <w>99</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>_Fortress_
+--
+Lives</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>117</y>
+      <w>99</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>_Player_
+--
+Budget</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>297</x>
+      <y>144</y>
+      <w>99</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>_Map_
+--
+Size</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>495</x>
+      <y>450</y>
+      <w>99</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>_Tower_
+--
+Height
+Layer
+Position
+FacingAngle</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>288</x>
+      <y>450</y>
+      <w>99</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>_Enemy_
+--
+Layer
+Position</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>396</x>
+      <y>288</y>
+      <w>99</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>_Layer_
+--
+Level</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>297</x>
+      <y>0</y>
+      <w>99</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>_Game_
+--
+TimeElapsed</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>81</x>
+      <y>144</y>
+      <w>99</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>_Wave_
+--
+Difficulty
+Enemies</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>324</y>
+      <w>126</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..n
+m2=0..n
+contains &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;100.0;70.0;100.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>621</y>
+      <w>135</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>_Enemy Description_
+--
+Velocity
+Bounty</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>333</x>
+      <y>324</y>
+      <w>108</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n
+&lt; contains</panel_attributes>
+    <additional_attributes>100.0;10.0;100.0;70.0;10.0;70.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>495</y>
+      <w>99</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=1
+&lt; describes</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>477</x>
+      <y>621</y>
+      <w>135</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>_Tower Description_
+--
+Range
+FireFrequency
+Price</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>531</x>
+      <y>531</y>
+      <w>99</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n
+&lt; describes</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>180</y>
+      <w>108</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=3
+contains &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;90.0;70.0;90.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>234</x>
+      <y>180</y>
+      <w>117</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+&lt; contains</panel_attributes>
+    <additional_attributes>110.0;10.0;110.0;70.0;10.0;70.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>36</y>
+      <w>63</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+has &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>369</x>
+      <y>36</y>
+      <w>198</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+has &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;200.0;50.0;200.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>117</x>
+      <y>36</y>
+      <w>225</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1..n
+&lt; has</panel_attributes>
+    <additional_attributes>230.0;10.0;230.0;50.0;10.0;50.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>585</x>
+      <y>135</y>
+      <w>162</w>
+      <h>369</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1..n
+upgrades &gt;</panel_attributes>
+    <additional_attributes>20.0;10.0;80.0;10.0;80.0;380.0;10.0;380.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>153</y>
+      <w>72</w>
+      <h>315</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1..n
+builds &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;330.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>585</x>
+      <y>117</y>
+      <w>243</w>
+      <h>405</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1..n
+destroys &gt;</panel_attributes>
+    <additional_attributes>20.0;10.0;180.0;10.0;180.0;420.0;10.0;420.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>117</x>
+      <y>189</y>
+      <w>189</w>
+      <h>297</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1..n
+controls &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;300.0;190.0;300.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>207</x>
+      <y>324</y>
+      <w>135</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..n
+m2=1
+&lt; approaches</panel_attributes>
+    <additional_attributes>110.0;140.0;110.0;80.0;10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
