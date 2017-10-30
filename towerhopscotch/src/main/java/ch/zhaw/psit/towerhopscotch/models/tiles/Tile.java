@@ -28,6 +28,8 @@ public class Tile {
         return false;
     }
 
+    public boolean isFortress() { return false; }
+
     public int getId() {
         return id;
     }

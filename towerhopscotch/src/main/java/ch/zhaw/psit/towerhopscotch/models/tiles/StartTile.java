@@ -5,7 +5,7 @@ import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 public class StartTile extends Tile {
 
     StartTile(int id) {
-        super(Assets.tiles.get("start"), id);
+        super(Assets.tiles.get("dirt"), id);
     }
 
     @Override

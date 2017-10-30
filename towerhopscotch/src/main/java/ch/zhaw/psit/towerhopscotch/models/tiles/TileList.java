@@ -15,7 +15,7 @@ public class TileList {
     public static Tile stoneTile = new StoneTile(5);
     public static Tile sandTile = new SandTile(6);
     public static Tile startTile = new StartTile(7);
-    public static Tile endTile = new EndTile(8);
+    public static Tile fortressTile = new FortressTile(8);
     public static Tile unknownTile = new UnknownTile(255);
 
     public static Tile getTile(int id) {
