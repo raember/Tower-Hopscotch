@@ -1,10 +1,11 @@
 package ch.zhaw.psit.towerhopscotch;
 
-import ch.zhaw.psit.towerhopscotch.gui.Display;
+import ch.zhaw.psit.towerhopscotch.input.MouseManager;
+import ch.zhaw.psit.towerhopscotch.maps.Map;
+import ch.zhaw.psit.towerhopscotch.GUI.Assets;
+import ch.zhaw.psit.towerhopscotch.GUI.Display;
 import ch.zhaw.psit.towerhopscotch.states.GameState;
-import ch.zhaw.psit.towerhopscotch.states.MenuState;
 import ch.zhaw.psit.towerhopscotch.states.State;
-import ch.zhaw.psit.towerhopscotch.gfx.Assets;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -17,63 +18,68 @@ public class Game implements Runnable {
     private boolean running = false;
     private Thread thread;
 
-    private BufferStrategy bufferStrategy;
-    private Graphics graphicsObject;
-
     // All game states
     private State gameState;
-    private State menuState;
 
-    Game(String title, int width, int height) {
+    // Inputs
+    private MouseManager mouseManager;
+
+    public Game(String title, int width, int height) {
         this.title = title;
         this.width = width;
         this.height = height;
+
+        mouseManager = new MouseManager();
     }
 
     private void init() {
         // Initialize the display, initialize the game clock and the assets
         display = new Display(title, width, height);
+        display.getFrame().addMouseListener(mouseManager);
+        display.getFrame().addMouseMotionListener(mouseManager);
+        display.getCanvas().addMouseListener(mouseManager);
+        display.getCanvas().addMouseMotionListener(mouseManager);
+
         clock = new Clock();
-        Assets.init();
+        Assets.initialize();
 
         // Initialize the game states
-        gameState = new GameState();
-        menuState = new MenuState();
+        gameState = new GameState(this);
 
         // Set the current state
         State.setState(gameState);
     }
 
     private void update() {
-        if(State.getState() != null)
+        if (State.getState() != null)
             State.getState().update();
     }
 
     private void render() {
-        bufferStrategy = display.getCanvas().getBufferStrategy();
-        if(bufferStrategy == null) {
+        BufferStrategy bufferStrategy = display.getCanvas().getBufferStrategy();
+        if (bufferStrategy == null) {
             display.getCanvas().createBufferStrategy(3);
             return;
         }
 
-        graphicsObject = bufferStrategy.getDrawGraphics();
-        graphicsObject.clearRect(0, 0, width, height);
+        Graphics g = bufferStrategy.getDrawGraphics();
+        g.clearRect(0, 0, width, height);
 
-        if(State.getState() != null)
-            State.getState().render(graphicsObject);
+        if (State.getState() != null)
+            State.getState().render(g);
 
         bufferStrategy.show();
-        graphicsObject.dispose();
+        g.dispose();
     }
 
     public void run() {
         init();
 
         // Game loop
-        while(running) {
+        while (running) {
             clock.tick();
 
-            if(clock.getDeltaTime() >= 1) {
+            if (clock.getDeltaTime() >= 1) {
                 update();
                 render();
                 clock.increaseTicks();
@@ -86,8 +92,8 @@ public class Game implements Runnable {
         stop();
     }
 
-    synchronized void start() {
-        if(running)
+    public synchronized void start() {
+        if (running)
             return;
 
         running = true;
@@ -95,8 +101,8 @@ public class Game implements Runnable {
         thread.start();
     }
 
-    synchronized void stop() {
-        if(!running)
+    private synchronized void stop() {
+        if (!running)
             return;
 
         running = false;
@@ -104,6 +110,19 @@ public class Game implements Runnable {
             thread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    public MouseManager getMouseManager() {
+        return mouseManager;
+    }
+
+    public Map getMap() {
+        State currentState = State.getState();
+        if (currentState instanceof GameState) {
+            return ((GameState) currentState).getMap();
+        } else {
+            return null;
         }
     }
 }

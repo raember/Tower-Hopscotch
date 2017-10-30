@@ -1,6 +1,6 @@
 package ch.zhaw.psit.towerhopscotch.states;
 
-import java.awt.Graphics;
+import java.awt.*;
 
 public abstract class State {
     private static State currentState = null;
