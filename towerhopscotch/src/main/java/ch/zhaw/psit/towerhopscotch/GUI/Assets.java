@@ -12,7 +12,7 @@ public class Assets {
     public static BufferedImage enemy;
 
     public static void initialize() {
-        BufferedImage spriteSheet = ImageUtil.loadImage("/textures/sprite_sheet2.png");
+        BufferedImage spriteSheet = ImageUtil.loadImage("/textures/sprite_sheet3.png");
 
         // Get tile images
         tiles.put("grass", spriteSheet.getSubimage(2 * width, 5 * height, width, height));
@@ -24,8 +24,7 @@ public class Assets {
         tiles.put("tree", spriteSheet.getSubimage(7 * width, 5 * height, width, height));
         tiles.put("dead_tree", spriteSheet.getSubimage(8 * width, 5 * height, width, height));
         tiles.put("unknown", spriteSheet.getSubimage(8 * width, 24 * height, width, height));
-        tiles.put("start", spriteSheet.getSubimage(0, 24 * height, width, height));
-        tiles.put("end", spriteSheet.getSubimage(9 * width, 24 * height, width, height));
+        tiles.put("fortress", spriteSheet.getSubimage(8 * width, 7 * height, width, height));
 
         // Enemy
         enemy = spriteSheet.getSubimage(4 * width, 22 * height, width, height);
