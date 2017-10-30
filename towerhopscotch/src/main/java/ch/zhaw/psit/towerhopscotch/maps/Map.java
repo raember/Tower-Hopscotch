@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Map {
 
@@ -21,8 +22,6 @@ public class Map {
 
     private int startX;
     private int startY;
-    private int endX;
-    private int endY;
 
     private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
@@ -34,22 +33,15 @@ public class Map {
     }
 
     public void update() {
-        if(game.getMouseManager().lastClickX != 0 && game.getMouseManager().lastClickY != 0) {
-            int x = game.getMouseManager().lastClickX;
-            int y = game.getMouseManager().lastClickY;
-
-            int xIndex = (int) x / Tile.TILE_WIDTH;
-            int yIndex = (int) y / Tile.TILE_HEIGHT;
-
-            System.out.println("PIXELS: " + x + "/" + y);
-            System.out.println("MAP GRID: " + xIndex + "/" + yIndex);
-            System.out.println(isPath(x, y));
-            System.out.println("------------------------------------");
-            game.getMouseManager().resetClick();
-        }
-
-        for (Enemy enemy : enemies) {
+        // Update enemies
+        Iterator<Enemy> iterator = enemies.iterator();
+        while (iterator.hasNext()) {
+            Enemy enemy = iterator.next();
             enemy.update();
+
+            // Remove enemy if it has reached the players fortress
+            if (enemy.reachedDestination())
+                iterator.remove();
         }
     }
 
@@ -60,9 +52,8 @@ public class Map {
             }
         }
 
-        for (Enemy enemy : enemies) {
+        for (Enemy enemy : enemies)
             enemy.render(g);
-        }
     }
 
     public boolean isPath(float x, float y) {
@@ -71,6 +62,14 @@ public class Map {
 
         Tile tile = TileList.getTile(tiles[(int) x / Tile.TILE_WIDTH][(int) y / Tile.TILE_HEIGHT]);
         return tile.isPath();
+    }
+
+    public boolean isFortress(float x, float y) {
+        if ((x < 0) || (x >= Tile.TILE_WIDTH * width) || (y < 0) || (y >= Tile.TILE_HEIGHT * height))
+            return false;
+
+        Tile tile = TileList.getTile(tiles[(int) x / Tile.TILE_WIDTH][(int) y / Tile.TILE_HEIGHT]);
+        return tile.isFortress();
     }
 
     private void initializeMap(String filePath) {
@@ -99,9 +98,6 @@ public class Map {
                 if (tileId == 7) {
                     startX = x * Tile.TILE_WIDTH;
                     startY = y * Tile.TILE_HEIGHT;
-                } else if (tileId == 8) {
-                    endX = x * Tile.TILE_WIDTH;
-                    endY = y * Tile.TILE_HEIGHT;
                 }
             }
         }

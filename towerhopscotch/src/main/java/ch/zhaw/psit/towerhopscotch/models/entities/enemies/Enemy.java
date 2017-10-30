@@ -12,7 +12,6 @@ public abstract class Enemy extends Entity {
     protected int health;
     protected float speed;
     protected float xMove, yMove;
-
     protected Direction moveDirection;
 
     public enum Direction {
@@ -47,7 +46,7 @@ public abstract class Enemy extends Entity {
     private void changeDirection() {
         Direction currentDirection = moveDirection;
 
-        if(currentDirection == Direction.UP) {
+        if (currentDirection == Direction.UP) {
             if (leftwardsPossible()) {
                 moveDirection = Direction.LEFT;
             } else if (rightwardsPossible()) {
@@ -113,20 +112,24 @@ public abstract class Enemy extends Entity {
         }
     }
 
-    public boolean upwardsPossible() {
+    private boolean upwardsPossible() {
         return game.getMap().isPath(x, y - speed) && game.getMap().isPath(x + (width - 1), y - speed);
     }
 
-    public boolean leftwardsPossible() {
+    private boolean leftwardsPossible() {
         return game.getMap().isPath(x - speed, y) && game.getMap().isPath(x - speed, y + (height - 1));
     }
 
-    public boolean rightwardsPossible() {
+    private boolean rightwardsPossible() {
         return game.getMap().isPath(x + (width - 1) + speed, y) && game.getMap().isPath(x + (width - 1) + speed, y + (height - 1));
     }
 
-    public boolean downwardsPossible() {
+    private boolean downwardsPossible() {
         return game.getMap().isPath(x, y + (height - 1) + speed) && game.getMap().isPath(x + (width - 1), y + (height - 1) + speed);
+    }
+
+    public boolean reachedDestination() {
+        return game.getMap().isFortress(x, y + (height - 1)) && game.getMap().isFortress(x + (width - 1), y + (height - 1));
     }
 
     public int getHealth() {
