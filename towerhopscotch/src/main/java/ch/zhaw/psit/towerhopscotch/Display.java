@@ -1,4 +1,4 @@
-package ch.zhaw.psit.towerhopscotch.gui;
+package ch.zhaw.psit.towerhopscotch;
 
 import javax.swing.*;
 import java.awt.*;

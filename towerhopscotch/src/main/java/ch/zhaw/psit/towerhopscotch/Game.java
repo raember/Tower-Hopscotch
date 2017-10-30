@@ -1,10 +1,7 @@
 package ch.zhaw.psit.towerhopscotch;
 
-import ch.zhaw.psit.towerhopscotch.gui.Display;
 import ch.zhaw.psit.towerhopscotch.states.GameState;
-import ch.zhaw.psit.towerhopscotch.states.MenuState;
 import ch.zhaw.psit.towerhopscotch.states.State;
-import ch.zhaw.psit.towerhopscotch.gfx.Assets;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -34,11 +31,9 @@ public class Game implements Runnable {
         // Initialize the display, initialize the game clock and the assets
         display = new Display(title, width, height);
         clock = new Clock();
-        Assets.init();
 
         // Initialize the game states
         gameState = new GameState();
-        menuState = new MenuState();
 
         // Set the current state
         State.setState(gameState);
