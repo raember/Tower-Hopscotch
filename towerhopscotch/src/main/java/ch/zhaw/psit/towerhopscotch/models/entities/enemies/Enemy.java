@@ -1,6 +1,7 @@
 package ch.zhaw.psit.towerhopscotch.models.entities.enemies;
 
 import ch.zhaw.psit.towerhopscotch.Game;
+import ch.zhaw.psit.towerhopscotch.maps.Map;
 import ch.zhaw.psit.towerhopscotch.models.entities.Entity;
 
 public abstract class Enemy extends Entity {
@@ -113,7 +114,9 @@ public abstract class Enemy extends Entity {
     }
 
     private boolean upwardsPossible() {
-        return game.getMap().isPath(x, y - speed) && game.getMap().isPath(x + (width - 1), y - speed);
+        Map map = game.getMap();
+        // Enemies spawn below the map so they come in one at a time
+        return map.isBeneathMap(x, y) || (map.isPath(x, y - speed) && map.isPath(x + (width - 1), y - speed));
     }
 
     private boolean leftwardsPossible() {
