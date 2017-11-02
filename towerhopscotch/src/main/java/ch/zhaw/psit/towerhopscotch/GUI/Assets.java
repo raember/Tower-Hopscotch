@@ -9,7 +9,7 @@ public class Assets {
 
     private static final int height = 16, width = 16;
     public static HashMap<String, BufferedImage> tiles = new HashMap<String, BufferedImage>();
-    public static BufferedImage enemy;
+    public static HashMap<String, BufferedImage> enemies = new HashMap<String, BufferedImage>();
 
     public static void initialize() {
         BufferedImage spriteSheet = ImageUtil.loadImage("/textures/sprite_sheet3.png");
@@ -26,7 +26,14 @@ public class Assets {
         tiles.put("unknown", spriteSheet.getSubimage(8 * width, 24 * height, width, height));
         tiles.put("fortress", spriteSheet.getSubimage(8 * width, 7 * height, width, height));
 
-        // Enemy
-        enemy = spriteSheet.getSubimage(4 * width, 22 * height, width, height);
+        // Get enemy sprites
+        enemies.put("rat", spriteSheet.getSubimage(0, 21 * height, width, height));
+        enemies.put("bat", spriteSheet.getSubimage(width, 21 * height, width, height));
+        enemies.put("small_spider", spriteSheet.getSubimage(4 * width, 21 * height, width, height));
+        enemies.put("large_spider", spriteSheet.getSubimage(5 * width, 21 * height, width, height));
+        enemies.put("slime", spriteSheet.getSubimage(0, 22 * height, width, height));
+        enemies.put("goblin", spriteSheet.getSubimage(4 * width, 22 * height, width, height));
+        enemies.put("imp", spriteSheet.getSubimage(width, 22 * height, width, height));
+        enemies.put("skeleton", spriteSheet.getSubimage(2 * width, 22 * height, width, height));
     }
 }
