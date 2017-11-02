@@ -1,10 +1,10 @@
 package ch.zhaw.psit.towerhopscotch.maps;
 
 import ch.zhaw.psit.towerhopscotch.Game;
-import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy;
-import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Goblin;
+import ch.zhaw.psit.towerhopscotch.models.entities.enemies.*;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 public class Map {
 
@@ -29,7 +30,45 @@ public class Map {
         initializeMap(filePath);
 
         this.game = game;
-        enemies.add(new Goblin(game, startX, startY));
+
+        generateEnemies(10);
+    }
+
+    private void generateEnemies(int count) {
+        // Enemies are generated below the screen all with the same x position as the starting tile
+        // but varying y positions.
+        Random random = new Random();
+        for (int i = 1; i <= count; i++) {
+            int enemyType = random.nextInt(8 - 1 + 1) + 1;
+            int startingHeight = startY + (i * 64) + random.nextInt(20 + 20 + 1) - 20;
+            switch (enemyType) {
+                case 1:
+                    enemies.add(new Rat(game, startX, startingHeight));
+                    break;
+                case 2:
+                    enemies.add(new Bat(game, startX, startingHeight));
+                    break;
+                case 3:
+                    enemies.add(new Skeleton(game, startX, startingHeight));
+                    break;
+                case 4:
+                    enemies.add(new SmallSpider(game, startX, startingHeight));
+                    break;
+                case 5:
+                    enemies.add(new Goblin(game, startX, startingHeight));
+                    break;
+                case 6:
+                    enemies.add(new Slime(game, startX, startingHeight));
+                    break;
+                case 7:
+                    enemies.add(new Imp(game, startX, startingHeight));
+                    break;
+                case 8:
+                    enemies.add(new LargeSpider(game, startX, startingHeight));
+                    break;
+            }
+
+        }
     }
 
     public void update() {
@@ -57,7 +96,7 @@ public class Map {
     }
 
     public boolean isPath(float x, float y) {
-        if ((x < 0) || (x >= Tile.TILE_WIDTH * width) || (y < 0) || (y >= Tile.TILE_HEIGHT * height))
+        if (!isOnMap(x, y))
             return false;
 
         Tile tile = TileList.getTile(tiles[(int) x / Tile.TILE_WIDTH][(int) y / Tile.TILE_HEIGHT]);
@@ -65,11 +104,19 @@ public class Map {
     }
 
     public boolean isFortress(float x, float y) {
-        if ((x < 0) || (x >= Tile.TILE_WIDTH * width) || (y < 0) || (y >= Tile.TILE_HEIGHT * height))
+        if (!isOnMap(x, y))
             return false;
 
         Tile tile = TileList.getTile(tiles[(int) x / Tile.TILE_WIDTH][(int) y / Tile.TILE_HEIGHT]);
         return tile.isFortress();
+    }
+
+    public boolean isBeneathMap(float x, float y) {
+        return (y > Tile.TILE_HEIGHT * height) && (x == startX);
+    }
+
+    private boolean isOnMap(float x, float y) {
+        return !((x < 0) || (x >= Tile.TILE_WIDTH * width) || (y < 0) || (y >= Tile.TILE_HEIGHT * height));
     }
 
     private void initializeMap(String filePath) {
