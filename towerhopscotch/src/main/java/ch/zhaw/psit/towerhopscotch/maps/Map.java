@@ -4,7 +4,6 @@ import ch.zhaw.psit.towerhopscotch.Game;
 import ch.zhaw.psit.towerhopscotch.models.entities.enemies.*;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -39,8 +38,8 @@ public class Map {
         // but varying y positions.
         Random random = new Random();
         for (int i = 1; i <= count; i++) {
-            int enemyType = random.nextInt(8 - 1 + 1) + 1;
-            int startingHeight = startY + (i * 64) + random.nextInt(20 + 20 + 1) - 20;
+            int enemyType = random.nextInt(7 - 1 + 1) + 1;
+            int startingHeight = startY + (i * 64) + (2 * (random.nextInt(10 + 10 + 1) - 10));
             switch (enemyType) {
                 case 1:
                     enemies.add(new Rat(game, startX, startingHeight));
@@ -52,7 +51,7 @@ public class Map {
                     enemies.add(new Skeleton(game, startX, startingHeight));
                     break;
                 case 4:
-                    enemies.add(new SmallSpider(game, startX, startingHeight));
+                    enemies.add(new Spider(game, startX, startingHeight));
                     break;
                 case 5:
                     enemies.add(new Goblin(game, startX, startingHeight));
@@ -62,9 +61,6 @@ public class Map {
                     break;
                 case 7:
                     enemies.add(new Imp(game, startX, startingHeight));
-                    break;
-                case 8:
-                    enemies.add(new LargeSpider(game, startX, startingHeight));
                     break;
             }
 

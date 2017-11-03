@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Slime extends Enemy {
     public Slime(Game game, float x, float y) {
-        super(game, x, y, Enemy.DEFAULT_WIDTH, Enemy.DEFAULT_HEIGHT);
+        super(game, x, y, Enemy.DEFAULT_WIDTH, Enemy.DEFAULT_HEIGHT, 100, 10, 0.5f);
     }
 
     public void update() {

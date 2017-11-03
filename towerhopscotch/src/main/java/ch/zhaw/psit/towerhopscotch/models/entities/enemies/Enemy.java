@@ -5,12 +5,10 @@ import ch.zhaw.psit.towerhopscotch.maps.Map;
 import ch.zhaw.psit.towerhopscotch.models.entities.Entity;
 
 public abstract class Enemy extends Entity {
-
-    public static final int DEFAULT_HEALTH = 100;
-    public static final float DEFAULT_SPEED = 1.0f;
     public static final int DEFAULT_WIDTH = 32, DEFAULT_HEIGHT = 32;
 
     protected int health;
+    protected int damage;
     protected float speed;
     protected float xMove, yMove;
     protected Direction moveDirection;
@@ -19,11 +17,12 @@ public abstract class Enemy extends Entity {
         LEFT, RIGHT, UP, DOWN
     }
 
-    public Enemy(Game game, float x, float y, int width, int height) {
+    public Enemy(Game game, float x, float y, int width, int height, int health, int damage, float speed) {
         super(game, x, y, width, height);
         moveDirection = Direction.UP;
-        health = DEFAULT_HEALTH;
-        speed = DEFAULT_SPEED;
+        this.health = health;
+        this.damage = damage;
+        this.speed = speed;
         xMove = 0;
         yMove = 0;
     }
@@ -149,21 +148,5 @@ public abstract class Enemy extends Entity {
 
     public void setSpeed(float speed) {
         this.speed = speed;
-    }
-
-    public float getxMove() {
-        return xMove;
-    }
-
-    public void setxMove(float xMove) {
-        this.xMove = xMove;
-    }
-
-    public float getyMove() {
-        return yMove;
-    }
-
-    public void setyMove(float yMove) {
-        this.yMove = yMove;
     }
 }

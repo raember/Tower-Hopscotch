@@ -29,8 +29,7 @@ public class Assets {
         // Get enemy sprites
         enemies.put("rat", spriteSheet.getSubimage(0, 21 * height, width, height));
         enemies.put("bat", spriteSheet.getSubimage(width, 21 * height, width, height));
-        enemies.put("small_spider", spriteSheet.getSubimage(4 * width, 21 * height, width, height));
-        enemies.put("large_spider", spriteSheet.getSubimage(5 * width, 21 * height, width, height));
+        enemies.put("spider", spriteSheet.getSubimage(4 * width, 21 * height, width, height));
         enemies.put("slime", spriteSheet.getSubimage(0, 22 * height, width, height));
         enemies.put("goblin", spriteSheet.getSubimage(4 * width, 22 * height, width, height));
         enemies.put("imp", spriteSheet.getSubimage(width, 22 * height, width, height));

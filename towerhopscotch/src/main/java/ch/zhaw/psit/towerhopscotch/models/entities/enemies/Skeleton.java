@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Skeleton extends Enemy {
     public Skeleton(Game game, float x, float y) {
-        super(game, x, y, Enemy.DEFAULT_WIDTH, Enemy.DEFAULT_HEIGHT);
+        super(game, x, y, Enemy.DEFAULT_WIDTH, Enemy.DEFAULT_HEIGHT, 100, 10, 1.0f);
     }
 
     public void update() {

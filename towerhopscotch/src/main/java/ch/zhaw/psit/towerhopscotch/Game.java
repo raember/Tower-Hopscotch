@@ -101,7 +101,7 @@ public class Game implements Runnable {
         thread.start();
     }
 
-    private synchronized void stop() {
+    public synchronized void stop() {
         if (!running)
             return;
 
