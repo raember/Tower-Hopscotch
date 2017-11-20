@@ -123,12 +123,12 @@
     </coordinates>
     <panel_attributes>/:Tower/
 --
-+fireRange: FireRangeBehaviour
-+fireRangeBehaviours: Queue&lt;FireRangeBehaviour&gt;
-+fireFrequency: FireFrequencyBehaviour
-+fireFrequencyBehaviours: Queue&lt;FireFrequencyBehaviour&gt;
-+damage: DamageBehaviour
-+damageBehaviours: Queue&lt;DamageBehaviour&gt;
++fireRange: FloatUpgrade
++fireRangeUpgrades: Queue&lt;FloatUpgrade&gt;
++fireFrequency: FloatUpgrade
++fireFrequencyUpgrades: Queue&lt;FloatUpgrade&gt;
++damage: IntegerUpgrade
++damageUpgrades: Queue&lt;IntegerUpgrade&gt;
 +price: int
 +color: Color
 --
