@@ -2,7 +2,7 @@ package ch.zhaw.psit.towerhopscotch.states;
 
 import java.awt.Graphics;
 
-public class GameState extends State {
+public class MenuState extends State {
 
     @Override
     public void update() { }
