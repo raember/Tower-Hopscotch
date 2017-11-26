@@ -1,6 +1,7 @@
 package ch.zhaw.psit.towerhopscotch.models.entities;
 
 import ch.zhaw.psit.towerhopscotch.Game;
+import ch.zhaw.psit.towerhopscotch.maps.Layer;
 
 import java.awt.*;
 
@@ -9,9 +10,11 @@ public abstract class Entity {
     protected Game game;
     protected float x, y;
     protected int width, height;
+    protected Layer onLayer;
 
-    public Entity(Game game, float x, float y, int width, int height) {
+    public Entity(Game game,Layer onLayer, float x, float y, int width, int height) {
         this.game = game;
+        this.onLayer = onLayer;
         this.x = x;
         this.y = y;
         this.width = width;

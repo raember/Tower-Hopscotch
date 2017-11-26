@@ -2,12 +2,13 @@ package ch.zhaw.psit.towerhopscotch.models.entities.enemies;
 
 import ch.zhaw.psit.towerhopscotch.Game;
 import ch.zhaw.psit.towerhopscotch.GUI.Assets;
+import ch.zhaw.psit.towerhopscotch.maps.Layer;
 
 import java.awt.*;
 
 public class Imp extends Enemy {
-    public Imp(Game game, float x, float y) {
-        super(game, x, y, Enemy.DEFAULT_WIDTH, Enemy.DEFAULT_HEIGHT, 100, 10, 1.0f);
+    public Imp(Game game, Layer onLayer, float x, float y) {
+        super(game, onLayer, x, y, Enemy.DEFAULT_WIDTH, Enemy.DEFAULT_HEIGHT, 100, 10, 1.0f);
     }
 
     public void update() {
@@ -15,6 +16,6 @@ public class Imp extends Enemy {
     }
 
     public void render(Graphics g) {
-        g.drawImage(Assets.enemies.get("imp"), (int) x, (int) y, width, height, null);
+        renderEnemy(g,Assets.enemies.get("img"));
     }
 }
