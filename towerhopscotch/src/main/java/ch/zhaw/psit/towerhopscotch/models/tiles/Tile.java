@@ -28,6 +28,7 @@ public class Tile {
         if (layer != null){
             switch (layer.getOrder()){
                 case 1: texture = hellTexture; break;
+                case 2: texture = earthTexture; break;
                 case 3: texture = heavenTexture; break;
                 default: texture = earthTexture; break;
             }
@@ -37,7 +38,7 @@ public class Tile {
 
         g.drawImage(texture, x, y, TILE_WIDTH, TILE_HEIGHT, null);
     }
-    
+
     public boolean isPath() {
         return false;
     }
