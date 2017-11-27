@@ -1,6 +1,8 @@
-package ch.zhaw.psit.towerhopscotch.states;
+package ch.zhaw.psit.towerhopscotch.controllers.states;
 
-import java.awt.Graphics;
+import ch.zhaw.psit.towerhopscotch.GUI.input.MouseManager;
+
+import java.awt.*;
 
 public abstract class State {
     private static State currentState = null;
@@ -17,4 +19,5 @@ public abstract class State {
 
     public abstract void render(Graphics g);
 
+    public abstract MouseManager getMouseManager();
 }
