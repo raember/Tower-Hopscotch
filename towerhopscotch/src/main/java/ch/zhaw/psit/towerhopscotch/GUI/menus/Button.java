@@ -8,7 +8,7 @@ import ch.zhaw.psit.towerhopscotch.states.State;
 
 import java.awt.*;
 
-public class BuildMenuButton {
+public class Button {
     private String text;
     private int x;
     private int y;
@@ -16,7 +16,7 @@ public class BuildMenuButton {
     private int height;
     private Color buttonColor;
 
-    public BuildMenuButton(String text, int x, int y) {
+    public Button(String text, int x, int y) {
         this.text = text;
         this.x = x;
         this.y = y;
@@ -30,30 +30,30 @@ public class BuildMenuButton {
     }
 
     public void render(Graphics g) {
-        FontMetrics fm = g.getFontMetrics();
-        width = fm.stringWidth(text) + 20;
+        width = (text.split("").length * 23) + 20;
         height = 32;
 
         g.setColor(buttonColor);
         g.fillRoundRect(rectX(), y, width, height, 5, 5);
-        Text.drawString(g, text, x, y, Color.WHITE, Assets.font32);
+        Text.drawString(g, text, x, y, false, Color.WHITE, Assets.font32);
     }
 
-    private void isClicked() {
+    public boolean isClicked() {
         MouseManager mouseManager = getMouseManager();
         if(mouseManager.isLeftPressed()) {
             int mouseX = mouseManager.getMouseX();
             int mouseY = mouseManager.getMouseY();
             if((mouseX > rectX() && mouseX < rectX() + width) && (mouseY > y && mouseY < y + height)) {
                 buttonColor = new Color(0, 102, 0);
-                return;
+                return true;
             }
         }
         buttonColor = Color.BLACK;
+        return false;
     }
 
     private MouseManager getMouseManager() {
-        return ((GameState) State.getState()).getMouseManager();
+        return State.getState().getMouseManager();
     }
 
     private int rectX() {

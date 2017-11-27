@@ -4,7 +4,9 @@ import ch.zhaw.psit.towerhopscotch.input.MouseManager;
 import ch.zhaw.psit.towerhopscotch.maps.Map;
 import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 import ch.zhaw.psit.towerhopscotch.GUI.Display;
+import ch.zhaw.psit.towerhopscotch.states.GameOverState;
 import ch.zhaw.psit.towerhopscotch.states.GameState;
+import ch.zhaw.psit.towerhopscotch.states.MainMenuState;
 import ch.zhaw.psit.towerhopscotch.states.State;
 
 import java.awt.*;
@@ -20,6 +22,8 @@ public class Game implements Runnable {
 
     // All game states
     private State gameState;
+    private State gameOverState;
+    private State mainMenuState;
 
     // Inputs
     private MouseManager mouseManager;
@@ -44,10 +48,12 @@ public class Game implements Runnable {
         Assets.initialize();
 
         // Initialize the game states
-        gameState = new GameState(mouseManager);
+        gameState = new GameState(this, mouseManager);
+        gameOverState = new GameOverState(this, mouseManager);
+        mainMenuState = new MainMenuState(this, mouseManager);
 
         // Set the current state
-        State.setState(gameState);
+        State.setState(mainMenuState);
     }
 
     private void update() {
@@ -116,5 +122,25 @@ public class Game implements Runnable {
 
     public MouseManager getMouseManager() {
         return mouseManager;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public State getGameState() {
+        return gameState;
+    }
+
+    public State getGameOverState() {
+        return gameOverState;
+    }
+
+    public State getMainMenuState() {
+        return mainMenuState;
     }
 }
