@@ -13,8 +13,6 @@ import java.util.Random;
 
 public class Layer {
 
-    private Game game;
-
     private int startX, startY;
     private int offset;
 
@@ -23,8 +21,7 @@ public class Layer {
 
     private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
-    public Layer (Game game,int order, int width, int height, String layerContents,int count){
-        this.game = game;
+    public Layer (int order, int width, int height, String layerContents, int count){
         this.order = order;
         this.width = width;
         this.height = height;
@@ -43,25 +40,25 @@ public class Layer {
             int startingHeight = startY + (i * Tile.TILE_HEIGHT) + (2 * (random.nextInt(10 + 10 + 1) - 10));
             switch (enemyType) {
                 case 1:
-                    enemies.add(new Rat(game,this, startX, startingHeight));
+                    enemies.add(new Rat(this, startX, startingHeight));
                     break;
                 case 2:
-                    enemies.add(new Bat(game,this, startX, startingHeight));
+                    enemies.add(new Bat(this, startX, startingHeight));
                     break;
                 case 3:
-                    enemies.add(new Skeleton(game,this, startX, startingHeight));
+                    enemies.add(new Skeleton(this, startX, startingHeight));
                     break;
                 case 4:
-                    enemies.add(new Spider(game,this, startX, startingHeight));
+                    enemies.add(new Spider(this, startX, startingHeight));
                     break;
                 case 5:
-                    enemies.add(new Goblin(game,this, startX, startingHeight));
+                    enemies.add(new Goblin(this, startX, startingHeight));
                     break;
                 case 6:
-                    enemies.add(new Slime(game,this, startX, startingHeight));
+                    enemies.add(new Slime(this, startX, startingHeight));
                     break;
                 case 7:
-                    enemies.add(new Imp(game,this, startX, startingHeight));
+                    enemies.add(new Imp(this, startX, startingHeight));
                     break;
             }
 

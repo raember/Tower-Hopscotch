@@ -9,13 +9,11 @@ import java.io.IOException;
 
 public class Map {
 
-    private Game game;
     private Layer hell;
     private Layer earth;
     private Layer heaven;
 
-    public Map(Game game, String filePath) {
-        this.game = game;
+    public Map(String filePath) {
         initializeMap(filePath);
     }
 
@@ -71,9 +69,8 @@ public class Map {
 
         String[] layerContents = fileContents.toString().split("-");
 
-        hell = new Layer(game, 1,width,height,layerContents[1],10);
-        earth = new Layer(game, 2,width,height,layerContents[2],10);
-        heaven = new Layer(game, 3,width,height,layerContents[3],10);
-
+        hell = new Layer(1,width,height,layerContents[1],10);
+        earth = new Layer(2,width,height,layerContents[2],10);
+        heaven = new Layer(3,width,height,layerContents[3],10);
     }
 }

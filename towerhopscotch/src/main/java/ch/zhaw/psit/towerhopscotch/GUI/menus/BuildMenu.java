@@ -18,9 +18,13 @@ public class BuildMenu {
     private BuildMenuButton towerUpgradeButton;
     private BuildMenuButton callNextWaveButton;
 
-    public void update() {
+    public BuildMenu() {
         towerUpgradeButton = new BuildMenuButton("Upgrade", xOffset(25), yOffset(1));
         callNextWaveButton = new BuildMenuButton("Next Wave", xOffset(33), yOffset(1));
+    }
+
+    public void update() {
+
     }
 
     public void render(Graphics g) {
@@ -48,15 +52,13 @@ public class BuildMenu {
     }
 
     private void drawPlayerHealth(Graphics g) {
-        Player player = ((GameState) State.getState()).getPlayer();
         g.drawImage(Assets.heart, xOffset(9), yOffset(1), Tile.TILE_WIDTH, Tile.TILE_HEIGHT, null);
-        Text.drawString(g, player.getHealth() + " / " + Player.MAX_HEALTH , xOffset(11), yOffset(1), Color.BLACK, Assets.font32);
+        Text.drawString(g, getPlayer().getHealth() + " / " + Player.MAX_HEALTH , xOffset(11), yOffset(1), Color.BLACK, Assets.font32);
     }
 
     private void drawPlayerGold(Graphics g) {
-        Player player = ((GameState) State.getState()).getPlayer();
         g.drawImage(Assets.treasure, xOffset(17), yOffset(1), Tile.TILE_WIDTH, Tile.TILE_HEIGHT, null);
-        Text.drawString(g, player.getGold() + " Gold", xOffset(19), yOffset(1), Color.BLACK, Assets.font32);
+        Text.drawString(g, getPlayer().getGold() + " Gold", xOffset(19), yOffset(1), Color.BLACK, Assets.font32);
     }
 
     private int yOffset(int offset) {
@@ -65,5 +67,9 @@ public class BuildMenu {
 
     private int xOffset(int offset) {
         return Tile.TILE_WIDTH * offset;
+    }
+
+    private Player getPlayer() {
+        return ((GameState) State.getState()).getPlayer();
     }
 }

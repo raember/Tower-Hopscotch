@@ -2,18 +2,19 @@ package ch.zhaw.psit.towerhopscotch.models.entities;
 
 import ch.zhaw.psit.towerhopscotch.Game;
 import ch.zhaw.psit.towerhopscotch.maps.Layer;
+import ch.zhaw.psit.towerhopscotch.maps.Map;
+import ch.zhaw.psit.towerhopscotch.states.GameState;
+import ch.zhaw.psit.towerhopscotch.states.State;
 
 import java.awt.*;
 
 public abstract class Entity {
 
-    protected Game game;
     protected float x, y;
     protected int width, height;
     protected Layer onLayer;
 
-    public Entity(Game game,Layer onLayer, float x, float y, int width, int height) {
-        this.game = game;
+    public Entity(Layer onLayer, float x, float y, int width, int height) {
         this.onLayer = onLayer;
         this.x = x;
         this.y = y;
@@ -55,5 +56,9 @@ public abstract class Entity {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    protected Map getMap() {
+        return ((GameState) State.getState()).getMap();
     }
 }

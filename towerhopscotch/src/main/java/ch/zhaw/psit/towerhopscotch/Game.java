@@ -44,7 +44,7 @@ public class Game implements Runnable {
         Assets.initialize();
 
         // Initialize the game states
-        gameState = new GameState(this);
+        gameState = new GameState(mouseManager);
 
         // Set the current state
         State.setState(gameState);
@@ -116,14 +116,5 @@ public class Game implements Runnable {
 
     public MouseManager getMouseManager() {
         return mouseManager;
-    }
-
-    public Map getMap() {
-        State currentState = State.getState();
-        if (currentState instanceof GameState) {
-            return ((GameState) currentState).getMap();
-        } else {
-            return null;
-        }
     }
 }

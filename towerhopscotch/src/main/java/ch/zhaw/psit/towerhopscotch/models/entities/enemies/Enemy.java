@@ -21,8 +21,8 @@ public abstract class Enemy extends Entity {
         LEFT, RIGHT, UP, DOWN
     }
 
-    public Enemy(Game game,Layer onLayer, float x, float y, int width, int height, int health, int damage, float speed) {
-        super(game,onLayer, x, y, width, height);
+    public Enemy(Layer onLayer, float x, float y, int width, int height, int health, int damage, float speed) {
+        super(onLayer, x, y, width, height);
         moveDirection = Direction.UP;
         this.health = health;
         this.damage = damage;
@@ -117,7 +117,7 @@ public abstract class Enemy extends Entity {
     }
 
     private boolean upwardsPossible() {
-        Map map = game.getMap();
+        Map map = getMap();
         // Enemies spawn below the map so they come in one at a time
         return onLayer.isBeneathMap(x, y) || (onLayer.isPath(x, y - speed) && onLayer.isPath(x + (width - 1), y - speed));
     }
