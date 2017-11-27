@@ -10,7 +10,9 @@ import java.util.HashMap;
 public class Assets {
 
     private static final int height = 16, width = 16;
-    public static HashMap<String, BufferedImage> tiles = new HashMap<String, BufferedImage>();
+    public static HashMap<String, BufferedImage> earthTiles = new HashMap<String, BufferedImage>();
+    public static HashMap<String, BufferedImage> hellTiles = new HashMap<String, BufferedImage>();
+    public static HashMap<String, BufferedImage> heavenTiles = new HashMap<String, BufferedImage>();
     public static HashMap<String, BufferedImage> enemies = new HashMap<String, BufferedImage>();
     public static BufferedImage heart;
     public static BufferedImage treasure;
@@ -19,19 +21,19 @@ public class Assets {
     public static Font font128;
 
     public static void initialize() {
-        BufferedImage spriteSheet = ImageUtil.loadImage("/textures/sprite_sheet3.png");
+        BufferedImage spriteSheet = ImageUtil.loadImage("/textures/earth.png");
 
         // Get tile images
-        tiles.put("grass", spriteSheet.getSubimage(2 * width, 5 * height, width, height));
-        tiles.put("long_grass", spriteSheet.getSubimage(3 * width, 5 * height, width, height));
-        tiles.put("dirt", spriteSheet.getSubimage(width, 5 * height, width, height));
-        tiles.put("sand", spriteSheet.getSubimage(4 * width, 5 * height, width, height));
-        tiles.put("leaves", spriteSheet.getSubimage(5 * width, 5 * height, width, height));
-        tiles.put("stone", spriteSheet.getSubimage(6 * width, 5 * height, width, height));
-        tiles.put("tree", spriteSheet.getSubimage(7 * width, 5 * height, width, height));
-        tiles.put("dead_tree", spriteSheet.getSubimage(8 * width, 5 * height, width, height));
-        tiles.put("unknown", spriteSheet.getSubimage(8 * width, 24 * height, width, height));
-        tiles.put("fortress", spriteSheet.getSubimage(8 * width, 7 * height, width, height));
+        earthTiles.put("grass", spriteSheet.getSubimage(2 * width, 5 * height, width, height));
+        earthTiles.put("long_grass", spriteSheet.getSubimage(3 * width, 5 * height, width, height));
+        earthTiles.put("dirt", spriteSheet.getSubimage(width, 5 * height, width, height));
+        earthTiles.put("sand", spriteSheet.getSubimage(4 * width, 5 * height, width, height));
+        earthTiles.put("leaves", spriteSheet.getSubimage(5 * width, 5 * height, width, height));
+        earthTiles.put("stone", spriteSheet.getSubimage(6 * width, 5 * height, width, height));
+        earthTiles.put("tree", spriteSheet.getSubimage(7 * width, 5 * height, width, height));
+        earthTiles.put("dead_tree", spriteSheet.getSubimage(8 * width, 5 * height, width, height));
+        earthTiles.put("unknown", spriteSheet.getSubimage(8 * width, 24 * height, width, height));
+        earthTiles.put("fortress", spriteSheet.getSubimage(8 * width, 7 * height, width, height));
 
         // Get enemy sprites
         enemies.put("rat", spriteSheet.getSubimage(0, 21 * height, width, height));
@@ -49,5 +51,35 @@ public class Assets {
         // Load fonts
         font32 = FontLoader.loadFont("/fonts/slkscr.ttf", 32);
         font128 = FontLoader.loadFont("/fonts/slkscr.ttf", 128);
+
+
+        spriteSheet = ImageUtil.loadImage("/textures/hell.png");
+
+        // Get tile images
+        hellTiles.put("grass", spriteSheet.getSubimage(2 * width, 5 * height, width, height));
+        hellTiles.put("long_grass", spriteSheet.getSubimage(3 * width, 5 * height, width, height));
+        hellTiles.put("dirt", spriteSheet.getSubimage(width, 5 * height, width, height));
+        hellTiles.put("sand", spriteSheet.getSubimage(4 * width, 5 * height, width, height));
+        hellTiles.put("leaves", spriteSheet.getSubimage(5 * width, 5 * height, width, height));
+        hellTiles.put("stone", spriteSheet.getSubimage(6 * width, 5 * height, width, height));
+        hellTiles.put("tree", spriteSheet.getSubimage(7 * width, 5 * height, width, height));
+        hellTiles.put("dead_tree", spriteSheet.getSubimage(8 * width, 5 * height, width, height));
+        hellTiles.put("unknown", spriteSheet.getSubimage(8 * width, 24 * height, width, height));
+        hellTiles.put("fortress", spriteSheet.getSubimage(8 * width, 7 * height, width, height));
+
+
+        spriteSheet = ImageUtil.loadImage("/textures/heaven.png");
+
+        // Get tile images
+        heavenTiles.put("grass", spriteSheet.getSubimage(2 * width, 5 * height, width, height));
+        heavenTiles.put("long_grass", spriteSheet.getSubimage(3 * width, 5 * height, width, height));
+        heavenTiles.put("dirt", spriteSheet.getSubimage(width, 5 * height, width, height));
+        heavenTiles.put("sand", spriteSheet.getSubimage(4 * width, 5 * height, width, height));
+        heavenTiles.put("leaves", spriteSheet.getSubimage(5 * width, 5 * height, width, height));
+        heavenTiles.put("stone", spriteSheet.getSubimage(6 * width, 5 * height, width, height));
+        heavenTiles.put("tree", spriteSheet.getSubimage(7 * width, 5 * height, width, height));
+        heavenTiles.put("dead_tree", spriteSheet.getSubimage(8 * width, 5 * height, width, height));
+        heavenTiles.put("unknown", spriteSheet.getSubimage(8 * width, 24 * height, width, height));
+        heavenTiles.put("fortress", spriteSheet.getSubimage(8 * width, 7 * height, width, height));
     }
 }

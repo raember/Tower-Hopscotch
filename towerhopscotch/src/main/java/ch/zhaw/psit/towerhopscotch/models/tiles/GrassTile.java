@@ -5,6 +5,6 @@ import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 class GrassTile extends Tile {
 
     GrassTile(int id) {
-        super(Assets.tiles.get("grass"), id);
+        super("grass", id);
     }
 }

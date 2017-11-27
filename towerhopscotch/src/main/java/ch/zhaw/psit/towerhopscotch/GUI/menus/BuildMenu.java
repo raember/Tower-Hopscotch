@@ -41,15 +41,15 @@ public class BuildMenu {
     private void drawMenuBackground(Graphics g) {
         for(int y = 0; y < HEIGHT; y += Tile.TILE_HEIGHT) {
             for(int x = 0; x < WIDTH; x += Tile.TILE_WIDTH) {
-                TileList.getTile(6).render(g, x, TOP + y);
+                TileList.getTile(6).render(g,null, x, TOP + y);
             }
         }
     }
 
     private void drawTowerButtons(Graphics g) {
-        TileList.getTile(255).render(g, xOffset(1), yOffset(1));
-        TileList.getTile(255).render(g, xOffset(3), yOffset(1));
-        TileList.getTile(255).render(g, xOffset(5), yOffset(1));
+        TileList.getTile(255).render(g,null, xOffset(1), yOffset(1));
+        TileList.getTile(255).render(g,null, xOffset(3), yOffset(1));
+        TileList.getTile(255).render(g,null, xOffset(5), yOffset(1));
     }
 
     private void drawPlayerHealth(Graphics g) {

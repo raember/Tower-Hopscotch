@@ -87,7 +87,7 @@ public class Layer {
     public void render(Graphics g) {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                TileList.getTile(tiles[x][y]).render(g,x * Tile.TILE_WIDTH + offset, y * Tile.TILE_HEIGHT);
+                TileList.getTile(tiles[x][y]).render(g,this,x * Tile.TILE_WIDTH + offset, y * Tile.TILE_HEIGHT);
             }
         }
 
@@ -137,6 +137,10 @@ public class Layer {
 
     public int getOffset(){
         return offset;
+    }
+
+    public int getOrder(){
+        return order;
     }
 
     private Player getPlayer() {

@@ -5,6 +5,6 @@ import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 class UnknownTile extends Tile {
 
     UnknownTile(int id) {
-        super(Assets.tiles.get("unknown"), id);
+        super("unknown", id);
     }
 }

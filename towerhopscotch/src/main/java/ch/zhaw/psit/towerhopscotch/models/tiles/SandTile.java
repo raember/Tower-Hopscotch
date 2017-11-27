@@ -5,6 +5,6 @@ import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 class SandTile extends Tile {
 
     SandTile(int id) {
-        super(Assets.tiles.get("sand"), id);
+        super("sand", id);
     }
 }

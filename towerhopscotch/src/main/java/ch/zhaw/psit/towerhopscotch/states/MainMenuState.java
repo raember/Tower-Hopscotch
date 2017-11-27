@@ -34,7 +34,7 @@ public class MainMenuState extends State {
     public void render(Graphics g) {
         for(int y = 0; y < game.getHeight(); y += Tile.TILE_HEIGHT) {
             for(int x = 0; x < game.getWidth(); x += Tile.TILE_WIDTH) {
-                TileList.getTile(0).render(g, x, y);
+                TileList.getTile(0).render(g,null, x, y);
             }
         }
         Text.drawString(g, "Main Menu", game.getWidth() / 2, game.getHeight() / 2, true, Color.WHITE, Assets.font128);

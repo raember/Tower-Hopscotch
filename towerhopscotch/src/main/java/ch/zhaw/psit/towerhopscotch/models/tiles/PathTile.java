@@ -5,7 +5,7 @@ import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 class PathTile extends Tile {
 
     PathTile(int id) {
-        super(Assets.tiles.get("dirt"), id);
+        super("dirt", id);
     }
 
     @Override

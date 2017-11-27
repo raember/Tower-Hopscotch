@@ -5,7 +5,7 @@ import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 public class FortressTile extends Tile {
 
     FortressTile(int id) {
-        super(Assets.tiles.get("fortress"), id);
+        super("fortress", id);
     }
 
     @Override
