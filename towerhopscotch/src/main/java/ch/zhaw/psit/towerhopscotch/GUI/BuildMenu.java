@@ -1,7 +1,10 @@
 package ch.zhaw.psit.towerhopscotch.GUI;
 
+import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
+import ch.zhaw.psit.towerhopscotch.states.GameState;
+import ch.zhaw.psit.towerhopscotch.states.State;
 
 import java.awt.*;
 
@@ -38,13 +41,15 @@ public class BuildMenu {
     }
 
     private void drawPlayerHealth(Graphics g) {
+        Player player = ((GameState) State.getState()).getPlayer();
         g.drawImage(Assets.heart, xOffset(9), yOffset(1), Tile.TILE_WIDTH, Tile.TILE_HEIGHT, null);
-        Text.drawString(g, "20 / 20", xOffset(11), yOffset(1), Color.BLACK, Assets.font32);
+        Text.drawString(g, player.getHealth() + " / " + Player.MAX_HEALTH , xOffset(11), yOffset(1), Color.BLACK, Assets.font32);
     }
 
     private void drawPlayerGold(Graphics g) {
+        Player player = ((GameState) State.getState()).getPlayer();
         g.drawImage(Assets.treasure, xOffset(17), yOffset(1), Tile.TILE_WIDTH, Tile.TILE_HEIGHT, null);
-        Text.drawString(g, "200", xOffset(19), yOffset(1), Color.BLACK, Assets.font32);
+        Text.drawString(g, player.getGold() + " Gold", xOffset(19), yOffset(1), Color.BLACK, Assets.font32);
     }
 
     private void drawUpgradeButton(Graphics g) {
