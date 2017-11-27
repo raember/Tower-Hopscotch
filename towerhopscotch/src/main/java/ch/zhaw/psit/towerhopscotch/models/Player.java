@@ -25,4 +25,8 @@ public class Player {
     public void decreaseHealth(int amount) {
         health -= amount;
     }
+
+    public boolean isDead() {
+        return health <= 0;
+    }
 }

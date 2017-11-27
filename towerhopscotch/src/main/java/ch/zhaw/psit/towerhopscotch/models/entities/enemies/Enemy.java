@@ -2,11 +2,13 @@ package ch.zhaw.psit.towerhopscotch.models.entities.enemies;
 
 import ch.zhaw.psit.towerhopscotch.Game;
 import ch.zhaw.psit.towerhopscotch.maps.Layer;
-import ch.zhaw.psit.towerhopscotch.maps.Map;
 import ch.zhaw.psit.towerhopscotch.models.entities.Entity;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 public abstract class Enemy extends Entity {
     public static final int DEFAULT_WIDTH = 32, DEFAULT_HEIGHT = 32;
@@ -35,17 +37,58 @@ public abstract class Enemy extends Entity {
         xMove = 0;
         yMove = 0;
 
-        // Move if current movement direction is possible, else change direction and move
+
         if (movementPossible(moveDirection)) {
-            setMovementForDirection(moveDirection);
+            setMovementForDirection();
         } else {
             changeDirection();
-            setMovementForDirection(moveDirection);
+            setMovementForDirection();
         }
 
         x += xMove;
         y += yMove;
     }
+
+    /* NOT NEEDED AT THE MOMENT...
+    private ArrayList<Direction> getAllPossibleDirections() {
+        ArrayList<Direction> possibleDirections = new ArrayList<Direction>();
+
+        if (moveDirection == Direction.UP) {
+            if (upwardsPossible())
+                possibleDirections.add(Direction.UP);
+            if (leftwardsPossible())
+                possibleDirections.add(Direction.LEFT);
+            if (rightwardsPossible())
+                possibleDirections.add(Direction.RIGHT);
+        } else if (moveDirection == Direction.DOWN) {
+            if (downwardsPossible())
+                possibleDirections.add(Direction.DOWN);
+            if (leftwardsPossible())
+                possibleDirections.add(Direction.LEFT);
+            if (rightwardsPossible())
+                possibleDirections.add(Direction.RIGHT);
+        } else if (moveDirection == Direction.LEFT) {
+            if (leftwardsPossible())
+                possibleDirections.add(Direction.LEFT);
+            if (upwardsPossible())
+                possibleDirections.add(Direction.UP);
+            if (downwardsPossible())
+                possibleDirections.add(Direction.DOWN);
+        } else if (moveDirection == Direction.RIGHT) {
+            if (rightwardsPossible())
+                possibleDirections.add(Direction.RIGHT);
+            if (upwardsPossible())
+                possibleDirections.add(Direction.UP);
+            if (downwardsPossible())
+                possibleDirections.add(Direction.DOWN);
+        }
+
+        return possibleDirections;
+    }
+
+    private void choseDirectionFromList(ArrayList<Direction> directions) {
+        moveDirection = directions.get(new Random().nextInt(directions.size()));
+    }*/
 
     private void changeDirection() {
         Direction currentDirection = moveDirection;
@@ -55,32 +98,24 @@ public abstract class Enemy extends Entity {
                 moveDirection = Direction.LEFT;
             } else if (rightwardsPossible()) {
                 moveDirection = Direction.RIGHT;
-            } else {
-                moveDirection = Direction.DOWN;
             }
         } else if (currentDirection == Direction.DOWN) {
             if (leftwardsPossible()) {
                 moveDirection = Direction.LEFT;
             } else if (rightwardsPossible()) {
                 moveDirection = Direction.RIGHT;
-            } else {
-                moveDirection = Direction.UP;
             }
         } else if (currentDirection == Direction.LEFT) {
             if (upwardsPossible()) {
                 moveDirection = Direction.UP;
             } else if (downwardsPossible()) {
                 moveDirection = Direction.DOWN;
-            } else {
-                moveDirection = Direction.RIGHT;
             }
         } else if (currentDirection == Direction.RIGHT) {
             if (upwardsPossible()) {
                 moveDirection = Direction.UP;
             } else if (downwardsPossible()) {
                 moveDirection = Direction.DOWN;
-            } else {
-                moveDirection = Direction.LEFT;
             }
         }
     }
@@ -99,8 +134,8 @@ public abstract class Enemy extends Entity {
         return false;
     }
 
-    private void setMovementForDirection(Direction direction) {
-        switch (direction) {
+    private void setMovementForDirection() {
+        switch (moveDirection) {
             case UP:
                 yMove = -speed;
                 break;
@@ -117,7 +152,6 @@ public abstract class Enemy extends Entity {
     }
 
     private boolean upwardsPossible() {
-        Map map = getMap();
         // Enemies spawn below the map so they come in one at a time
         return onLayer.isBeneathMap(x, y) || (onLayer.isPath(x, y - speed) && onLayer.isPath(x + (width - 1), y - speed));
     }
@@ -148,6 +182,10 @@ public abstract class Enemy extends Entity {
 
     public float getSpeed() {
         return speed;
+    }
+
+    public int getDamage() {
+        return damage;
     }
 
     public void setSpeed(float speed) {

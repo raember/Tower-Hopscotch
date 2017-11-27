@@ -8,7 +8,7 @@ public class TileList {
 
     public static Tile[] instanceList = new Tile[256];
     public static Tile grassTile = new GrassTile(0);
-    public static Tile dirtTile = new DirtTile(1);
+    public static Tile pathTile = new PathTile(1);
     public static Tile longGrassTile = new LongGrassTile(2);
     public static Tile treeTile = new TreeTile(3);
     public static Tile leavesTile = new LeavesTile(4);

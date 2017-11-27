@@ -9,7 +9,7 @@ import java.awt.*;
 public class Goblin extends Enemy {
 
     public Goblin(Layer onLayer, float x, float y) {
-        super(onLayer, x, y, Enemy.DEFAULT_WIDTH, Enemy.DEFAULT_HEIGHT, 100, 10, 1.0f);
+        super(onLayer, x, y, Enemy.DEFAULT_WIDTH, Enemy.DEFAULT_HEIGHT, 100, 2, 1.0f);
     }
 
     public void update() {

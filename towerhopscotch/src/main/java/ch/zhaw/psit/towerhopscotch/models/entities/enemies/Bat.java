@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class Bat extends Enemy {
     public Bat(Layer onLayer, float x, float y) {
-        super(onLayer, x, y, Enemy.DEFAULT_WIDTH, Enemy.DEFAULT_HEIGHT, 100, 10, 2.0f);
+        super(onLayer, x, y, Enemy.DEFAULT_WIDTH, Enemy.DEFAULT_HEIGHT, 100, 1, 2.0f);
     }
 
     public void update() {

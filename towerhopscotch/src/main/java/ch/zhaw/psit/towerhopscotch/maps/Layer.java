@@ -2,9 +2,12 @@ package ch.zhaw.psit.towerhopscotch.maps;
 
 
 import ch.zhaw.psit.towerhopscotch.Game;
+import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.entities.enemies.*;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
+import ch.zhaw.psit.towerhopscotch.states.GameState;
+import ch.zhaw.psit.towerhopscotch.states.State;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -25,7 +28,7 @@ public class Layer {
         this.order = order;
         this.width = width;
         this.height = height;
-        offset = (order- 1) * width * Tile.TILE_WIDTH + 10 * (order- 1);
+        offset = (order- 1) * width * Tile.TILE_WIDTH + 10 * (order - 1);
         initializeLayer(layerContents);
         generateEnemies(count);
     }
@@ -61,11 +64,12 @@ public class Layer {
                     enemies.add(new Imp(this, startX, startingHeight));
                     break;
             }
-
         }
     }
 
     public void update() {
+        Player player = getPlayer();
+
         // Update enemies
         Iterator<Enemy> iterator = enemies.iterator();
         while (iterator.hasNext()) {
@@ -73,8 +77,10 @@ public class Layer {
             enemy.update();
 
             // Remove enemy if it has reached the players fortress
-            if (enemy.reachedDestination())
+            if (enemy.reachedDestination()) {
+                player.decreaseHealth(enemy.getDamage());
                 iterator.remove();
+            }
         }
     }
 
@@ -113,7 +119,6 @@ public class Layer {
         return tile.isPath();
     }
 
-
     private void initializeLayer(String layerContents){
         String[] tokens = layerContents.toString().split("\\s+");
 
@@ -130,8 +135,11 @@ public class Layer {
         }
     }
 
-
     public int getOffset(){
         return offset;
+    }
+
+    private Player getPlayer() {
+        return ((GameState) State.getState()).getPlayer();
     }
 }
