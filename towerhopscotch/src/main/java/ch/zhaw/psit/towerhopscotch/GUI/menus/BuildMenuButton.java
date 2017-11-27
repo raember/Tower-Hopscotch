@@ -45,7 +45,7 @@ public class BuildMenuButton {
             int mouseX = mouseManager.getMouseX();
             int mouseY = mouseManager.getMouseY();
             if((mouseX > rectX() && mouseX < rectX() + width) && (mouseY > y && mouseY < y + height)) {
-                buttonColor = Color.RED;
+                buttonColor = new Color(0, 102, 0);
                 return;
             }
         }
