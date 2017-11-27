@@ -5,9 +5,4 @@ public class TreeTile extends Tile {
     TreeTile(int id) {
         super("tree", id);
     }
-
-    @Override
-    public boolean isSolid() {
-        return true;
-    }
 }

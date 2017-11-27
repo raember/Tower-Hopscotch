@@ -37,11 +37,7 @@ public class Tile {
 
         g.drawImage(texture, x, y, TILE_WIDTH, TILE_HEIGHT, null);
     }
-
-    public boolean isSolid() {
-        return false;
-    }
-
+    
     public boolean isPath() {
         return false;
     }
