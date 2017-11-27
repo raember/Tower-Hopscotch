@@ -29,11 +29,12 @@ public class Assets {
         earthTiles.put("dirt", spriteSheet.getSubimage(width, 5 * height, width, height));
         earthTiles.put("sand", spriteSheet.getSubimage(4 * width, 5 * height, width, height));
         earthTiles.put("leaves", spriteSheet.getSubimage(5 * width, 5 * height, width, height));
-        earthTiles.put("stone", spriteSheet.getSubimage(6 * width, 5 * height, width, height));
+        earthTiles.put("stone", spriteSheet.getSubimage(6 * width, 6 * height, width, height));
         earthTiles.put("tree", spriteSheet.getSubimage(7 * width, 5 * height, width, height));
         earthTiles.put("dead_tree", spriteSheet.getSubimage(8 * width, 5 * height, width, height));
         earthTiles.put("unknown", spriteSheet.getSubimage(8 * width, 24 * height, width, height));
         earthTiles.put("fortress", spriteSheet.getSubimage(8 * width, 7 * height, width, height));
+        earthTiles.put("temple", spriteSheet.getSubimage(7 * width, 6 * height, width, height));
 
         // Get enemy sprites
         enemies.put("rat", spriteSheet.getSubimage(0, 21 * height, width, height));
@@ -61,11 +62,12 @@ public class Assets {
         hellTiles.put("dirt", spriteSheet.getSubimage(width, 5 * height, width, height));
         hellTiles.put("sand", spriteSheet.getSubimage(4 * width, 5 * height, width, height));
         hellTiles.put("leaves", spriteSheet.getSubimage(5 * width, 5 * height, width, height));
-        hellTiles.put("stone", spriteSheet.getSubimage(6 * width, 5 * height, width, height));
+        hellTiles.put("stone", spriteSheet.getSubimage(6 * width, 6 * height, width, height));
         hellTiles.put("tree", spriteSheet.getSubimage(7 * width, 5 * height, width, height));
         hellTiles.put("dead_tree", spriteSheet.getSubimage(8 * width, 5 * height, width, height));
         hellTiles.put("unknown", spriteSheet.getSubimage(8 * width, 24 * height, width, height));
         hellTiles.put("fortress", spriteSheet.getSubimage(8 * width, 7 * height, width, height));
+        hellTiles.put("temple", spriteSheet.getSubimage(7 * width, 6 * height, width, height));
 
 
         spriteSheet = ImageUtil.loadImage("/textures/heaven.png");
@@ -76,10 +78,11 @@ public class Assets {
         heavenTiles.put("dirt", spriteSheet.getSubimage(width, 5 * height, width, height));
         heavenTiles.put("sand", spriteSheet.getSubimage(4 * width, 5 * height, width, height));
         heavenTiles.put("leaves", spriteSheet.getSubimage(5 * width, 5 * height, width, height));
-        heavenTiles.put("stone", spriteSheet.getSubimage(6 * width, 5 * height, width, height));
+        heavenTiles.put("stone", spriteSheet.getSubimage(6 * width, 6 * height, width, height));
         heavenTiles.put("tree", spriteSheet.getSubimage(7 * width, 5 * height, width, height));
         heavenTiles.put("dead_tree", spriteSheet.getSubimage(8 * width, 5 * height, width, height));
         heavenTiles.put("unknown", spriteSheet.getSubimage(8 * width, 24 * height, width, height));
         heavenTiles.put("fortress", spriteSheet.getSubimage(8 * width, 7 * height, width, height));
+        heavenTiles.put("temple", spriteSheet.getSubimage(7 * width, 6 * height, width, height));
     }
 }

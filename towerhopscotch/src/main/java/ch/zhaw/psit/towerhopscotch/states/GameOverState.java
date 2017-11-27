@@ -43,7 +43,7 @@ public class GameOverState extends State {
                 TileList.getTile(0).render(g,null, x, y);
             }
         }
-        Text.drawString(g, "Game Over", game.getWidth() / 2, game.getHeight() / 2, true, Color.RED, Assets.font128);
+        Text.drawString(g, "Game Over", game.getWidth() / 2, game.getHeight() / 2, true, new Color(255,51,33), Assets.font128);
         mainMenuButton.render(g);
         newGameButton.render(g);
     }
