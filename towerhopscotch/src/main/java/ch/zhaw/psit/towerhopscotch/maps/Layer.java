@@ -40,7 +40,7 @@ public class Layer {
         Random random = new Random();
         for (int i = 1; i <= count; i++) {
             int enemyType = random.nextInt(7 - 1 + 1) + 1;
-            int startingHeight = startY + (i * 64) + (2 * (random.nextInt(10 + 10 + 1) - 10));
+            int startingHeight = startY + (i * Tile.TILE_HEIGHT) + (2 * (random.nextInt(10 + 10 + 1) - 10));
             switch (enemyType) {
                 case 1:
                     enemies.add(new Rat(game,this, startX, startingHeight));
