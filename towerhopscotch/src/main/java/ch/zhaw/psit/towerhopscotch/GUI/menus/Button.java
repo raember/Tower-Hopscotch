@@ -2,9 +2,8 @@ package ch.zhaw.psit.towerhopscotch.GUI.menus;
 
 import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 import ch.zhaw.psit.towerhopscotch.GUI.Text;
-import ch.zhaw.psit.towerhopscotch.input.MouseManager;
-import ch.zhaw.psit.towerhopscotch.states.GameState;
-import ch.zhaw.psit.towerhopscotch.states.State;
+import ch.zhaw.psit.towerhopscotch.GUI.input.MouseManager;
+import ch.zhaw.psit.towerhopscotch.controllers.states.State;
 
 import java.awt.*;
 

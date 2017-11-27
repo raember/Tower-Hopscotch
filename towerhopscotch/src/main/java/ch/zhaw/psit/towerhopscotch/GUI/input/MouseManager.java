@@ -1,4 +1,4 @@
-package ch.zhaw.psit.towerhopscotch.input;
+package ch.zhaw.psit.towerhopscotch.GUI.input;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;

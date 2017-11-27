@@ -5,8 +5,8 @@ import ch.zhaw.psit.towerhopscotch.GUI.Text;
 import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
-import ch.zhaw.psit.towerhopscotch.states.GameState;
-import ch.zhaw.psit.towerhopscotch.states.State;
+import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
+import ch.zhaw.psit.towerhopscotch.controllers.states.State;
 
 import java.awt.*;
 

@@ -1,8 +1,8 @@
-package ch.zhaw.psit.towerhopscotch.states;
+package ch.zhaw.psit.towerhopscotch.controllers.states;
 
-import ch.zhaw.psit.towerhopscotch.Game;
-import ch.zhaw.psit.towerhopscotch.input.MouseManager;
-import ch.zhaw.psit.towerhopscotch.maps.Map;
+import ch.zhaw.psit.towerhopscotch.controllers.Game;
+import ch.zhaw.psit.towerhopscotch.GUI.input.MouseManager;
+import ch.zhaw.psit.towerhopscotch.models.maps.Map;
 import ch.zhaw.psit.towerhopscotch.GUI.menus.BuildMenu;
 import ch.zhaw.psit.towerhopscotch.models.Player;
 

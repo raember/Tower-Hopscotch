@@ -1,34 +1,28 @@
-package ch.zhaw.psit.towerhopscotch.states;
+package ch.zhaw.psit.towerhopscotch.controllers.states;
 
 import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 import ch.zhaw.psit.towerhopscotch.GUI.Text;
 import ch.zhaw.psit.towerhopscotch.GUI.menus.Button;
-import ch.zhaw.psit.towerhopscotch.Game;
-import ch.zhaw.psit.towerhopscotch.input.MouseManager;
+import ch.zhaw.psit.towerhopscotch.controllers.Game;
+import ch.zhaw.psit.towerhopscotch.GUI.input.MouseManager;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
 
 import java.awt.*;
 
-public class GameOverState extends State {
+public class MainMenuState extends State {
     private Game game;
     private MouseManager mouseManager;
-    private Button mainMenuButton;
     private Button newGameButton;
 
-    public GameOverState(Game game, MouseManager mouseManager) {
+    public MainMenuState(Game game, MouseManager mouseManager) {
         this.game = game;
         this.mouseManager = mouseManager;
-        mainMenuButton = new Button("Main Menu", game.getWidth() / 8 * 2, game.getHeight() / 3 * 2);
-        newGameButton = new Button("New Game", game.getWidth() / 8 * 5 - 15, game.getHeight() / 3 * 2);
+        newGameButton = new Button("New Game", game.getWidth() / 8 * 4 - 70, game.getHeight() / 3 * 2);
     }
 
     public void update() {
-        mainMenuButton.update();
         newGameButton.update();
-
-        if(mainMenuButton.isClicked())
-            State.setState(game.getMainMenuState());
 
         if(newGameButton.isClicked()) {
             State gameState = game.getGameState();
@@ -43,8 +37,7 @@ public class GameOverState extends State {
                 TileList.getTile(0).render(g,null, x, y);
             }
         }
-        Text.drawString(g, "Game Over", game.getWidth() / 2, game.getHeight() / 2, true, new Color(255,51,33), Assets.font128);
-        mainMenuButton.render(g);
+        Text.drawString(g, "Main Menu", game.getWidth() / 2, game.getHeight() / 2, true, Color.WHITE, Assets.font128);
         newGameButton.render(g);
     }
 

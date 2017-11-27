@@ -1,4 +1,4 @@
-package ch.zhaw.psit.towerhopscotch.tower;
+package ch.zhaw.psit.towerhopscotch.models.tower;
 
 /**
  * Created by Raphael Emberger on 13.11.2017.

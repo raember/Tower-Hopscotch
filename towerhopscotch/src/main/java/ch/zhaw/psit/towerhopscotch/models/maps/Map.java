@@ -1,6 +1,6 @@
-package ch.zhaw.psit.towerhopscotch.maps;
+package ch.zhaw.psit.towerhopscotch.models.maps;
 
-import ch.zhaw.psit.towerhopscotch.Game;
+import ch.zhaw.psit.towerhopscotch.models.enums.LayerType;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -69,8 +69,8 @@ public class Map {
 
         String[] layerContents = fileContents.toString().split("-");
 
-        hell = new Layer(1,width,height,layerContents[1],10);
-        earth = new Layer(2,width,height,layerContents[2],10);
-        heaven = new Layer(3,width,height,layerContents[3],10);
+        hell = new Layer(LayerType.HELL, width, height, layerContents[1], 10);
+        earth = new Layer(LayerType.EARTH, width, height, layerContents[2], 10);
+        heaven = new Layer(LayerType.HEAVEN, width, height, layerContents[3], 10);
     }
 }

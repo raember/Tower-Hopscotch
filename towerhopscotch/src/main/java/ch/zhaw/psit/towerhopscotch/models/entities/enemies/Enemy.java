@@ -1,14 +1,11 @@
 package ch.zhaw.psit.towerhopscotch.models.entities.enemies;
 
-import ch.zhaw.psit.towerhopscotch.Game;
-import ch.zhaw.psit.towerhopscotch.maps.Layer;
+import ch.zhaw.psit.towerhopscotch.models.enums.Direction;
+import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
 import ch.zhaw.psit.towerhopscotch.models.entities.Entity;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
 
 public abstract class Enemy extends Entity {
     public static final int DEFAULT_WIDTH = 32, DEFAULT_HEIGHT = 32;
@@ -18,10 +15,6 @@ public abstract class Enemy extends Entity {
     protected float speed;
     protected float xMove, yMove;
     protected Direction moveDirection;
-
-    public enum Direction {
-        LEFT, RIGHT, UP, DOWN
-    }
 
     public Enemy(Layer onLayer, float x, float y, int width, int height, int health, int damage, float speed) {
         super(onLayer, x, y, width, height);

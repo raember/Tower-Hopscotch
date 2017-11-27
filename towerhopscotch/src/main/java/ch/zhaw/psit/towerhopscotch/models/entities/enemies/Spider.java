@@ -1,8 +1,7 @@
 package ch.zhaw.psit.towerhopscotch.models.entities.enemies;
 
 import ch.zhaw.psit.towerhopscotch.GUI.Assets;
-import ch.zhaw.psit.towerhopscotch.Game;
-import ch.zhaw.psit.towerhopscotch.maps.Layer;
+import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
 
 import java.awt.*;
 

@@ -1,13 +1,13 @@
-package ch.zhaw.psit.towerhopscotch.maps;
+package ch.zhaw.psit.towerhopscotch.models.maps;
 
 
-import ch.zhaw.psit.towerhopscotch.Game;
 import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.entities.enemies.*;
+import ch.zhaw.psit.towerhopscotch.models.enums.LayerType;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
-import ch.zhaw.psit.towerhopscotch.states.GameState;
-import ch.zhaw.psit.towerhopscotch.states.State;
+import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
+import ch.zhaw.psit.towerhopscotch.controllers.states.State;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -19,16 +19,17 @@ public class Layer {
     private int startX, startY;
     private int offset;
 
-    private int width, height, order;
+    private LayerType layerType;
+    private int width, height;
     private int[][] tiles;
 
     private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
-    public Layer (int order, int width, int height, String layerContents, int count){
-        this.order = order;
+    public Layer (LayerType layerType, int width, int height, String layerContents, int count){
+        this.layerType = layerType;
         this.width = width;
         this.height = height;
-        offset = (order- 1) * width * Tile.TILE_WIDTH + 10 * (order - 1);
+        offset = calculateOffset();
         initializeLayer(layerContents);
         generateEnemies(count);
     }
@@ -87,7 +88,7 @@ public class Layer {
     public void render(Graphics g) {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                TileList.getTile(tiles[x][y]).render(g,this,x * Tile.TILE_WIDTH + offset, y * Tile.TILE_HEIGHT);
+                TileList.getTile(tiles[x][y]).render(g,layerType,x * Tile.TILE_WIDTH + offset, y * Tile.TILE_HEIGHT);
             }
         }
 
@@ -135,12 +136,19 @@ public class Layer {
         }
     }
 
-    public int getOffset(){
-        return offset;
+    public int calculateOffset() {
+        int multiplier = 0;
+        switch(layerType) {
+            case HELL: multiplier = 0; break;
+            case EARTH: multiplier = 1; break;
+            case HEAVEN: multiplier = 2; break;
+        }
+
+        return multiplier * width * Tile.TILE_WIDTH + 10 * multiplier;
     }
 
-    public int getOrder(){
-        return order;
+    public LayerType getLayerType(){
+        return layerType;
     }
 
     private Player getPlayer() {

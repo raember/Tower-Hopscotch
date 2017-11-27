@@ -1,4 +1,4 @@
-package ch.zhaw.psit.towerhopscotch.tower;
+package ch.zhaw.psit.towerhopscotch.models.tower;
 
 import java.awt.*;
 

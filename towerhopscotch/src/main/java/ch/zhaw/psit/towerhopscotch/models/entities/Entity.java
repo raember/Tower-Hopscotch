@@ -1,10 +1,9 @@
 package ch.zhaw.psit.towerhopscotch.models.entities;
 
-import ch.zhaw.psit.towerhopscotch.Game;
-import ch.zhaw.psit.towerhopscotch.maps.Layer;
-import ch.zhaw.psit.towerhopscotch.maps.Map;
-import ch.zhaw.psit.towerhopscotch.states.GameState;
-import ch.zhaw.psit.towerhopscotch.states.State;
+import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
+import ch.zhaw.psit.towerhopscotch.models.maps.Map;
+import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
+import ch.zhaw.psit.towerhopscotch.controllers.states.State;
 
 import java.awt.*;
 

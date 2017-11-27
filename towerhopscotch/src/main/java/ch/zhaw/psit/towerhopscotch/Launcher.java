@@ -1,6 +1,7 @@
 package ch.zhaw.psit.towerhopscotch;
 
 import ch.zhaw.psit.towerhopscotch.GUI.menus.BuildMenu;
+import ch.zhaw.psit.towerhopscotch.controllers.Game;
 
 public class Launcher {
 

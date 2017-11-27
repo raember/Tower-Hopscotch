@@ -1,4 +1,4 @@
-package ch.zhaw.psit.towerhopscotch;
+package ch.zhaw.psit.towerhopscotch.controllers;
 
 class Clock {
     private static int FPS = 60;

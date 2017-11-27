@@ -1,6 +1,6 @@
-package ch.zhaw.psit.towerhopscotch.states;
+package ch.zhaw.psit.towerhopscotch.controllers.states;
 
-import ch.zhaw.psit.towerhopscotch.input.MouseManager;
+import ch.zhaw.psit.towerhopscotch.GUI.input.MouseManager;
 
 import java.awt.*;
 
