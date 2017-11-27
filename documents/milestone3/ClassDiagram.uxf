@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>511</x>
+      <y>322</y>
+      <w>154</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>:Game
+--
++targetFps: int
++fps: int
++budget: int
+--
++startGame(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>707</x>
+      <y>322</y>
+      <w>252</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>:Map
+--
+-layers: List&lt;Layer&gt;
+-enemies: List&lt;Enemy&gt;
+-placeTowerController: PlaceTowerController
+-upgradeTowerController: UpgradeTowerController
+-tearDownTowerController: TearDownTowerController
+-waveController: WaveController
+--
++loadMap(File mapFile): Map
++update(abs: Instant, deltaSec: float): void
++clickOnMap(x: int, y: int): void
++mouseMoveOnMap(x: int, y: int): void
++upgradeFireRange(tower: Tower): void
++upgradeFireFrequency(tower: Tower): void
++upgradeDamage(tower: Tower): void
++deployEnemy(enemy: Enemy): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>707</x>
+      <y>574</y>
+      <w>182</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>:Layer
+--
+-width: int
+-height: int
+-tiles: Tile[]
+--
++clickOnLayer(x: int, y: int): void
++mouseMoveOnLayer(x: int, y: int): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>658</x>
+      <y>329</y>
+      <w>63</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>791</x>
+      <y>497</y>
+      <w>21</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>707</x>
+      <y>700</y>
+      <w>182</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>:Tile
+--
+-tower: Tower
+-type: TileType
+--
++clickOnTile(): void
++mouseMove(x: int, y: int): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>791</x>
+      <y>651</y>
+      <w>21</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>350</x>
+      <y>707</y>
+      <w>280</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>/:Tower/
+--
++fireRange: FloatUpgrade
++fireRangeUpgrades: Queue&lt;FloatUpgrade&gt;
++fireFrequency: FloatUpgrade
++fireFrequencyUpgrades: Queue&lt;FloatUpgrade&gt;
++damage: IntegerUpgrade
++damageUpgrades: Queue&lt;IntegerUpgrade&gt;
++price: int
++color: Color
+--
++attack(enemy: Enemy): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>623</x>
+      <y>721</y>
+      <w>98</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>343</x>
+      <y>903</y>
+      <w>84</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>:SimpleTower
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>511</x>
+      <y>154</y>
+      <w>196</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>:PlaceTowerController
+--
+
+--
++placeTower(Tile tile, int budget): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>714</x>
+      <y>154</y>
+      <w>203</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>:UpgradeTowerController
+--
+
+--
++upgradeTower(Tile tile, int budget): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>693</x>
+      <y>21</y>
+      <w>245</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>/:TowerController/
+--
+#Tower: selectedTowerType
++ArrayList&lt;Tower&gt;: applicableTowerTypes
+--
++selectTower(Tower tower): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>924</x>
+      <y>154</y>
+      <w>189</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>:TearDownTowerController
+--
+
+--
++tearTower(Tile tile, int budget): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>798</x>
+      <y>84</y>
+      <w>21</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>602</x>
+      <y>84</y>
+      <w>168</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>220.0;10.0;220.0;40.0;10.0;40.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>847</x>
+      <y>84</y>
+      <w>182</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;240.0;40.0;240.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>448</x>
+      <y>427</y>
+      <w>161</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>:WaveController
+--
++Queue&lt;Queue&lt;Enemy&gt; &gt; waves
+--
++callNextWave(): Queue&lt;Enemy&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>798</x>
+      <y>196</y>
+      <w>21</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>602</x>
+      <y>196</y>
+      <w>196</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;260.0;70.0;260.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>819</x>
+      <y>196</y>
+      <w>210</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x</panel_attributes>
+    <additional_attributes>280.0;10.0;280.0;70.0;10.0;70.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>602</x>
+      <y>427</y>
+      <w>119</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>28</x>
+      <y>623</y>
+      <w>140</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>/:Upgrade/
+--
+price: int
+--
+purchase(int budget): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>168</x>
+      <y>686</y>
+      <w>126</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>:FloatUpgrade
+--
+value: float</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>168</x>
+      <y>742</y>
+      <w>126</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>:IntegerUpgrade
+--
+value: int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>105</x>
+      <y>665</y>
+      <w>77</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;90.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>77</x>
+      <y>665</y>
+      <w>105</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0;130.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>287</x>
+      <y>707</y>
+      <w>77</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>287</x>
+      <y>749</y>
+      <w>77</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>483</x>
+      <y>826</y>
+      <w>21</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>448</x>
+      <y>903</y>
+      <w>84</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>:ThornTower</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>553</x>
+      <y>903</y>
+      <w>84</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>*...*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>378</x>
+      <y>826</y>
+      <w>21</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>826</y>
+      <w>21</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>476</x>
+      <y>532</y>
+      <w>147</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>/:Enemy/
+--
++speed: float
++probabilityOfJumping: float
++reward: int
++color: Color
++position: PointF
++health: int
+--
++move(layer: Layer): void
++markAsDead(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>518</x>
+      <y>469</y>
+      <w>21</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>749</x>
+      <y>826</y>
+      <w>105</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>:TileType
+--
++PATH: TileType
++EMPTY: TileType
++TOWER: TileType
++START: TileType
++END: TileType</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>791</x>
+      <y>763</y>
+      <w>21</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>245</x>
+      <y>322</y>
+      <w>126</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>:TowerHopscotch
+--
+
+--
++main(args: string[]): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>364</x>
+      <y>322</y>
+      <w>161</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x</panel_attributes>
+    <additional_attributes>210.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>567</x>
+      <y>483</y>
+      <w>154</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0;200.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>539</x>
+      <y>637</y>
+      <w>21</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+</diagram>
