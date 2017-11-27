@@ -2,7 +2,7 @@ package ch.zhaw.psit.towerhopscotch.states;
 
 import ch.zhaw.psit.towerhopscotch.Game;
 import ch.zhaw.psit.towerhopscotch.maps.Map;
-import ch.zhaw.psit.towerhopscotch.GUI.BuildMenu;
+import ch.zhaw.psit.towerhopscotch.GUI.menus.BuildMenu;
 import ch.zhaw.psit.towerhopscotch.models.Player;
 
 import java.awt.*;

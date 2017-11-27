@@ -1,6 +1,6 @@
 package ch.zhaw.psit.towerhopscotch;
 
-import ch.zhaw.psit.towerhopscotch.GUI.BuildMenu;
+import ch.zhaw.psit.towerhopscotch.GUI.menus.BuildMenu;
 
 public class Launcher {
 

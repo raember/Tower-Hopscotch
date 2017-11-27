@@ -1,5 +1,7 @@
-package ch.zhaw.psit.towerhopscotch.GUI;
+package ch.zhaw.psit.towerhopscotch.GUI.menus;
 
+import ch.zhaw.psit.towerhopscotch.GUI.Assets;
+import ch.zhaw.psit.towerhopscotch.GUI.Text;
 import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
@@ -13,8 +15,12 @@ public class BuildMenu {
     public final static int WIDTH = 3*448 + 20;
     public final static int HEIGHT = 96;
 
-    public void update() {
+    private BuildMenuButton towerUpgradeButton;
+    private BuildMenuButton callNextWaveButton;
 
+    public void update() {
+        towerUpgradeButton = new BuildMenuButton("Upgrade", xOffset(25), yOffset(1));
+        callNextWaveButton = new BuildMenuButton("Next Wave", xOffset(33), yOffset(1));
     }
 
     public void render(Graphics g) {
@@ -22,8 +28,9 @@ public class BuildMenu {
         drawTowerButtons(g);
         drawPlayerHealth(g);
         drawPlayerGold(g);
-        drawUpgradeButton(g);
-        drawNextWaveButton(g);
+
+        towerUpgradeButton.render(g);
+        callNextWaveButton.render(g);
     }
 
     private void drawMenuBackground(Graphics g) {
@@ -50,18 +57,6 @@ public class BuildMenu {
         Player player = ((GameState) State.getState()).getPlayer();
         g.drawImage(Assets.treasure, xOffset(17), yOffset(1), Tile.TILE_WIDTH, Tile.TILE_HEIGHT, null);
         Text.drawString(g, player.getGold() + " Gold", xOffset(19), yOffset(1), Color.BLACK, Assets.font32);
-    }
-
-    private void drawUpgradeButton(Graphics g) {
-        g.setColor(Color.BLACK);
-        g.fillRoundRect(xOffset(25) - 10, yOffset(1), 180, 32, 5, 5);
-        Text.drawString(g, "Upgrade", xOffset(25), yOffset(1), Color.WHITE, Assets.font32);
-    }
-
-    private void drawNextWaveButton(Graphics g) {
-        g.setColor(Color.BLACK);
-        g.fillRoundRect(xOffset(33) - 10, yOffset(1), 220, 32, 5, 5);
-        Text.drawString(g, "Next Wave", xOffset(33), yOffset(1), Color.WHITE, Assets.font32);
     }
 
     private int yOffset(int offset) {
