@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class BuildMenu {
     public final static int top = 640;
-    public final static int width = 3*448;
+    public final static int width = 3*448 + 20;
     public final static int height = 128;
 
     public void update() {

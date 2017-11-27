@@ -28,7 +28,7 @@ public class Layer {
         this.order = order;
         this.width = width;
         this.height = height;
-        offset = (order- 1) * width * Tile.TILE_WIDTH;
+        offset = (order- 1) * width * Tile.TILE_WIDTH + 10 * (order- 1);
         initializeLayer(layerContents);
         generateEnemies(count);
     }

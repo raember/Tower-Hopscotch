@@ -61,6 +61,7 @@ public class Game implements Runnable {
             display.getCanvas().createBufferStrategy(3);
             return;
         }
+        display.getCanvas().setBackground(Color.GRAY);
 
         Graphics g = bufferStrategy.getDrawGraphics();
         g.clearRect(0, 0, width, height);
