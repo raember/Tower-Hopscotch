@@ -24,7 +24,8 @@ public class BuildMenu {
     }
 
     public void update() {
-
+        towerUpgradeButton.update();
+        callNextWaveButton.update();
     }
 
     public void render(Graphics g) {
