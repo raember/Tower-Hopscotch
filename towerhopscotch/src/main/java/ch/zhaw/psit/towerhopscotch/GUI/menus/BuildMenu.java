@@ -38,6 +38,10 @@ public class BuildMenu {
         callNextWaveButton.render(g);
     }
 
+    public boolean callNextWaveClicked() {
+        return callNextWaveButton.isClicked();
+    }
+
     private void drawMenuBackground(Graphics g) {
         for(int y = 0; y < HEIGHT; y += Tile.TILE_HEIGHT) {
             for(int x = 0; x < WIDTH; x += Tile.TILE_WIDTH) {

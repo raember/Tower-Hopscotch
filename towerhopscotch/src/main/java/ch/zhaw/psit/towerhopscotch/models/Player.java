@@ -1,7 +1,7 @@
 package ch.zhaw.psit.towerhopscotch.models;
 
 public class Player {
-    public static final int MAX_HEALTH = 30;
+    public static final int MAX_HEALTH = 50;
     private int health;
     private int gold;
 

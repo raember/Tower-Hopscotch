@@ -1,5 +1,7 @@
 package ch.zhaw.psit.towerhopscotch.controllers.states;
 
+import ch.zhaw.psit.towerhopscotch.GUI.Assets;
+import ch.zhaw.psit.towerhopscotch.GUI.Text;
 import ch.zhaw.psit.towerhopscotch.controllers.Game;
 import ch.zhaw.psit.towerhopscotch.GUI.input.MouseManager;
 import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy;
@@ -30,7 +32,7 @@ public class GameState extends State {
     public void init() {
         player = new Player();
         map = new Map("src/main/resources/maps/map1.txt");
-        waveQueue = new WaveQueue(map, 1);
+        waveQueue = new WaveQueue(map, 5);
         currentWave = waveQueue.pop();
         menu = new BuildMenu();
     }
@@ -43,10 +45,27 @@ public class GameState extends State {
         if(player.isDead())
             State.setState(game.getGameOverState());
 
+        updateWaveQueue();
+    }
+
+    @Override
+    public void render(Graphics g) {
+        map.render(g);
+
+        for (Enemy enemy : currentWave.getEnemies())
+            enemy.render(g);
+
+        drawWavesPausedText(g);
+        drawWavesRemainingText(g);
+
+        menu.render(g);
+    }
+
+    private void updateWaveQueue() {
         if(currentWave.waveDestroyed()) {
             if(waveQueue.allWavesDestroyed()) {
                 State.setState(game.getVictoryState());
-            } else {
+            } else if(menu.callNextWaveClicked()) {
                 currentWave = waveQueue.pop();
             }
         } else {
@@ -66,14 +85,21 @@ public class GameState extends State {
         }
     }
 
-    @Override
-    public void render(Graphics g) {
-        map.render(g);
+    private void drawWavesPausedText(Graphics g) {
+        if(currentWave.waveDestroyed())
+            Text.drawString(g, "WAVES PAUSED", game.getWidth() / 2, 50, true, Color.WHITE, Assets.font32);
+    }
 
-        for (Enemy enemy : currentWave.getEnemies())
-            enemy.render(g);
+    private void drawWavesRemainingText(Graphics g) {
+        Text.drawString(g, getWavesRemaining() + " WAVES", game.getWidth()  - 100, 20, true, Color.BLACK, Assets.font32);
+        Text.drawString(g, "REMAINING", game.getWidth()  - 100, 50, true, Color.BLACK, Assets.font32);
+    }
 
-        menu.render(g);
+    public int getWavesRemaining() {
+        if(currentWave.waveDestroyed()) {
+            return waveQueue.size();
+        }
+        return waveQueue.size() + 1;
     }
 
     public Player getPlayer() {

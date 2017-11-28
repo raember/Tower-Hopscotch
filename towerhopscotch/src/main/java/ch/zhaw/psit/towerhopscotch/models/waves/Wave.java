@@ -16,7 +16,7 @@ public class Wave {
     public Wave(Map map) {
         this.map = map;
         enemies = new ArrayList<Enemy>();
-        generateEnemies(5);
+        generateEnemies(3);
     }
 
     private void generateEnemies(int count) {
@@ -31,7 +31,9 @@ public class Wave {
         Random random = new Random();
         for (int i = 1; i <= count; i++) {
             int enemyType = random.nextInt(7 - 1 + 1) + 1;
-            int startingHeight = layer.getStartY() + (i * Tile.TILE_HEIGHT) + (2 * (random.nextInt(10 + 10 + 1) - 10));
+            int randomOffset = (2 * (random.nextInt(40 - 15 + 1) + 15));
+            System.out.println(randomOffset);
+            int startingHeight = layer.getStartY() + (i * Tile.TILE_HEIGHT) + randomOffset;
             switch (enemyType) {
                 case 1:
                     enemies.add(new Rat(layer, layer.getStartX(), startingHeight));
