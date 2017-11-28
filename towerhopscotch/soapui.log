@@ -1,5 +1,5 @@
-2017-11-20 22:48:52,533 WARN  [DefaultSoapUICore] Missing folder [C:\Users\raphael\ext] for external libraries
-2017-11-20 22:48:52,678 INFO  [DefaultSoapUICore] initialized soapui-settings from [C:\Users\raphael\soapui-settings.xml]
-2017-11-20 22:48:52,981 INFO  [WorkspaceImpl] Loading workspace from [C:\Users\raphael\intellij-soapui-workspace.xml]
-2017-11-20 22:50:55,531 INFO  [WorkspaceImpl] Saved workspace to [C:\Users\raphael\intellij-soapui-workspace.xml]
-2017-11-20 22:50:55,531 INFO  [DefaultSoapUICore] Settings saved to [C:\Users\raphael\soapui-settings.xml]
+2017-11-28 11:23:49,413 WARN  [DefaultSoapUICore] Missing folder [C:\Users\raphael\ext] for external libraries
+2017-11-28 11:23:49,641 INFO  [DefaultSoapUICore] initialized soapui-settings from [C:\Users\raphael\soapui-settings.xml]
+2017-11-28 11:23:50,168 INFO  [WorkspaceImpl] Loading workspace from [C:\Users\raphael\intellij-soapui-workspace.xml]
+2017-11-28 14:59:03,415 INFO  [WorkspaceImpl] Saved workspace to [C:\Users\raphael\intellij-soapui-workspace.xml]
+2017-11-28 14:59:03,418 INFO  [DefaultSoapUICore] Settings saved to [C:\Users\raphael\soapui-settings.xml]
