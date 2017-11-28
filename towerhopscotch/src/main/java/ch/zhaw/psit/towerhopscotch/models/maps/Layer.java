@@ -25,66 +25,15 @@ public class Layer {
     private int width, height;
     private int[][] tiles;
 
-    private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-
     public Layer (LayerType layerType, int width, int height, String layerContents, int count){
         this.layerType = layerType;
         this.width = width;
         this.height = height;
         offset = calculateOffset();
         initializeLayer(layerContents);
-        generateEnemies(count);
-    }
-
-
-    private void generateEnemies(int count) {
-        // Enemies are generated below the screen all with the same x position as the starting tile
-        // but varying y positions.
-        Random random = new Random();
-        for (int i = 1; i <= count; i++) {
-            int enemyType = random.nextInt(7 - 1 + 1) + 1;
-            int startingHeight = startY + (i * Tile.TILE_HEIGHT) + (2 * (random.nextInt(10 + 10 + 1) - 10));
-            switch (enemyType) {
-                case 1:
-                    enemies.add(new Rat(this, startX, startingHeight));
-                    break;
-                case 2:
-                    enemies.add(new Bat(this, startX, startingHeight));
-                    break;
-                case 3:
-                    enemies.add(new Skeleton(this, startX, startingHeight));
-                    break;
-                case 4:
-                    enemies.add(new Spider(this, startX, startingHeight));
-                    break;
-                case 5:
-                    enemies.add(new Goblin(this, startX, startingHeight));
-                    break;
-                case 6:
-                    enemies.add(new Slime(this, startX, startingHeight));
-                    break;
-                case 7:
-                    enemies.add(new Imp(this, startX, startingHeight));
-                    break;
-            }
-        }
     }
 
     public void update() {
-        Player player = getPlayer();
-
-        // Update enemies
-        Iterator<Enemy> iterator = enemies.iterator();
-        while (iterator.hasNext()) {
-            Enemy enemy = iterator.next();
-            enemy.update();
-
-            // Remove enemy if it has reached the players fortress
-            if (enemy.reachedDestination()) {
-                player.decreaseHealth(enemy.getDamage());
-                iterator.remove();
-            }
-        }
     }
 
     public void render(Graphics g) {
@@ -93,9 +42,6 @@ public class Layer {
                 TileList.getTile(tiles[x][y]).render(g,layerType,x * Tile.TILE_WIDTH + offset, y * Tile.TILE_HEIGHT);
             }
         }
-
-        for (Enemy enemy : enemies)
-            enemy.render(g);
     }
 
     public boolean isOnLayer(float x, float y) {
@@ -153,7 +99,11 @@ public class Layer {
         return layerType;
     }
 
-    private Player getPlayer() {
-        return ((GameState) State.getState()).getPlayer();
+    public int getStartX() {
+        return startX;
+    }
+
+    public int getStartY() {
+        return startY;
     }
 }

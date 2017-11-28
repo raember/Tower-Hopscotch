@@ -3,10 +3,7 @@ package ch.zhaw.psit.towerhopscotch.controllers;
 import ch.zhaw.psit.towerhopscotch.GUI.input.MouseManager;
 import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 import ch.zhaw.psit.towerhopscotch.GUI.Display;
-import ch.zhaw.psit.towerhopscotch.controllers.states.GameOverState;
-import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
-import ch.zhaw.psit.towerhopscotch.controllers.states.MainMenuState;
-import ch.zhaw.psit.towerhopscotch.controllers.states.State;
+import ch.zhaw.psit.towerhopscotch.controllers.states.*;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -23,6 +20,7 @@ public class Game implements Runnable {
     private State gameState;
     private State gameOverState;
     private State mainMenuState;
+    private State victoryState;
 
     // Inputs
     private MouseManager mouseManager;
@@ -50,6 +48,7 @@ public class Game implements Runnable {
         gameState = new GameState(this, mouseManager);
         gameOverState = new GameOverState(this, mouseManager);
         mainMenuState = new MainMenuState(this, mouseManager);
+        victoryState = new VictoryState(this, mouseManager);
 
         // Set the current state
         State.setState(mainMenuState);
@@ -141,5 +140,9 @@ public class Game implements Runnable {
 
     public State getMainMenuState() {
         return mainMenuState;
+    }
+
+    public State getVictoryState() {
+        return victoryState;
     }
 }
