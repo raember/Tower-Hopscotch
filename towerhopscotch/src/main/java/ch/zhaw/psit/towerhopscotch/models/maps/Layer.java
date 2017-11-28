@@ -15,6 +15,8 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class Layer {
+    public final static int LAYER_WIDTH = 448;
+    public final static int LAYER_HEIGHT = 640;
 
     private int startX, startY;
     private int offset;

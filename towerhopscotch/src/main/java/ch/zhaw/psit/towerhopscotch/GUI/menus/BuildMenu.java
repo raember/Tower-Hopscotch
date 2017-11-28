@@ -12,7 +12,7 @@ import java.awt.*;
 
 public class BuildMenu {
     public final static int TOP = 640;
-    public final static int WIDTH = 3*448 + 20;
+    public final static int WIDTH = 3 * 448 + 20;
     public final static int HEIGHT = 96;
 
     private Button towerUpgradeButton;
