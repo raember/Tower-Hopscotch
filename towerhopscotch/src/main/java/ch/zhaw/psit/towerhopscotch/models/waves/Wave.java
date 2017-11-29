@@ -32,7 +32,6 @@ public class Wave {
         for (int i = 1; i <= count; i++) {
             int enemyType = random.nextInt(7 - 1 + 1) + 1;
             int randomOffset = (2 * (random.nextInt(40 - 15 + 1) + 15));
-            System.out.println(randomOffset);
             int startingHeight = layer.getStartY() + (i * Tile.TILE_HEIGHT) + randomOffset;
             switch (enemyType) {
                 case 1:
