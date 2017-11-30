@@ -22,8 +22,8 @@ public class PlaceMonoTowerStrategy implements TowerStrategy {
 
             tower.setPosition(point);
 
-            Layer layer = gameState.getMap().getLayer((float) point.getX(),(float) point.getY());
-            layer.addTower(tower);
+            Layer tempLayer = gameState.getMap().getLayer((float) point.getX(), (float) point.getY());
+            tempLayer.addTower(tower);
 
 
         } else {

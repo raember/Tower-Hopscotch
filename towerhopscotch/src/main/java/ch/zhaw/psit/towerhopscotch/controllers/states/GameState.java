@@ -2,14 +2,14 @@ package ch.zhaw.psit.towerhopscotch.controllers.states;
 
 import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 import ch.zhaw.psit.towerhopscotch.GUI.Text;
-import ch.zhaw.psit.towerhopscotch.controllers.Game;
 import ch.zhaw.psit.towerhopscotch.GUI.input.MouseManager;
+import ch.zhaw.psit.towerhopscotch.GUI.menus.BuildMenu;
+import ch.zhaw.psit.towerhopscotch.controllers.Game;
 import ch.zhaw.psit.towerhopscotch.controllers.placeTowerStrategies.*;
+import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy;
 import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
 import ch.zhaw.psit.towerhopscotch.models.maps.Map;
-import ch.zhaw.psit.towerhopscotch.GUI.menus.BuildMenu;
-import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import ch.zhaw.psit.towerhopscotch.models.tiles.TowerPlaceable;
 import ch.zhaw.psit.towerhopscotch.models.waves.Wave;
@@ -49,7 +49,7 @@ public class GameState extends State {
         popWave();
         menu = new BuildMenu();
         towerStrategyList = new ArrayList<>();
-        towerStrategyList.add(new PlaceSimpleTowerStrategy());
+        towerStrategyList.add(new PlaceMonoTowerStrategy());
         towerStrategyList.add(new PlaceDoubleTowerStrategy());
         towerStrategyList.add(new PlaceTripleTowerStrategy());
         towerStrategyList.add(new UpgradeTowerStrategy());
@@ -58,7 +58,8 @@ public class GameState extends State {
 
     @Override
     public void update() {
-        map.update();
+        long now = System.nanoTime();
+        map.update(now);
         menu.update();
 
         if(player.isDead())

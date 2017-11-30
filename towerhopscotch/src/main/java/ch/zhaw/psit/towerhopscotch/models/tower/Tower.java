@@ -1,5 +1,6 @@
 package ch.zhaw.psit.towerhopscotch.models.tower;
 
+import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
 import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
@@ -151,4 +152,6 @@ public abstract class Tower {
         isPlaced = budget >= price;
         return isPlaced;
     }
+
+    public abstract boolean canBePlaced(GameState gameState);
 }

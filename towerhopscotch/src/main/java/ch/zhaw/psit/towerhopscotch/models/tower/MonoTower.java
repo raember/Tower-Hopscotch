@@ -1,6 +1,12 @@
 package ch.zhaw.psit.towerhopscotch.models.tower;
 
 import ch.zhaw.psit.towerhopscotch.GUI.Assets;
+import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
+import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
+import ch.zhaw.psit.towerhopscotch.models.maps.Map;
+import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
+
+import java.awt.*;
 
 public class MonoTower extends Tower {
     public MonoTower() {
@@ -34,5 +40,14 @@ public class MonoTower extends Tower {
         damageUpgrades.add(new IntUpgrade(190, 7));
         damageUpgrades.add(new IntUpgrade(310, 8));
         damageUpgrades.add(new IntUpgrade(500, 9));
+    }
+
+    @Override
+    public boolean canBePlaced(GameState gameState) {
+        Point position = getPosition();
+        Map map = gameState.getMap();
+        Layer layer = map.getLayer((float) position.getX(), (float) position.getY());
+        Tile tile = layer.getTile((float) position.getX(), (float) position.getY());
+        return tile.isFortress();
     }
 }

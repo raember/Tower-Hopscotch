@@ -1,13 +1,13 @@
 package ch.zhaw.psit.towerhopscotch.models.maps;
 
-import ch.zhaw.psit.towerhopscotch.models.entities.enemies.*;
+import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy;
 import ch.zhaw.psit.towerhopscotch.models.enums.LayerType;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
 import ch.zhaw.psit.towerhopscotch.models.tower.Tower;
 
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Layer {
@@ -33,9 +33,9 @@ public class Layer {
         initializeLayer(layerContents);
     }
 
-    public void update() {
+    public void update(long absNanoTime) {
         for (Tower tower : towers){
-            tower.update(System.nanoTime(),enemies);
+            tower.update(absNanoTime, enemies);
         }
     }
 

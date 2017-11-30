@@ -1,5 +1,6 @@
 package ch.zhaw.psit.towerhopscotch.models.tower;
 
+import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,8 +49,10 @@ public class TowerTest {
     public void tryPurchaseFireRangeUpgrade() throws Exception {
         float range = tower.getFireRange();
         FloatUpgrade upgrade = tower.getFireRangeUpgrade();
-        int price = upgrade.getPrice();
-        assertTrue(tower.tryPurchaseFireRangeUpgrade(price));
+        Player player = new Player();
+        player.addGold(upgrade.getPrice());
+        assertTrue(tower.tryPurchaseFireRangeUpgrade(player));
+        assertEquals(0, player.getGold());
         FloatUpgrade newUpgrade = tower.getFireRangeUpgrade();
         assertNotEquals(upgrade, newUpgrade);
         assertTrue(range < tower.getFireRange());
@@ -60,8 +63,11 @@ public class TowerTest {
     public void tryPurchaseFireFrequencyUpgrade() throws Exception {
         long frequency = tower.getFireFrequency();
         LongUpgrade upgrade = tower.getFireFrequencyUpgrade();
+        Player player = new Player();
         int price = upgrade.getPrice();
-        assertTrue(tower.tryPurchaseFireFrequencyUpgrade(price));
+        player.addGold(upgrade.getPrice());
+        assertTrue(tower.tryPurchaseFireFrequencyUpgrade(player));
+        assertEquals(0, player.getGold());
         LongUpgrade newUpgrade = tower.getFireFrequencyUpgrade();
         assertNotEquals(upgrade, newUpgrade);
         assertTrue(frequency > tower.getFireFrequency());
@@ -72,8 +78,11 @@ public class TowerTest {
     public void tryPurchaseDamageUpgrade() throws Exception {
         int damage = tower.getDamage();
         IntUpgrade upgrade = tower.getDamageUpgrade();
+        Player player = new Player();
         int price = upgrade.getPrice();
-        assertTrue(tower.tryPurchaseDamageUpgrade(price));
+        player.addGold(upgrade.getPrice());
+        assertTrue(tower.tryPurchaseDamageUpgrade(player));
+        assertEquals(0, player.getGold());
         IntUpgrade newUpgrade = tower.getDamageUpgrade();
         assertNotEquals(upgrade, newUpgrade);
         assertTrue(damage < tower.getDamage());

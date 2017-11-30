@@ -20,10 +20,10 @@ public class Map {
         initializeMap(filePath);
     }
 
-    public void update() {
-        hell.update();
-        earth.update();
-        heaven.update();
+    public void update(long absNanoTime) {
+        hell.update(absNanoTime);
+        earth.update(absNanoTime);
+        heaven.update(absNanoTime);
     }
 
     public void render(Graphics g) {
