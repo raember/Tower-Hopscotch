@@ -102,7 +102,7 @@ public abstract class Tower {
 
     public void update(long absNanoTime, List<Enemy> enemiesOnMap) {
         long deltaNanoTime = absNanoTime - currentTime;
-        nextAttack = Math.min(nextAttack - deltaNanoTime, 0);
+        nextAttack = Math.max(nextAttack - deltaNanoTime, 0);
         currentTime = absNanoTime;
         updateInternal(nextAttack == 0, filterEnemies(enemiesOnMap));
     }

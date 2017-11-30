@@ -22,24 +22,24 @@ public class MonoTower extends Tower {
         fireFrequencyUpgrades.add(new LongUpgrade(500, 400000000));
 
         setFireRange(2f);
-        fireRangeUpgrades.add(new FloatUpgrade(10,2.5f));
-        fireRangeUpgrades.add(new FloatUpgrade(25,3f));
-        fireRangeUpgrades.add(new FloatUpgrade(40,3.5f));
-        fireRangeUpgrades.add(new FloatUpgrade(70,4f));
-        fireRangeUpgrades.add(new FloatUpgrade(120,4.5f));
-        fireRangeUpgrades.add(new FloatUpgrade(190,5f));
-        fireRangeUpgrades.add(new FloatUpgrade(310,5.5f));
-        fireRangeUpgrades.add(new FloatUpgrade(500,6f));
+        fireRangeUpgrades.add(new FloatUpgrade(10, 1.5f));
+        fireRangeUpgrades.add(new FloatUpgrade(25, 2f));
+        fireRangeUpgrades.add(new FloatUpgrade(40, 2.5f));
+        fireRangeUpgrades.add(new FloatUpgrade(70, 3f));
+        fireRangeUpgrades.add(new FloatUpgrade(120, 3.5f));
+        fireRangeUpgrades.add(new FloatUpgrade(190, 4f));
+        fireRangeUpgrades.add(new FloatUpgrade(310, 4.5f));
+        fireRangeUpgrades.add(new FloatUpgrade(500, 5f));
 
-        setDamage(1);
-        damageUpgrades.add(new IntUpgrade(10, 2));
-        damageUpgrades.add(new IntUpgrade(25, 3));
-        damageUpgrades.add(new IntUpgrade(40, 4));
-        damageUpgrades.add(new IntUpgrade(70, 5));
-        damageUpgrades.add(new IntUpgrade(120, 6));
-        damageUpgrades.add(new IntUpgrade(190, 7));
-        damageUpgrades.add(new IntUpgrade(310, 8));
-        damageUpgrades.add(new IntUpgrade(500, 9));
+        setDamage(10);
+        damageUpgrades.add(new IntUpgrade(10, 15));
+        damageUpgrades.add(new IntUpgrade(25, 20));
+        damageUpgrades.add(new IntUpgrade(40, 25));
+        damageUpgrades.add(new IntUpgrade(70, 30));
+        damageUpgrades.add(new IntUpgrade(120, 40));
+        damageUpgrades.add(new IntUpgrade(190, 50));
+        damageUpgrades.add(new IntUpgrade(310, 70));
+        damageUpgrades.add(new IntUpgrade(500, 90));
     }
 
     @Override

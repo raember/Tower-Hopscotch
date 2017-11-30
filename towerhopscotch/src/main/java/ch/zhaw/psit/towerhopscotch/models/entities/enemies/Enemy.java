@@ -1,8 +1,8 @@
 package ch.zhaw.psit.towerhopscotch.models.entities.enemies;
 
+import ch.zhaw.psit.towerhopscotch.models.entities.Entity;
 import ch.zhaw.psit.towerhopscotch.models.enums.Direction;
 import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
-import ch.zhaw.psit.towerhopscotch.models.entities.Entity;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -170,7 +170,10 @@ public abstract class Enemy extends Entity {
     }
 
     public void setHealth(int health) {
-        this.health = health;
+        this.health = Math.max(health, 0);
+        if (this.health == 0) {
+            //TODO: Reward the player and destroy enemy object
+        }
     }
 
     public float getSpeed() {
