@@ -45,6 +45,10 @@ public class Assets {
         enemies.put("imp", spriteSheet.getSubimage(width, 22 * height, width, height));
         enemies.put("skeleton", spriteSheet.getSubimage(2 * width, 22 * height, width, height));
 
+        // Get tower sprites
+        enemies.put("wizard", spriteSheet.getSubimage(8 * width, 19 * height, width, height));
+        enemies.put("wizard2", spriteSheet.getSubimage(9 * width, 19 * height, width, height));
+
         // Various other sprites
         heart = spriteSheet.getSubimage(0, 25 * height, width, height);
         treasure = spriteSheet.getSubimage(4 * width, 8 * height, width, height);

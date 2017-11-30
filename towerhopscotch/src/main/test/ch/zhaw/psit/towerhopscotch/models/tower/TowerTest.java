@@ -17,7 +17,7 @@ public class TowerTest {
 
     @Before
     public void setup() {
-        tower = new SimpleTower();
+        tower = new MonoTower();
     }
 
     @Test
