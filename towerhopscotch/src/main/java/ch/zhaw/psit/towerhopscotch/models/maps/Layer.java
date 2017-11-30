@@ -68,6 +68,10 @@ public class Layer {
         return tile.isPath();
     }
 
+    public Tile getTile(float x, float y){
+        return TileList.getTile(tiles[(int) (x-offset) / Tile.TILE_WIDTH][(int) y / Tile.TILE_HEIGHT]);
+    }
+
     private void initializeLayer(String layerContents){
         String[] tokens = layerContents.toString().split("\\s+");
 

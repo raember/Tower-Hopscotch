@@ -52,6 +52,19 @@ public class Map {
         return hell.isOnLayer(x,y) || earth.isOnLayer(x,y) || heaven.isOnLayer(x,y);
     }
 
+    public Layer getLayer(float x, float y){
+        if (hell.isOnLayer(x,y)){
+            return hell;
+        }
+        if (earth.isOnLayer(x,y)){
+            return earth;
+        }
+        if (heaven.isOnLayer(x,y)){
+            return heaven;
+        }
+        return null;
+    }
+
     private void initializeMap(String filePath) {
         int width = 0;
         int height = 0;
