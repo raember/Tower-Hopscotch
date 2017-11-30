@@ -6,9 +6,9 @@ import java.awt.*;
  * Created by Raphael Emberger on 28.11.2017.
  */
 public class SimpleTower extends Tower {
-    protected SimpleTower() {
+    public SimpleTower() {
         super(20, Color.BLUE);
-        fireFrequencyUpgrades.add(new LongUpgrade(1, 2000000000));
+        setFireFrequency(2000000000);
         fireFrequencyUpgrades.add(new LongUpgrade(10, 1800000000));
         fireFrequencyUpgrades.add(new LongUpgrade(25, 1600000000));
         fireFrequencyUpgrades.add(new LongUpgrade(40, 1400000000));
@@ -17,8 +17,8 @@ public class SimpleTower extends Tower {
         fireFrequencyUpgrades.add(new LongUpgrade(190, 800000000));
         fireFrequencyUpgrades.add(new LongUpgrade(310, 600000000));
         fireFrequencyUpgrades.add(new LongUpgrade(500, 400000000));
-        assert tryPurchaseFireFrequencyUpgrade(Integer.MAX_VALUE);
-        fireRangeUpgrades.add(new FloatUpgrade(1,2f));
+
+        setFireRange(2f);
         fireRangeUpgrades.add(new FloatUpgrade(10,2.5f));
         fireRangeUpgrades.add(new FloatUpgrade(25,3f));
         fireRangeUpgrades.add(new FloatUpgrade(40,3.5f));
@@ -27,8 +27,15 @@ public class SimpleTower extends Tower {
         fireRangeUpgrades.add(new FloatUpgrade(190,5f));
         fireRangeUpgrades.add(new FloatUpgrade(310,5.5f));
         fireRangeUpgrades.add(new FloatUpgrade(500,6f));
-        assert tryPurchaseFireRangeUpgrade(Integer.MAX_VALUE);
-        damageUpgrades.add(new IntUpgrade(1, 1));
-        assert tryPurchaseDamageUpgrade(Integer.MAX_VALUE);
+
+        setDamage(1);
+        damageUpgrades.add(new IntUpgrade(10, 2));
+        damageUpgrades.add(new IntUpgrade(25, 3));
+        damageUpgrades.add(new IntUpgrade(40, 4));
+        damageUpgrades.add(new IntUpgrade(70, 5));
+        damageUpgrades.add(new IntUpgrade(120, 6));
+        damageUpgrades.add(new IntUpgrade(190, 7));
+        damageUpgrades.add(new IntUpgrade(310, 8));
+        damageUpgrades.add(new IntUpgrade(500, 9));
     }
 }
