@@ -16,28 +16,38 @@ public class BuildMenu {
     public final static int HEIGHT = 96;
 
     private Button towerUpgradeButton;
+    private Button towerDestroyButton;
     private Button callNextWaveButton;
     private Button placeMonoTower;
     private Button placeDoubleTower;
     private Button placeTripleTower;
 
     public BuildMenu() {
-        towerUpgradeButton = new Button("Upgrade", xOffset(25), yOffset(1));
-        callNextWaveButton = new Button("Next Wave", xOffset(33), yOffset(1));
+        towerUpgradeButton = new Button("Upgrade", xOffset(23), yOffset(1));
+        towerDestroyButton = new Button("Destroy", xOffset(29), yOffset(1));
+        callNextWaveButton = new Button("Next Wave", xOffset(35), yOffset(1));
+
+        placeMonoTower = new Button("1", xOffset(1), yOffset(1));
+        placeDoubleTower = new Button("2", xOffset(3), yOffset(1));
+        placeTripleTower = new Button("3", xOffset(5), yOffset(1));
     }
 
     public void update() {
         towerUpgradeButton.update();
+        towerDestroyButton.update();
         callNextWaveButton.update();
+        placeMonoTower.update();
+        placeDoubleTower.update();
+        placeTripleTower.update();
     }
 
     public void render(Graphics g) {
         drawMenuBackground(g);
-        drawTowerButtons(g);
         drawPlayerHealth(g);
         drawPlayerGold(g);
 
         towerUpgradeButton.render(g);
+        towerDestroyButton.render(g);
         callNextWaveButton.render(g);
         placeMonoTower.render(g);
         placeDoubleTower.render(g);
@@ -72,20 +82,14 @@ public class BuildMenu {
         }
     }
 
-    private void drawTowerButtons(Graphics g) {
-        placeMonoTower = new Button("1", xOffset(1), yOffset(1));
-        placeDoubleTower = new Button("2", xOffset(3), yOffset(1));
-        placeTripleTower = new Button("3", xOffset(5), yOffset(1));
-    }
-
     private void drawPlayerHealth(Graphics g) {
-        g.drawImage(Assets.heart, xOffset(9), yOffset(1), Tile.TILE_WIDTH, Tile.TILE_HEIGHT, null);
-        Text.drawString(g, getPlayer().getHealth() + " / " + Player.MAX_HEALTH , xOffset(11), yOffset(1), false, Color.BLACK, Assets.font32);
+        g.drawImage(Assets.heart, xOffset(7), yOffset(1), Tile.TILE_WIDTH, Tile.TILE_HEIGHT, null);
+        Text.drawString(g, getPlayer().getHealth() + " / " + Player.MAX_HEALTH , xOffset(9), yOffset(1), false, Color.BLACK, Assets.font32);
     }
 
     private void drawPlayerGold(Graphics g) {
-        g.drawImage(Assets.treasure, xOffset(17), yOffset(1), Tile.TILE_WIDTH, Tile.TILE_HEIGHT, null);
-        Text.drawString(g, getPlayer().getGold() + " Gold", xOffset(19), yOffset(1), false, Color.BLACK, Assets.font32);
+        g.drawImage(Assets.treasure, xOffset(15), yOffset(1), Tile.TILE_WIDTH, Tile.TILE_HEIGHT, null);
+        Text.drawString(g, getPlayer().getGold() + " G", xOffset(17), yOffset(1), false, Color.BLACK, Assets.font32);
     }
 
     private int yOffset(int offset) {
