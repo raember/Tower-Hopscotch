@@ -9,14 +9,17 @@ import java.awt.*;
 
 public class PlaceMonoTowerStrategy implements TowerStrategy {
 
-    private int price = 500;
-
     public boolean doTowerOperation(GameState gameState, Point point) {
 
-        if (gameState.getPlayer().getGold() - price >= 0){
+        Layer layer = gameState.getMap().getLayer((float) point.getX(),(float) point.getY());
+        Tower towerAtPosition = layer.getTowerAtPosition(point);
+
+        Tower tower = new MonoTower();
+        int price = tower.getPrice();
+
+        if (gameState.getPlayer().getGold() - price >= 0 && towerAtPosition == null){
             gameState.getPlayer().addGold(-price);
 
-            Tower tower = new MonoTower();
             tower.setPosition(point);
 
             Layer layer = gameState.getMap().getLayer((float) point.getX(),(float) point.getY());

@@ -1,13 +1,9 @@
 package ch.zhaw.psit.towerhopscotch.models.maps;
 
-
-import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.entities.enemies.*;
 import ch.zhaw.psit.towerhopscotch.models.enums.LayerType;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
-import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
-import ch.zhaw.psit.towerhopscotch.controllers.states.State;
 import ch.zhaw.psit.towerhopscotch.models.tower.Tower;
 
 import java.awt.*;
@@ -25,17 +21,22 @@ public class Layer {
     private int width, height;
     private int[][] tiles;
     private List<Tower> towers;
+    private List<Enemy> enemies;
 
-    public Layer (LayerType layerType, int width, int height, String layerContents, int count){
+    public Layer (LayerType layerType, int width, int height, String layerContents){
         this.layerType = layerType;
         this.width = width;
         this.height = height;
         offset = calculateOffset();
-        towers = new ArrayList<Tower>();
+        towers = new ArrayList<>();
+        enemies = new ArrayList<>();
         initializeLayer(layerContents);
     }
 
     public void update() {
+        for (Tower tower : towers){
+            tower.update(System.nanoTime(),enemies);
+        }
     }
 
     public void render(Graphics g) {
@@ -44,9 +45,22 @@ public class Layer {
                 TileList.getTile(tiles[x][y]).render(g,layerType,x * Tile.TILE_WIDTH + offset, y * Tile.TILE_HEIGHT);
             }
         }
+
+        for (Enemy enemy : enemies){
+            enemy.render(g);
+        }
+
         for (Tower tower : towers){
             tower.render(g);
         }
+    }
+
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public void setEnemies(List<Enemy> enemies) {
+        this.enemies = enemies;
     }
 
     public void addTower(Tower tower){
@@ -56,6 +70,15 @@ public class Layer {
     public void removeTower(Tower tower){
         towers.remove(tower);
     }
+
+    public void addEnemy(Enemy enemy){
+        enemies.add(enemy);
+    }
+
+    public void removeEnemy(Enemy enemy){
+        towers.remove(enemy);
+    }
+
 
     public boolean isOnLayer(float x, float y) {
         return !((x < 0) || (x >= Tile.TILE_WIDTH * width + offset) || (y < 0) || (y >= Tile.TILE_HEIGHT * height));
@@ -86,7 +109,7 @@ public class Layer {
     }
 
     private void initializeLayer(String layerContents){
-        String[] tokens = layerContents.toString().split("\\s+");
+        String[] tokens = layerContents.split("\\s+");
 
         tiles = new int[width][height];
         for (int y = 0; y < height; y++) {
@@ -101,7 +124,7 @@ public class Layer {
         }
     }
 
-    public int calculateOffset() {
+    private int calculateOffset() {
         int multiplier = 0;
         switch(layerType) {
             case HELL: multiplier = 0; break;

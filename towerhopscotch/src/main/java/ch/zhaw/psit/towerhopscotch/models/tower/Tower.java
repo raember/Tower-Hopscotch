@@ -1,5 +1,6 @@
 package ch.zhaw.psit.towerhopscotch.models.tower;
 
+import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import com.sun.jmx.remote.internal.ArrayQueue;
@@ -64,26 +65,32 @@ public abstract class Tower {
         return damageUpgrades.isEmpty() ? null : damageUpgrades.get(0);
     }
 
-    public boolean tryPurchaseFireRangeUpgrade(int budget) {
+    public boolean tryPurchaseFireRangeUpgrade(Player player) {
         FloatUpgrade upgrade = getFireRangeUpgrade();
-        if (upgrade == null || !upgrade.isAffordable(budget)) return false;
+        if (upgrade == null || !upgrade.isAffordable(player.getGold())) return false;
         fireRange = upgrade.getValue();
+        player.addGold(-upgrade.getPrice());
+        price += upgrade.getPrice();
         fireRangeUpgrades.remove(0);
         return true;
     }
 
-    public boolean tryPurchaseFireFrequencyUpgrade(int budget) {
+    public boolean tryPurchaseFireFrequencyUpgrade(Player player) {
         LongUpgrade upgrade = getFireFrequencyUpgrade();
-        if (upgrade == null || !upgrade.isAffordable(budget)) return false;
+        if (upgrade == null || !upgrade.isAffordable(player.getGold())) return false;
         fireFrequency = upgrade.getValue();
+        player.addGold(-upgrade.getPrice());
+        price += upgrade.getPrice();
         fireFrequencyUpgrades.remove(0);
         return true;
     }
 
-    public boolean tryPurchaseDamageUpgrade(int budget) {
+    public boolean tryPurchaseDamageUpgrade(Player player) {
         IntUpgrade upgrade = getDamageUpgrade();
-        if (upgrade == null || !upgrade.isAffordable(budget)) return false;
+        if (upgrade == null || !upgrade.isAffordable(player.getGold())) return false;
         damage = upgrade.getValue();
+        player.addGold(-upgrade.getPrice());
+        price += upgrade.getPrice();
         damageUpgrades.remove(0);
         return true;
     }

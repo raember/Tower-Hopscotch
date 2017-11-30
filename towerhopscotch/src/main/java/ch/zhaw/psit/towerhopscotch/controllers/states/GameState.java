@@ -46,10 +46,10 @@ public class GameState extends State {
         player.addGold(10000);
         map = new Map("src/main/resources/maps/map1.txt");
         waveQueue = new WaveQueue(map, 5);
-        currentWave = waveQueue.pop();
+        popWave();
         menu = new BuildMenu();
-        towerStrategyList = new ArrayList<TowerStrategy>();
-        towerStrategyList.add(new PlaceMonoTowerStrategy());
+        towerStrategyList = new ArrayList<>();
+        towerStrategyList.add(new PlaceSimpleTowerStrategy());
         towerStrategyList.add(new PlaceDoubleTowerStrategy());
         towerStrategyList.add(new PlaceTripleTowerStrategy());
         towerStrategyList.add(new UpgradeTowerStrategy());
@@ -86,9 +86,6 @@ public class GameState extends State {
     public void render(Graphics g) {
         map.render(g);
 
-        for (Enemy enemy : currentWave.getEnemies())
-            enemy.render(g);
-
         drawWavesPausedText(g);
         drawWavesRemainingText(g);
 
@@ -96,7 +93,7 @@ public class GameState extends State {
     }
 
     private void choosePlaceTowerStrategy(){
-        if (menu.placeMonoTowerClicked()) {
+        if (menu.placeSimpleTowerClicked()) {
             towerStrategy = towerStrategyList.get(0);
         }
         if (menu.placeDoubleTowerClicked()) {
@@ -137,21 +134,33 @@ public class GameState extends State {
             if(waveQueue.allWavesDestroyed()) {
                 State.setState(game.getVictoryState());
             } else if(menu.callNextWaveClicked()) {
-                currentWave = waveQueue.pop();
+                popWave();
             }
         } else {
-            // Update enemies
-            Player player = getPlayer();
-            Iterator<Enemy> iterator = currentWave.getEnemies().iterator();
-            while (iterator.hasNext()) {
-                Enemy enemy = iterator.next();
-                enemy.update();
+            checkIfEnemiesReachedDestination(map.getHell());
+            checkIfEnemiesReachedDestination(map.getEarth());
+            checkIfEnemiesReachedDestination(map.getHeaven());
+        }
+    }
 
-                // Remove enemy if it has reached the players fortress
-                if (enemy.reachedDestination()) {
-                    player.decreaseHealth(enemy.getDamage());
-                    iterator.remove();
-                }
+    private void popWave(){
+        currentWave = waveQueue.pop();
+        map.getHell().setEnemies(currentWave.getHellEnemies());
+        map.getEarth().setEnemies(currentWave.getEarthEnemies());
+        map.getHeaven().setEnemies(currentWave.getHeavenEnemies());
+    }
+
+    private void checkIfEnemiesReachedDestination(Layer layer){
+        Player player = getPlayer();
+        Iterator<Enemy> iterator = layer.getEnemies().iterator();
+        while (iterator.hasNext()) {
+            Enemy enemy = iterator.next();
+            enemy.update();
+
+            // Remove enemy if it has reached the players fortress
+            if (enemy.reachedDestination()) {
+                player.decreaseHealth(enemy.getDamage());
+                iterator.remove();
             }
         }
     }

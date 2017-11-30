@@ -20,7 +20,6 @@ public class TearDownTowerStrategy implements TowerStrategy {
             return true;
         }
 
-
         return false;
     }
 }

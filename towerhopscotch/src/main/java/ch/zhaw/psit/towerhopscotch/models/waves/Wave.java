@@ -7,15 +7,22 @@ import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Wave {
     private Map map;
-    private ArrayList<Enemy> enemies;
+
+    private List<Enemy> hellEnemies;
+    private List<Enemy> earthEnemies;
+    private List<Enemy> heavenEnemies;
+
 
     public Wave(Map map) {
         this.map = map;
-        enemies = new ArrayList<Enemy>();
+        hellEnemies = new ArrayList<>();
+        earthEnemies = new ArrayList<>();
+        heavenEnemies = new ArrayList<>();
         generateEnemies(3);
     }
 
@@ -33,37 +40,59 @@ public class Wave {
             int enemyType = random.nextInt(7 - 1 + 1) + 1;
             int randomOffset = (2 * (random.nextInt(40 - 15 + 1) + 15));
             int startingHeight = layer.getStartY() + (i * Tile.TILE_HEIGHT) + randomOffset;
+            Enemy enemy = null;
             switch (enemyType) {
                 case 1:
-                    enemies.add(new Rat(layer, layer.getStartX(), startingHeight));
+                    enemy = new Rat(layer, layer.getStartX(), startingHeight);
                     break;
                 case 2:
-                    enemies.add(new Bat(layer, layer.getStartX(), startingHeight));
+                    enemy = new Bat(layer, layer.getStartX(), startingHeight);
                     break;
                 case 3:
-                    enemies.add(new Skeleton(layer, layer.getStartX(), startingHeight));
+                    enemy = new Skeleton(layer, layer.getStartX(), startingHeight);
                     break;
                 case 4:
-                    enemies.add(new Spider(layer, layer.getStartX(), startingHeight));
+                    enemy = new Spider(layer, layer.getStartX(), startingHeight);
                     break;
                 case 5:
-                    enemies.add(new Goblin(layer, layer.getStartX(), startingHeight));
+                    enemy = new Goblin(layer, layer.getStartX(), startingHeight);
                     break;
                 case 6:
-                    enemies.add(new Slime(layer, layer.getStartX(), startingHeight));
+                    enemy = new Slime(layer, layer.getStartX(), startingHeight);
                     break;
                 case 7:
-                    enemies.add(new Imp(layer, layer.getStartX(), startingHeight));
+                    enemy = new Imp(layer, layer.getStartX(), startingHeight);
                     break;
+            }
+            switch (layer.getLayerType()){
+                case HELL: hellEnemies.add(enemy); break;
+                case EARTH: earthEnemies.add(enemy); break;
+                case HEAVEN: heavenEnemies.add(enemy); break;
             }
         }
     }
 
     public boolean waveDestroyed() {
-        return enemies.size() == 0;
+        return map.getHell().getEnemies().size() + map.getEarth().getEnemies().size() + map.getHeaven().getEnemies().size() == 0;
     }
 
-    public ArrayList<Enemy> getEnemies() {
+    public List<Enemy> getAllEnemies() {
+        List<Enemy> enemies = new ArrayList<>();
+        enemies.addAll(map.getHell().getEnemies());
+        enemies.addAll(map.getEarth().getEnemies());
+        enemies.addAll(map.getHeaven().getEnemies());
         return enemies;
+    }
+
+    public List<Enemy> getHellEnemies() {
+        return hellEnemies;
+    }
+
+    public List<Enemy> getEarthEnemies() {
+        return earthEnemies;
+    }
+
+    public List<Enemy> getHeavenEnemies() {
+        return heavenEnemies;
     }
 }

@@ -60,4 +60,12 @@ public abstract class Entity {
     protected Map getMap() {
         return ((GameState) State.getState()).getMap();
     }
+
+    public Layer getOnLayer(){
+        return onLayer;
+    }
+
+    public void setOnLayer(Layer onLayer) {
+        this.onLayer = onLayer;
+    }
 }

@@ -1,11 +1,8 @@
 package ch.zhaw.psit.towerhopscotch.models.waves;
 
-import ch.zhaw.psit.towerhopscotch.models.entities.enemies.*;
 import ch.zhaw.psit.towerhopscotch.models.maps.Map;
-import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class WaveQueue {
     private Map map;
@@ -13,7 +10,7 @@ public class WaveQueue {
 
     public WaveQueue(Map map, int waveCount) {
         this.map = map;
-        queue = new ArrayList<Wave>();
+        queue = new ArrayList<>();
         generateWaves(waveCount);
     }
 

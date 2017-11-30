@@ -3,16 +3,12 @@ package ch.zhaw.psit.towerhopscotch.models.maps;
 import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
 import ch.zhaw.psit.towerhopscotch.controllers.states.State;
 import ch.zhaw.psit.towerhopscotch.models.Player;
-import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy;
 import ch.zhaw.psit.towerhopscotch.models.enums.LayerType;
-import ch.zhaw.psit.towerhopscotch.models.waves.Wave;
-import ch.zhaw.psit.towerhopscotch.models.waves.WaveQueue;
 
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Iterator;
 
 public class Map {
 
@@ -74,7 +70,7 @@ public class Map {
             String line;
 
             line = br.readLine();
-            String[] tokens = line.toString().split("\\s+");
+            String[] tokens = line.split("\\s+");
             width = Integer.parseInt(tokens[0]);
             height = Integer.parseInt(tokens[1]);
 
@@ -89,9 +85,9 @@ public class Map {
 
         String[] layerContents = fileContents.toString().split("-");
 
-        hell = new Layer(LayerType.HELL, width, height, layerContents[1], 10);
-        earth = new Layer(LayerType.EARTH, width, height, layerContents[2], 10);
-        heaven = new Layer(LayerType.HEAVEN, width, height, layerContents[3], 10);
+        hell = new Layer(LayerType.HELL, width, height, layerContents[1]);
+        earth = new Layer(LayerType.EARTH, width, height, layerContents[2]);
+        heaven = new Layer(LayerType.HEAVEN, width, height, layerContents[3]);
     }
 
     public Layer getHell() {
