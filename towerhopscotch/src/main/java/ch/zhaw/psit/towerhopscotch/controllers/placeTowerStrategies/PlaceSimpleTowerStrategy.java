@@ -23,9 +23,7 @@ public class PlaceSimpleTowerStrategy implements TowerStrategy {
 
             tower.setPosition(point);
 
-
             layer.addTower(tower);
-
 
         } else {
             return false;

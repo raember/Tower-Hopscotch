@@ -109,7 +109,7 @@ public class Layer {
     }
 
     private void initializeLayer(String layerContents){
-        String[] tokens = layerContents.toString().split("\\s+");
+        String[] tokens = layerContents.split("\\s+");
 
         tiles = new int[width][height];
         for (int y = 0; y < height; y++) {
@@ -124,7 +124,7 @@ public class Layer {
         }
     }
 
-    public int calculateOffset() {
+    private int calculateOffset() {
         int multiplier = 0;
         switch(layerType) {
             case HELL: multiplier = 0; break;

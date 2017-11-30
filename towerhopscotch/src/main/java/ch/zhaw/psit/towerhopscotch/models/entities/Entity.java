@@ -64,4 +64,8 @@ public abstract class Entity {
     public Layer getOnLayer(){
         return onLayer;
     }
+
+    public void setOnLayer(Layer onLayer) {
+        this.onLayer = onLayer;
+    }
 }

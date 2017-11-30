@@ -3,16 +3,12 @@ package ch.zhaw.psit.towerhopscotch.models.maps;
 import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
 import ch.zhaw.psit.towerhopscotch.controllers.states.State;
 import ch.zhaw.psit.towerhopscotch.models.Player;
-import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy;
 import ch.zhaw.psit.towerhopscotch.models.enums.LayerType;
-import ch.zhaw.psit.towerhopscotch.models.waves.Wave;
-import ch.zhaw.psit.towerhopscotch.models.waves.WaveQueue;
 
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Iterator;
 
 public class Map {
 
@@ -74,7 +70,7 @@ public class Map {
             String line;
 
             line = br.readLine();
-            String[] tokens = line.toString().split("\\s+");
+            String[] tokens = line.split("\\s+");
             width = Integer.parseInt(tokens[0]);
             height = Integer.parseInt(tokens[1]);
 
