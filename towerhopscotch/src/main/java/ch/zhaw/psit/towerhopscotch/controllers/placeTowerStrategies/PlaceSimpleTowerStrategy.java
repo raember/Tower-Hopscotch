@@ -12,15 +12,18 @@ public class PlaceSimpleTowerStrategy implements TowerStrategy {
 
     public boolean doTowerOperation(GameState gameState, Point point) {
 
+        Layer layer = gameState.getMap().getLayer((float) point.getX(),(float) point.getY());
+        Tower towerAtPosition = layer.getTowerAtPosition(point);
+
         Tower tower = new SimpleTower();
         int price = tower.getPrice();
 
-        if (gameState.getPlayer().getGold() - price >= 0){
+        if (gameState.getPlayer().getGold() - price >= 0 && towerAtPosition == null){
             gameState.getPlayer().addGold(-price);
 
             tower.setPosition(point);
 
-            Layer layer = gameState.getMap().getLayer((float) point.getX(),(float) point.getY());
+
             layer.addTower(tower);
 
 

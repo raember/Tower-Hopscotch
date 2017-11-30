@@ -25,17 +25,22 @@ public class Layer {
     private int width, height;
     private int[][] tiles;
     private List<Tower> towers;
+    private List<Enemy> enemies;
 
-    public Layer (LayerType layerType, int width, int height, String layerContents, int count){
+    public Layer (LayerType layerType, int width, int height, String layerContents){
         this.layerType = layerType;
         this.width = width;
         this.height = height;
         offset = calculateOffset();
-        towers = new ArrayList<Tower>();
+        towers = new ArrayList<>();
+        enemies = new ArrayList<>();
         initializeLayer(layerContents);
     }
 
     public void update() {
+        for (Tower tower : towers){
+            tower.update(System.nanoTime(),enemies);
+        }
     }
 
     public void render(Graphics g) {
@@ -44,9 +49,22 @@ public class Layer {
                 TileList.getTile(tiles[x][y]).render(g,layerType,x * Tile.TILE_WIDTH + offset, y * Tile.TILE_HEIGHT);
             }
         }
+
+        for (Enemy enemy : enemies){
+            enemy.render(g);
+        }
+
         for (Tower tower : towers){
             tower.render(g);
         }
+    }
+
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public void setEnemies(List<Enemy> enemies) {
+        this.enemies = enemies;
     }
 
     public void addTower(Tower tower){
@@ -56,6 +74,15 @@ public class Layer {
     public void removeTower(Tower tower){
         towers.remove(tower);
     }
+
+    public void addEnemy(Enemy enemy){
+        enemies.add(enemy);
+    }
+
+    public void removeEnemy(Enemy enemy){
+        towers.remove(enemy);
+    }
+
 
     public boolean isOnLayer(float x, float y) {
         return !((x < 0) || (x >= Tile.TILE_WIDTH * width + offset) || (y < 0) || (y >= Tile.TILE_HEIGHT * height));

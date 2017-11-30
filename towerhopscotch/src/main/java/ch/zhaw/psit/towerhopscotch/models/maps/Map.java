@@ -89,9 +89,9 @@ public class Map {
 
         String[] layerContents = fileContents.toString().split("-");
 
-        hell = new Layer(LayerType.HELL, width, height, layerContents[1], 10);
-        earth = new Layer(LayerType.EARTH, width, height, layerContents[2], 10);
-        heaven = new Layer(LayerType.HEAVEN, width, height, layerContents[3], 10);
+        hell = new Layer(LayerType.HELL, width, height, layerContents[1]);
+        earth = new Layer(LayerType.EARTH, width, height, layerContents[2]);
+        heaven = new Layer(LayerType.HEAVEN, width, height, layerContents[3]);
     }
 
     public Layer getHell() {
