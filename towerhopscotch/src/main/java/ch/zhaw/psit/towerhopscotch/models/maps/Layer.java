@@ -53,6 +53,10 @@ public class Layer {
         towers.add(tower);
     }
 
+    public void removeTower(Tower tower){
+        towers.remove(tower);
+    }
+
     public boolean isOnLayer(float x, float y) {
         return !((x < 0) || (x >= Tile.TILE_WIDTH * width + offset) || (y < 0) || (y >= Tile.TILE_HEIGHT * height));
     }
@@ -110,6 +114,16 @@ public class Layer {
 
     public LayerType getLayerType(){
         return layerType;
+    }
+
+    public Tower getTowerAtPosition(Point point){
+        Tower towerResult = null;
+        for (Tower tower: towers){
+            if (tower.getPosition().equals(point)){
+                towerResult = tower;
+            }
+        }
+        return towerResult;
     }
 
     public int getStartX() {

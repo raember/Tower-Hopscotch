@@ -108,6 +108,9 @@ public class GameState extends State {
         if (menu.towerUpgradeButtonClicked()){
             towerStrategy = towerStrategyList.get(3);
         }
+        if (menu.towerDestroyButtonClicked()){
+            towerStrategy = towerStrategyList.get(4);
+        }
     }
 
     private void selectTile(){

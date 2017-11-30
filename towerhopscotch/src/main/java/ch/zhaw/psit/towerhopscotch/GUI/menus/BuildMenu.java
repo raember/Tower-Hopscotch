@@ -62,6 +62,10 @@ public class BuildMenu {
         return towerUpgradeButton.isClicked();
     }
 
+    public boolean towerDestroyButtonClicked(){
+        return towerDestroyButton.isClicked();
+    }
+
     public boolean placeMonoTowerClicked(){
         return placeMonoTower.isClicked();
     }
