@@ -13,9 +13,9 @@ public class UpgradeTowerStrategy implements TowerStrategy {
 
         if (tower != null){
 
-            System.out.println(tower.tryPurchaseDamageUpgrade(gameState.getPlayer()));
-            System.out.println(tower.tryPurchaseFireRangeUpgrade(gameState.getPlayer()));
-            System.out.println(tower.tryPurchaseFireFrequencyUpgrade(gameState.getPlayer()));
+            tower.tryPurchaseDamageUpgrade(gameState.getPlayer());
+            tower.tryPurchaseFireRangeUpgrade(gameState.getPlayer());
+            tower.tryPurchaseFireFrequencyUpgrade(gameState.getPlayer());
 
             return true;
         }
