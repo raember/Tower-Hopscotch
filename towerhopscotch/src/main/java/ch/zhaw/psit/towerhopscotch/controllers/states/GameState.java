@@ -49,7 +49,7 @@ public class GameState extends State {
         currentWave = waveQueue.pop();
         menu = new BuildMenu();
         towerStrategyList = new ArrayList<TowerStrategy>();
-        towerStrategyList.add(new PlaceMonoTowerStrategy());
+        towerStrategyList.add(new PlaceSimpleTowerStrategy());
         towerStrategyList.add(new PlaceDoubleTowerStrategy());
         towerStrategyList.add(new PlaceTripleTowerStrategy());
         towerStrategyList.add(new UpgradeTowerStrategy());
@@ -96,7 +96,7 @@ public class GameState extends State {
     }
 
     private void choosePlaceTowerStrategy(){
-        if (menu.placeMonoTowerClicked()) {
+        if (menu.placeSimpleTowerClicked()) {
             towerStrategy = towerStrategyList.get(0);
         }
         if (menu.placeDoubleTowerClicked()) {

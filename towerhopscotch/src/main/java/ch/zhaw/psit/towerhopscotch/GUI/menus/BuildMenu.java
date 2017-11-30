@@ -18,7 +18,7 @@ public class BuildMenu {
     private Button towerUpgradeButton;
     private Button towerDestroyButton;
     private Button callNextWaveButton;
-    private Button placeMonoTower;
+    private Button placeSimpleTower;
     private Button placeDoubleTower;
     private Button placeTripleTower;
 
@@ -27,7 +27,7 @@ public class BuildMenu {
         towerDestroyButton = new Button("Destroy", xOffset(29), yOffset(1));
         callNextWaveButton = new Button("Next Wave", xOffset(35), yOffset(1));
 
-        placeMonoTower = new Button("1", xOffset(1), yOffset(1));
+        placeSimpleTower = new Button("1", xOffset(1), yOffset(1));
         placeDoubleTower = new Button("2", xOffset(3), yOffset(1));
         placeTripleTower = new Button("3", xOffset(5), yOffset(1));
     }
@@ -36,7 +36,7 @@ public class BuildMenu {
         towerUpgradeButton.update();
         towerDestroyButton.update();
         callNextWaveButton.update();
-        placeMonoTower.update();
+        placeSimpleTower.update();
         placeDoubleTower.update();
         placeTripleTower.update();
     }
@@ -49,7 +49,7 @@ public class BuildMenu {
         towerUpgradeButton.render(g);
         towerDestroyButton.render(g);
         callNextWaveButton.render(g);
-        placeMonoTower.render(g);
+        placeSimpleTower.render(g);
         placeDoubleTower.render(g);
         placeTripleTower.render(g);
     }
@@ -66,8 +66,8 @@ public class BuildMenu {
         return towerDestroyButton.isClicked();
     }
 
-    public boolean placeMonoTowerClicked(){
-        return placeMonoTower.isClicked();
+    public boolean placeSimpleTowerClicked(){
+        return placeSimpleTower.isClicked();
     }
 
     public boolean placeDoubleTowerClicked(){
