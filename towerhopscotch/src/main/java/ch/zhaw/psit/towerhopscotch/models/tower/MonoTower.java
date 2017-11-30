@@ -1,12 +1,16 @@
 package ch.zhaw.psit.towerhopscotch.models.tower;
 
+import ch.zhaw.psit.towerhopscotch.GUI.Assets;
+
 import java.awt.*;
 
-/**
- * Created by Raphael Emberger on 13.11.2017.
- */
+
 public class MonoTower extends Tower {
-    protected MonoTower(int price, Color color) {
+    public MonoTower(int price, Color color) {
         super(price, color);
+    }
+
+    public void render(Graphics g) {
+        g.drawImage(Assets.enemies.get("spider"), (int) getPosition().getX(), (int) getPosition().getY(), 32, 32, null);
     }
 }

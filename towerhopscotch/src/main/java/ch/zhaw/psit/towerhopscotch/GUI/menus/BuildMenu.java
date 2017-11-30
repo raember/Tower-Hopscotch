@@ -17,6 +17,9 @@ public class BuildMenu {
 
     private Button towerUpgradeButton;
     private Button callNextWaveButton;
+    private Button placeMonoTower;
+    private Button placeDoubleTower;
+    private Button placeTripleTower;
 
     public BuildMenu() {
         towerUpgradeButton = new Button("Upgrade", xOffset(25), yOffset(1));
@@ -36,10 +39,29 @@ public class BuildMenu {
 
         towerUpgradeButton.render(g);
         callNextWaveButton.render(g);
+        placeMonoTower.render(g);
+        placeDoubleTower.render(g);
+        placeTripleTower.render(g);
     }
 
     public boolean callNextWaveClicked() {
         return callNextWaveButton.isClicked();
+    }
+
+    public boolean towerUpgradeButtonClicked(){
+        return towerUpgradeButton.isClicked();
+    }
+
+    public boolean placeMonoTowerClicked(){
+        return placeMonoTower.isClicked();
+    }
+
+    public boolean placeDoubleTowerClicked(){
+        return placeDoubleTower.isClicked();
+    }
+
+    public boolean placeTripleTowerClicked(){
+        return placeTripleTower.isClicked();
     }
 
     private void drawMenuBackground(Graphics g) {
@@ -51,9 +73,9 @@ public class BuildMenu {
     }
 
     private void drawTowerButtons(Graphics g) {
-        TileList.getTile(255).render(g,null, xOffset(1), yOffset(1));
-        TileList.getTile(255).render(g,null, xOffset(3), yOffset(1));
-        TileList.getTile(255).render(g,null, xOffset(5), yOffset(1));
+        placeMonoTower = new Button("1", xOffset(1), yOffset(1));
+        placeDoubleTower = new Button("2", xOffset(3), yOffset(1));
+        placeTripleTower = new Button("3", xOffset(5), yOffset(1));
     }
 
     private void drawPlayerHealth(Graphics g) {

@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by Raphael Emberger on 13.11.2017.
- */
 public abstract class Tower {
     private int price;
     private Point position = new Point(0,0);
@@ -125,4 +122,6 @@ public abstract class Tower {
     protected void resetCooldown() {
         nextAttack = fireFrequency;
     }
+
+    public abstract void render(Graphics g);
 }

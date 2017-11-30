@@ -1,8 +1,6 @@
 package ch.zhaw.psit.towerhopscotch.models.tiles;
 
-import ch.zhaw.psit.towerhopscotch.GUI.Assets;
-
-class SandTile extends Tile {
+class SandTile extends Tile implements TowerPlaceable {
 
     SandTile(int id) {
         super("sand", id);

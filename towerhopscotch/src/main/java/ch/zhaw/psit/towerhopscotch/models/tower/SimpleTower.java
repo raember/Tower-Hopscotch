@@ -2,9 +2,6 @@ package ch.zhaw.psit.towerhopscotch.models.tower;
 
 import java.awt.*;
 
-/**
- * Created by Raphael Emberger on 28.11.2017.
- */
 public class SimpleTower extends Tower {
     public SimpleTower() {
         super(20, Color.BLUE);
@@ -37,5 +34,10 @@ public class SimpleTower extends Tower {
         damageUpgrades.add(new IntUpgrade(190, 7));
         damageUpgrades.add(new IntUpgrade(310, 8));
         damageUpgrades.add(new IntUpgrade(500, 9));
+    }
+
+    @Override
+    public void render(Graphics g) {
+
     }
 }

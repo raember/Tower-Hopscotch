@@ -8,11 +8,11 @@ import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
 import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
 import ch.zhaw.psit.towerhopscotch.controllers.states.State;
+import ch.zhaw.psit.towerhopscotch.models.tower.Tower;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
+import java.util.*;
+import java.util.List;
 
 public class Layer {
     public final static int LAYER_WIDTH = 448;
@@ -24,12 +24,14 @@ public class Layer {
     private LayerType layerType;
     private int width, height;
     private int[][] tiles;
+    private List<Tower> towers;
 
     public Layer (LayerType layerType, int width, int height, String layerContents, int count){
         this.layerType = layerType;
         this.width = width;
         this.height = height;
         offset = calculateOffset();
+        towers = new ArrayList<Tower>();
         initializeLayer(layerContents);
     }
 
@@ -42,6 +44,13 @@ public class Layer {
                 TileList.getTile(tiles[x][y]).render(g,layerType,x * Tile.TILE_WIDTH + offset, y * Tile.TILE_HEIGHT);
             }
         }
+        for (Tower tower : towers){
+            tower.render(g);
+        }
+    }
+
+    public void addTower(Tower tower){
+        towers.add(tower);
     }
 
     public boolean isOnLayer(float x, float y) {
