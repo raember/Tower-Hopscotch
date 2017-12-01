@@ -44,7 +44,6 @@ public class GameState extends State {
         player.addGold(10000);
         map = new Map("src/main/resources/maps/map1.txt");
         waveQueue = new WaveQueue(map, 5);
-        popWave();
         menu = new BuildMenu();
         towerStrategyList = new ArrayList<>();
         towerStrategyList.add(new PlaceMonoTowerStrategy());
@@ -130,7 +129,7 @@ public class GameState extends State {
     }
 
     private void updateWaveQueue() {
-        if(currentWave.waveDestroyed()) {
+        if(currentWave == null || currentWave.waveDestroyed()) {
             if(waveQueue.allWavesDestroyed()) {
                 State.setState(game.getVictoryState());
             } else if(menu.callNextWaveClicked()) {
@@ -166,7 +165,7 @@ public class GameState extends State {
     }
 
     private void drawWavesPausedText(Graphics g) {
-        if(currentWave.waveDestroyed())
+        if(currentWave == null || currentWave.waveDestroyed())
             Text.drawString(g, "WAVES PAUSED", game.getWidth() / 2, 50, true, Color.WHITE, Assets.font32);
     }
 
@@ -188,7 +187,7 @@ public class GameState extends State {
     }
 
     public int getWavesRemaining() {
-        if(currentWave.waveDestroyed()) {
+        if(currentWave == null || currentWave.waveDestroyed()) {
             return waveQueue.size();
         }
         return waveQueue.size() + 1;
