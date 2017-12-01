@@ -10,7 +10,7 @@ import java.awt.*;
 
 public class MonoTower extends Tower {
     public MonoTower() {
-        super(20, Assets.enemies.get("wizard"));
+        super(20, Assets.towers.get("simpleTower"));
         setFireFrequency(2000000000);
         fireFrequencyUpgrades.add(new LongUpgrade(10, 1800000000));
         fireFrequencyUpgrades.add(new LongUpgrade(25, 1600000000));

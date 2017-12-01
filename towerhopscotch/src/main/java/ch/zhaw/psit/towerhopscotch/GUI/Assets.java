@@ -14,6 +14,7 @@ public class Assets {
     public static HashMap<String, BufferedImage> hellTiles = new HashMap<String, BufferedImage>();
     public static HashMap<String, BufferedImage> heavenTiles = new HashMap<String, BufferedImage>();
     public static HashMap<String, BufferedImage> enemies = new HashMap<String, BufferedImage>();
+    public static HashMap<String, BufferedImage> towers = new HashMap<String, BufferedImage>();
     public static BufferedImage heart;
     public static BufferedImage treasure;
 
@@ -46,8 +47,9 @@ public class Assets {
         enemies.put("skeleton", spriteSheet.getSubimage(2 * width, 22 * height, width, height));
 
         // Get tower sprites
-        enemies.put("wizard", spriteSheet.getSubimage(8 * width, 19 * height, width, height));
-        enemies.put("wizard2", spriteSheet.getSubimage(9 * width, 19 * height, width, height));
+        towers.put("tripleTower", spriteSheet.getSubimage(6 * width, 7 * height, width, height));
+        towers.put("doubleTower", spriteSheet.getSubimage(5 * width, 7 * height, width, height));
+        towers.put("simpleTower", spriteSheet.getSubimage(4 * width, 7 * height, width, height));
 
         // Various other sprites
         heart = spriteSheet.getSubimage(0, 25 * height, width, height);

@@ -15,6 +15,6 @@ public class Imp extends Enemy {
     }
 
     public void render(Graphics g) {
-        renderEnemy(g,Assets.enemies.get("img"));
+        renderEnemy(g,Assets.enemies.get("imp"));
     }
 }
