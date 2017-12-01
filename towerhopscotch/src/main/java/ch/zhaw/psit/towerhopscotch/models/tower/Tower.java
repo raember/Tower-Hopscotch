@@ -1,6 +1,7 @@
 package ch.zhaw.psit.towerhopscotch.models.tower;
 
 import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
+import ch.zhaw.psit.towerhopscotch.models.Gold;
 import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
@@ -66,31 +67,31 @@ public abstract class Tower {
         return damageUpgrades.isEmpty() ? null : damageUpgrades.get(0);
     }
 
-    public boolean tryPurchaseFireRangeUpgrade(Player player) {
+    public boolean tryPurchaseFireRangeUpgrade(Gold gold) {
         FloatUpgrade upgrade = getFireRangeUpgrade();
-        if (upgrade == null || !upgrade.isAffordable(player.getGold())) return false;
+        if (upgrade == null || !upgrade.isAffordable(gold.getAmount())) return false;
         fireRange = upgrade.getValue();
-        player.addGold(-upgrade.getPrice());
+        gold.setAmount(gold.getAmount() - upgrade.getPrice());
         price += upgrade.getPrice();
         fireRangeUpgrades.remove(0);
         return true;
     }
 
-    public boolean tryPurchaseFireFrequencyUpgrade(Player player) {
+    public boolean tryPurchaseFireFrequencyUpgrade(Gold gold) {
         LongUpgrade upgrade = getFireFrequencyUpgrade();
-        if (upgrade == null || !upgrade.isAffordable(player.getGold())) return false;
+        if (upgrade == null || !upgrade.isAffordable(gold.getAmount())) return false;
         fireFrequency = upgrade.getValue();
-        player.addGold(-upgrade.getPrice());
+        gold.setAmount(gold.getAmount() - upgrade.getPrice());
         price += upgrade.getPrice();
         fireFrequencyUpgrades.remove(0);
         return true;
     }
 
-    public boolean tryPurchaseDamageUpgrade(Player player) {
+    public boolean tryPurchaseDamageUpgrade(Gold gold) {
         IntUpgrade upgrade = getDamageUpgrade();
-        if (upgrade == null || !upgrade.isAffordable(player.getGold())) return false;
+        if (upgrade == null || !upgrade.isAffordable(gold.getAmount())) return false;
         damage = upgrade.getValue();
-        player.addGold(-upgrade.getPrice());
+        gold.setAmount(gold.getAmount() - upgrade.getPrice());
         price += upgrade.getPrice();
         damageUpgrades.remove(0);
         return true;

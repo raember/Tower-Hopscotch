@@ -17,7 +17,7 @@ public class PlaceMonoTowerStrategy implements TowerStrategy {
         Tower tower = new MonoTower();
         int price = tower.getPrice();
 
-        if (gameState.getPlayer().getGold() - price >= 0 && towerAtPosition == null){
+        if (gameState.getPlayer().getGold().getAmount() - price >= 0 && towerAtPosition == null){
             gameState.getPlayer().addGold(-price);
 
             tower.setPosition(point);
