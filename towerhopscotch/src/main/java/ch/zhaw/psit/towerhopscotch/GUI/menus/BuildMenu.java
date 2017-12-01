@@ -93,7 +93,7 @@ public class BuildMenu {
 
     private void drawPlayerGold(Graphics g) {
         g.drawImage(Assets.treasure, xOffset(15), yOffset(1), Tile.TILE_WIDTH, Tile.TILE_HEIGHT, null);
-        Text.drawString(g, getPlayer().getGold() + " G", xOffset(17), yOffset(1), false, Color.BLACK, Assets.font32);
+        Text.drawString(g, getPlayer().getGold().getAmount() + " G", xOffset(17), yOffset(1), false, Color.BLACK, Assets.font32);
     }
 
     private int yOffset(int offset) {

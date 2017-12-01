@@ -3,23 +3,28 @@ package ch.zhaw.psit.towerhopscotch.models;
 public class Player {
     public static final int MAX_HEALTH = 50;
     private int health;
-    private int gold;
+    private Gold gold;
 
     public Player() {
         this.health = MAX_HEALTH;
-        this.gold = 0;
+        this.gold = new Gold();
     }
 
     public int getHealth() {
         return health;
     }
 
-    public int getGold() {
+    public Gold getGold() {
         return gold;
     }
 
-    public void addGold(int amount) {
-        gold += amount;
+    public boolean addGold(int amount) {
+        int newValue = gold.getAmount() + amount;
+        if (newValue >= 0){
+            gold.setAmount(newValue);
+            return true;
+        }
+        return false;
     }
 
     public void decreaseHealth(int amount) {
