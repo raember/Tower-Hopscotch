@@ -70,10 +70,11 @@ public class GameState extends State {
                 towerStrategy.doTowerOperation(this, selectedTilePoint);
                 towerStrategy = null;
                 selectedTile = null;
+                selectedTilePoint = null;
             }
         }
 
-        if (mouseManager.isLeftPressed() && towerStrategy != null){
+        if (mouseManager.isLeftPressed()){
             selectTile();
         }
 
@@ -86,6 +87,7 @@ public class GameState extends State {
 
         drawWavesPausedText(g);
         drawWavesRemainingText(g);
+        drawSelectedTileFrame(g);
 
         menu.render(g);
     }
@@ -109,6 +111,7 @@ public class GameState extends State {
     }
 
     private void selectTile(){
+        towerStrategy = null;
         Layer layer = map.getLayer(mouseManager.getMouseX(), mouseManager.getMouseY());
         if (layer != null){
             int offset = 0;
@@ -170,6 +173,18 @@ public class GameState extends State {
     private void drawWavesRemainingText(Graphics g) {
         Text.drawString(g, getWavesRemaining() + " WAVES", game.getWidth()  - 100, 20, true, Color.BLACK, Assets.font32);
         Text.drawString(g, "REMAINING", game.getWidth()  - 100, 50, true, Color.BLACK, Assets.font32);
+    }
+
+    private void drawSelectedTileFrame(Graphics g) {
+        if(selectedTilePoint != null) {
+            if(selectedTile.isTowerPlaceable()) {
+                g.setColor(Color.GREEN);
+            } else {
+                g.setColor(Color.RED);
+            }
+            g.drawRect(selectedTilePoint.x, selectedTilePoint.y, Tile.TILE_WIDTH, Tile.TILE_HEIGHT);
+            g.setColor(Color.BLACK);
+        }
     }
 
     public int getWavesRemaining() {
