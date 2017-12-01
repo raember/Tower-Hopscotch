@@ -81,3 +81,5 @@ crashlytics-build.properties
 fabric.properties
 towerhopscotch/.idea/workspace.xml
 towerhopscotch/.idea/*
+towerhopscotch/.project
+towerhopscotch/.settings/org.eclipse.jdt.core.prefs
