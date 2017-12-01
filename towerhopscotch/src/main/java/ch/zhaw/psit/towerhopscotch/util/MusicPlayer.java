@@ -16,12 +16,16 @@ public class MusicPlayer implements Runnable{
 	private int currentSondIndex;
 	
 	public MusicPlayer(String... files) {
+		
+		ClassLoader classLoader = getClass().getClassLoader();
+		String path  = classLoader.getResource("audio/").getPath();
+	 
 		musicFiles = new ArrayList<String>();
 		for(String file : files)
-			musicFiles.add("./resources/audio/" + file + ".wav");
+			musicFiles.add(path + file + ".wav");
 	}
 	
-	private void playSound(String fileName) {
+	public void playSound(String fileName) {
 		try {
 			File soundFile = new File(fileName);
 			AudioInputStream ais = AudioSystem.getAudioInputStream(soundFile);
@@ -42,6 +46,5 @@ public class MusicPlayer implements Runnable{
 		
 		
 	}
-	
 
 }
