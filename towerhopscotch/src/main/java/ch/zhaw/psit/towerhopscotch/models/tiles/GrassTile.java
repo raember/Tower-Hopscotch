@@ -1,10 +1,13 @@
 package ch.zhaw.psit.towerhopscotch.models.tiles;
 
-import ch.zhaw.psit.towerhopscotch.GUI.Assets;
-
-class GrassTile extends Tile implements TowerPlaceable{
+class GrassTile extends Tile {
 
     GrassTile(int id) {
         super("grass", id);
+    }
+
+    @Override
+    public boolean isTowerPlaceable() {
+        return true;
     }
 }

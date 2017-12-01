@@ -45,6 +45,8 @@ public class Tile {
 
     public boolean isFortress() { return false; }
 
+    public boolean isTowerPlaceable() { return false; }
+
     public int getId() {
         return id;
     }

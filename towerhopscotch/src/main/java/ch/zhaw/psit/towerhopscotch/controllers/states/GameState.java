@@ -11,7 +11,6 @@ import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy;
 import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
 import ch.zhaw.psit.towerhopscotch.models.maps.Map;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
-import ch.zhaw.psit.towerhopscotch.models.tiles.TowerPlaceable;
 import ch.zhaw.psit.towerhopscotch.models.waves.Wave;
 import ch.zhaw.psit.towerhopscotch.models.waves.WaveQueue;
 
@@ -30,7 +29,6 @@ public class GameState extends State {
 
     private ArrayList<TowerStrategy> towerStrategyList;
     private TowerStrategy towerStrategy;
-
 
     private Tile selectedTile;
     private Point selectedTilePoint;
@@ -67,9 +65,8 @@ public class GameState extends State {
 
         choosePlaceTowerStrategy();
 
-
         if (towerStrategy != null && selectedTile != null){
-            if (selectedTile instanceof TowerPlaceable){
+            if (selectedTile.isTowerPlaceable()){
                 towerStrategy.doTowerOperation(this, selectedTilePoint);
                 towerStrategy = null;
                 selectedTile = null;
@@ -119,7 +116,6 @@ public class GameState extends State {
                 case HELL: offset = 0;break;
                 case EARTH: offset = 10;break;
                 case HEAVEN: offset = 20;break;
-
             }
             int x = mouseManager.getMouseX();
             x -= ((x-offset)%32);
