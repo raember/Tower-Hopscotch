@@ -152,6 +152,18 @@ public abstract class Enemy extends Entity {
     protected void renderEnemy(Graphics g, BufferedImage img){
         g.drawImage(img, (int) x, (int) y, width, height, null);
         g.setColor(Color.GREEN);
+        g.drawRect((int) getX(), (int) getY(), Tile.TILE_WIDTH, Tile.TILE_HEIGHT / 10);
+        g.setColor(getColor());
         g.fillRect((int) getX(), (int) getY(), Tile.TILE_WIDTH * health / 100, Tile.TILE_HEIGHT / 10);
+    }
+
+    protected Color getColor() {
+        if (health <= 25)
+            return Color.RED;
+        if (health <= 50)
+            return Color.ORANGE;
+        if (health <= 75)
+            return Color.YELLOW;
+        return Color.GREEN;
     }
 }
