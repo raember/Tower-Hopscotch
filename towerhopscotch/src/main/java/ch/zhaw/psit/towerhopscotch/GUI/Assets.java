@@ -18,6 +18,7 @@ public class Assets {
     public static BufferedImage heart;
     public static BufferedImage treasure;
 
+    public static Font font16;
     public static Font font32;
     public static Font font128;
 
@@ -56,6 +57,7 @@ public class Assets {
         treasure = spriteSheet.getSubimage(4 * width, 8 * height, width, height);
 
         // Load fonts
+        font16 = FontLoader.loadFont("/fonts/slkscr.ttf", 16);
         font32 = FontLoader.loadFont("/fonts/slkscr.ttf", 32);
         font128 = FontLoader.loadFont("/fonts/slkscr.ttf", 128);
 

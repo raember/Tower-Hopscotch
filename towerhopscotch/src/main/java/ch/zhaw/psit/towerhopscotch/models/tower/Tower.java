@@ -1,5 +1,7 @@
 package ch.zhaw.psit.towerhopscotch.models.tower;
 
+import ch.zhaw.psit.towerhopscotch.GUI.Assets;
+import ch.zhaw.psit.towerhopscotch.GUI.Text;
 import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
 import ch.zhaw.psit.towerhopscotch.models.Gold;
 import ch.zhaw.psit.towerhopscotch.models.Player;
@@ -29,10 +31,12 @@ public abstract class Tower {
     private long fireFrequency = Long.MIN_VALUE;
     protected ArrayQueue<IntUpgrade> damageUpgrades = new ArrayQueue<IntUpgrade>(10);
     private int damage = Integer.MIN_VALUE;
+    private int level;
 
     protected Tower(int price, BufferedImage image) {
         this.price = price;
         this.image = image;
+        level = 1;
     }
 
     public Point getPosition() {return position;}
@@ -138,10 +142,10 @@ public abstract class Tower {
     protected void resetCooldown() {
         nextAttack = fireFrequency;
     }
-
-
+    
     public void render(Graphics g) {
         g.drawImage(image, (int) getPosition().getX(), (int) getPosition().getY(), Tile.TILE_WIDTH, Tile.TILE_HEIGHT, null);
+        Text.drawString(g, Integer.toString(level), (int) getPosition().getX() + Tile.TILE_WIDTH / 2, (int) getPosition().getY() + Tile.TILE_HEIGHT / 2, true, Color.WHITE, Assets.font16);
     }
 
     public void preplace(Point position) {
@@ -155,4 +159,12 @@ public abstract class Tower {
     }
 
     public abstract boolean canBePlaced(GameState gameState);
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void levelUp() {
+        level++;
+    }
 }

@@ -15,7 +15,7 @@ public class UpgradeTowerStrategy implements TowerStrategy {
             tower.tryPurchaseDamageUpgrade(gameState.getPlayer().getGold());
             tower.tryPurchaseFireRangeUpgrade(gameState.getPlayer().getGold());
             tower.tryPurchaseFireFrequencyUpgrade(gameState.getPlayer().getGold());
-
+            tower.levelUp();
             return true;
         }
 

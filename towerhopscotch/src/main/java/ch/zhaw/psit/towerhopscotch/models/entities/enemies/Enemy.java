@@ -43,47 +43,6 @@ public abstract class Enemy extends Entity {
         y += yMove;
     }
 
-    /* NOT NEEDED AT THE MOMENT...
-    private ArrayList<Direction> getAllPossibleDirections() {
-        ArrayList<Direction> possibleDirections = new ArrayList<Direction>();
-
-        if (moveDirection == Direction.UP) {
-            if (upwardsPossible())
-                possibleDirections.add(Direction.UP);
-            if (leftwardsPossible())
-                possibleDirections.add(Direction.LEFT);
-            if (rightwardsPossible())
-                possibleDirections.add(Direction.RIGHT);
-        } else if (moveDirection == Direction.DOWN) {
-            if (downwardsPossible())
-                possibleDirections.add(Direction.DOWN);
-            if (leftwardsPossible())
-                possibleDirections.add(Direction.LEFT);
-            if (rightwardsPossible())
-                possibleDirections.add(Direction.RIGHT);
-        } else if (moveDirection == Direction.LEFT) {
-            if (leftwardsPossible())
-                possibleDirections.add(Direction.LEFT);
-            if (upwardsPossible())
-                possibleDirections.add(Direction.UP);
-            if (downwardsPossible())
-                possibleDirections.add(Direction.DOWN);
-        } else if (moveDirection == Direction.RIGHT) {
-            if (rightwardsPossible())
-                possibleDirections.add(Direction.RIGHT);
-            if (upwardsPossible())
-                possibleDirections.add(Direction.UP);
-            if (downwardsPossible())
-                possibleDirections.add(Direction.DOWN);
-        }
-
-        return possibleDirections;
-    }
-
-    private void choseDirectionFromList(ArrayList<Direction> directions) {
-        moveDirection = directions.get(new Random().nextInt(directions.size()));
-    }*/
-
     private void changeDirection() {
         Direction currentDirection = moveDirection;
 
