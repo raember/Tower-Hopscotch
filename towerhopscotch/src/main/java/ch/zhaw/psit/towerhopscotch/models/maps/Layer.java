@@ -76,7 +76,7 @@ public class Layer {
     }
 
     public void removeEnemy(Enemy enemy){
-        towers.remove(enemy);
+        enemies.remove(enemy);
     }
 
 

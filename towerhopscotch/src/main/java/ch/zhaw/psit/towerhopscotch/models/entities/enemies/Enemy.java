@@ -3,6 +3,7 @@ package ch.zhaw.psit.towerhopscotch.models.entities.enemies;
 import ch.zhaw.psit.towerhopscotch.models.entities.Entity;
 import ch.zhaw.psit.towerhopscotch.models.enums.Direction;
 import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
+import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -172,7 +173,8 @@ public abstract class Enemy extends Entity {
     public void setHealth(int health) {
         this.health = Math.max(health, 0);
         if (this.health == 0) {
-            //TODO: Reward the player and destroy enemy object
+            onLayer.removeEnemy(this);
+            //TODO: Reward the player
         }
     }
 
@@ -190,5 +192,7 @@ public abstract class Enemy extends Entity {
 
     protected void renderEnemy(Graphics g, BufferedImage img){
         g.drawImage(img, (int) x, (int) y, width, height, null);
+        g.setColor(Color.GREEN);
+        g.fillRect((int) getX(), (int) getY(), Tile.TILE_WIDTH * health / 100, Tile.TILE_HEIGHT / 10);
     }
 }
