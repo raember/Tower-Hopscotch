@@ -1,6 +1,6 @@
 package ch.zhaw.psit.towerhopscotch.models.tower;
 
-import ch.zhaw.psit.towerhopscotch.models.Player;
+import ch.zhaw.psit.towerhopscotch.models.Gold;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +22,7 @@ public class TowerTest {
     }
 
     @Test
-    public void getFireRangeUpgrade() throws Exception {
+    public void getFireRangeUpgrade() {
         float range = tower.getFireRange();
         FloatUpgrade upgrade = tower.getFireRangeUpgrade();
         assertTrue(upgrade.getValue() > range);
@@ -30,7 +30,7 @@ public class TowerTest {
     }
 
     @Test
-    public void getfireFrequencyUpgrade() throws Exception {
+    public void getfireFrequencyUpgrade() {
         long frequency = tower.getFireFrequency();
         LongUpgrade upgrade = tower.getFireFrequencyUpgrade();
         assertTrue(upgrade.getValue() < frequency);
@@ -38,7 +38,7 @@ public class TowerTest {
     }
 
     @Test
-    public void getDamageUpgrade() throws Exception {
+    public void getDamageUpgrade() {
         int damage = tower.getDamage();
         IntUpgrade upgrade = tower.getDamageUpgrade();
         assertTrue(upgrade.getValue() > damage);
@@ -46,13 +46,13 @@ public class TowerTest {
     }
 
     @Test
-    public void tryPurchaseFireRangeUpgrade() throws Exception {
+    public void tryPurchaseFireRangeUpgrade() {
         float range = tower.getFireRange();
         FloatUpgrade upgrade = tower.getFireRangeUpgrade();
-        Player player = new Player();
-        player.addGold(upgrade.getPrice());
-        assertTrue(tower.tryPurchaseFireRangeUpgrade(player));
-        assertEquals(0, player.getGold());
+        Gold gold = new Gold();
+        gold.setAmount(upgrade.getPrice());
+        assertTrue(tower.tryPurchaseFireRangeUpgrade(gold));
+        assertEquals(0, gold.getAmount());
         FloatUpgrade newUpgrade = tower.getFireRangeUpgrade();
         assertNotEquals(upgrade, newUpgrade);
         assertTrue(range < tower.getFireRange());
@@ -60,14 +60,13 @@ public class TowerTest {
     }
 
     @Test
-    public void tryPurchaseFireFrequencyUpgrade() throws Exception {
+    public void tryPurchaseFireFrequencyUpgrade() {
         long frequency = tower.getFireFrequency();
         LongUpgrade upgrade = tower.getFireFrequencyUpgrade();
-        Player player = new Player();
-        int price = upgrade.getPrice();
-        player.addGold(upgrade.getPrice());
-        assertTrue(tower.tryPurchaseFireFrequencyUpgrade(player));
-        assertEquals(0, player.getGold());
+        Gold gold = new Gold();
+        gold.setAmount(upgrade.getPrice());
+        assertTrue(tower.tryPurchaseFireFrequencyUpgrade(gold));
+        assertEquals(0, gold.getAmount());
         LongUpgrade newUpgrade = tower.getFireFrequencyUpgrade();
         assertNotEquals(upgrade, newUpgrade);
         assertTrue(frequency > tower.getFireFrequency());
@@ -75,14 +74,13 @@ public class TowerTest {
     }
 
     @Test
-    public void tryPurchaseDamageUpgrade() throws Exception {
+    public void tryPurchaseDamageUpgrade() {
         int damage = tower.getDamage();
         IntUpgrade upgrade = tower.getDamageUpgrade();
-        Player player = new Player();
-        int price = upgrade.getPrice();
-        player.addGold(upgrade.getPrice());
-        assertTrue(tower.tryPurchaseDamageUpgrade(player));
-        assertEquals(0, player.getGold());
+        Gold gold = new Gold();
+        gold.setAmount(upgrade.getPrice());
+        assertTrue(tower.tryPurchaseDamageUpgrade(gold));
+        assertEquals(0, gold.getAmount());
         IntUpgrade newUpgrade = tower.getDamageUpgrade();
         assertNotEquals(upgrade, newUpgrade);
         assertTrue(damage < tower.getDamage());
@@ -90,7 +88,7 @@ public class TowerTest {
     }
 
     @Test
-    public void canReach() throws Exception {
+    public void canReach() {
         int range = (int) (tower.getFireRange() * Tile.TILE_WIDTH);
         Point a = new Point(0, 0);
         Point b = new Point(range, 0);

@@ -8,9 +8,12 @@ import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 
 import java.awt.*;
 
-public class MonoTower extends Tower {
-    public MonoTower() {
-        super(20, Assets.towers.get("monoTower"));
+/**
+ * Created by Raphael Emberger on 03.12.2017.
+ */
+public class DoubleTower extends Tower {
+    public DoubleTower() {
+        super(20, Assets.towers.get("doubleTower"));
         setFireFrequency(2000000000);
         fireFrequencyUpgrades.add(new LongUpgrade(10, 1800000000));
         fireFrequencyUpgrades.add(new LongUpgrade(25, 1600000000));
@@ -47,7 +50,15 @@ public class MonoTower extends Tower {
         Point position = getPosition();
         Map map = gameState.getMap();
         Layer layer = map.getLayer((float) position.getX(), (float) position.getY());
-        Tile tile = layer.getTile((float) position.getX(), (float) position.getY());
-        return tile.isFortress();
+        if (layer == map.getHell()) {
+            Tile lowTile = layer.getTile((float) position.getX(), (float) position.getY());
+            Tile highTile = map.getEarth().getTile((float) position.getX() - Layer.LAYER_WIDTH - 10, (float) position.getY());
+            return lowTile.isFortress() && highTile.isFortress();
+        } else if (layer == map.getEarth()) {
+            Tile lowTile = layer.getTile((float) position.getX(), (float) position.getY());
+            Tile highTile = map.getHeaven().getTile((float) position.getX() - Layer.LAYER_WIDTH - 10, (float) position.getY());
+            return lowTile.isFortress() && highTile.isFortress();
+        }
+        return false;
     }
 }

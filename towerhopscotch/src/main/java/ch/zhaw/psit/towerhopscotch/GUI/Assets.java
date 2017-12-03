@@ -50,7 +50,7 @@ public class Assets {
         // Get tower sprites
         towers.put("tripleTower", spriteSheet.getSubimage(6 * width, 7 * height, width, height));
         towers.put("doubleTower", spriteSheet.getSubimage(5 * width, 7 * height, width, height));
-        towers.put("simpleTower", spriteSheet.getSubimage(4 * width, 7 * height, width, height));
+        towers.put("monoTower", spriteSheet.getSubimage(4 * width, 7 * height, width, height));
 
         // Various other sprites
         heart = spriteSheet.getSubimage(0, 25 * height, width, height);
