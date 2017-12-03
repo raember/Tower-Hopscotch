@@ -4,7 +4,6 @@ import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 import ch.zhaw.psit.towerhopscotch.GUI.Text;
 import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
 import ch.zhaw.psit.towerhopscotch.models.Gold;
-import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import com.sun.jmx.remote.internal.ArrayQueue;
@@ -23,6 +22,7 @@ public abstract class Tower {
     private long shotDuration;
     private long shot;
     private boolean isPlaced;
+    private boolean isRemoved;
     private ArrayList<Enemy> shotEnemies = new ArrayList<Enemy>();
     private BufferedImage image;
     protected ArrayQueue<FloatUpgrade> fireRangeUpgrades = new ArrayQueue<FloatUpgrade>(10);
@@ -110,6 +110,10 @@ public abstract class Tower {
         nextAttack = Math.max(nextAttack - deltaNanoTime, 0);
         currentTime = absNanoTime;
         updateInternal(nextAttack == 0, filterEnemies(enemiesOnMap));
+        updateLeech();
+    }
+
+    protected void updateLeech() {
     }
 
     protected List<Enemy> filterEnemies(List<Enemy> enemies) {
@@ -166,5 +170,13 @@ public abstract class Tower {
 
     public void levelUp() {
         level++;
+    }
+
+    public void remove() {
+        isRemoved = true;
+    }
+
+    public boolean isRemoved() {
+        return isRemoved;
     }
 }

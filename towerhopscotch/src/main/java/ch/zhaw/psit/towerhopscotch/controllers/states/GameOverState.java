@@ -2,22 +2,23 @@ package ch.zhaw.psit.towerhopscotch.controllers.states;
 
 import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 import ch.zhaw.psit.towerhopscotch.GUI.Text;
+import ch.zhaw.psit.towerhopscotch.GUI.input.MouseManager;
 import ch.zhaw.psit.towerhopscotch.GUI.menus.Button;
 import ch.zhaw.psit.towerhopscotch.controllers.Game;
-import ch.zhaw.psit.towerhopscotch.GUI.input.MouseManager;
 import ch.zhaw.psit.towerhopscotch.models.enums.LayerType;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
 
 import java.awt.*;
 
-public class GameOverState extends State {
+public class GameOverState extends GameState {
     private Game game;
     private MouseManager mouseManager;
     private Button mainMenuButton;
     private Button newGameButton;
 
     public GameOverState(Game game, MouseManager mouseManager) {
+        super(game, mouseManager);
         this.game = game;
         this.mouseManager = mouseManager;
         mainMenuButton = new Button("Main Menu", game.getWidth() / 8 * 2, game.getHeight() / 3 * 2);

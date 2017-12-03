@@ -184,7 +184,6 @@ public abstract class Enemy extends Entity {
         this.health = Math.max(health, 0);
         if (this.health == 0) {
             onLayer.removeEnemy(this);
-            //TODO: Reward the player
             player.addGold(reward);
         }
     }

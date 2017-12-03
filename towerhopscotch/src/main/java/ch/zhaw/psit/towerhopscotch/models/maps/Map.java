@@ -9,7 +9,6 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Map {
 
@@ -31,22 +30,6 @@ public class Map {
         hell.render(g);
         earth.render(g);
         heaven.render(g);
-    }
-
-    public boolean isPath(float x, float y) {
-        return hell.isPath(x,y) || earth.isPath(x,y) || heaven.isPath(x,y);
-    }
-
-    public boolean isFortress(float x, float y) {
-        return hell.isFortress(x,y) || earth.isFortress(x,y) || heaven.isFortress(x,y);
-    }
-
-    public boolean isBeneathMap(float x, float y) {
-        return hell.isBeneathMap(x,y) || earth.isBeneathMap(x,y) || heaven.isBeneathMap(x,y);
-    }
-
-    private boolean isOnMap(float x, float y) {
-        return hell.isOnLayer(x,y) || earth.isOnLayer(x,y) || heaven.isOnLayer(x,y);
     }
 
     public Layer getLayer(float x, float y){

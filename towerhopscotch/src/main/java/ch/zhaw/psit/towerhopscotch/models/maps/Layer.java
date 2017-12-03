@@ -39,6 +39,7 @@ public class Layer {
         for (Tower tower : towers){
             tower.update(absNanoTime, enemies);
         }
+        towers.removeIf(tower -> tower.isRemoved());
     }
 
     public void render(Graphics g) {
@@ -71,6 +72,7 @@ public class Layer {
 
     public void removeTower(Tower tower){
         towers.remove(tower);
+        tower.remove();
     }
 
     public void addEnemy(Enemy enemy){

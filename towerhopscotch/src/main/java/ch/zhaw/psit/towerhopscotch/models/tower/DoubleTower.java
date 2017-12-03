@@ -12,6 +12,8 @@ import java.awt.*;
  * Created by Raphael Emberger on 03.12.2017.
  */
 public class DoubleTower extends Tower {
+    private DoubleTower child;
+
     public DoubleTower() {
         super(20, Assets.towers.get("doubleTower"));
         setFireFrequency(2000000000);
@@ -43,6 +45,23 @@ public class DoubleTower extends Tower {
         damageUpgrades.add(new IntUpgrade(190, 50));
         damageUpgrades.add(new IntUpgrade(310, 70));
         damageUpgrades.add(new IntUpgrade(500, 90));
+    }
+
+    public void setChild(DoubleTower doubleTower) {
+        child = doubleTower;
+    }
+
+    @Override
+    protected void updateLeech() {
+        if (child != null && child.isRemoved()) {
+            this.remove();
+        }
+    }
+
+    @Override
+    public void remove() {
+        super.remove();
+        child.remove();
     }
 
     @Override
