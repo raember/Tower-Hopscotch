@@ -1,18 +1,15 @@
 package ch.zhaw.psit.towerhopscotch.models.entities.enemies;
 
-import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
-import ch.zhaw.psit.towerhopscotch.controllers.states.State;
+import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.entities.Entity;
 import ch.zhaw.psit.towerhopscotch.models.enums.Direction;
 import ch.zhaw.psit.towerhopscotch.models.enums.LayerType;
 import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
-import ch.zhaw.psit.towerhopscotch.models.maps.Map;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public abstract class Enemy extends Entity {
@@ -23,8 +20,10 @@ public abstract class Enemy extends Entity {
     protected float speed;
     protected float xMove, yMove;
     protected Direction moveDirection;
+    protected Player player;
+    protected int reward;
 
-    public Enemy(Layer onLayer, float x, float y, int width, int height, int health, int damage, float speed) {
+    public Enemy(Layer onLayer, float x, float y, int width, int height, int health, int damage, float speed, Player player, int reward) {
         super(onLayer, x, y, width, height);
         moveDirection = Direction.UP;
         this.health = health;
@@ -32,6 +31,8 @@ public abstract class Enemy extends Entity {
         this.speed = speed;
         xMove = 0;
         yMove = 0;
+        this.player = player;
+        this.reward = reward;
     }
 
     public void move() {
@@ -184,6 +185,7 @@ public abstract class Enemy extends Entity {
         if (this.health == 0) {
             onLayer.removeEnemy(this);
             //TODO: Reward the player
+            player.addGold(reward);
         }
     }
 

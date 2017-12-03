@@ -43,7 +43,7 @@ public class GameState extends State {
         player = new Player();
         player.addGold(10000);
         map = new Map("src/main/resources/maps/map1.txt");
-        waveQueue = new WaveQueue(map, 5);
+        waveQueue = new WaveQueue(map, 5, player);
         menu = new BuildMenu();
         towerStrategyList = new ArrayList<>();
         towerStrategyList.add(new PlaceMonoTowerStrategy());

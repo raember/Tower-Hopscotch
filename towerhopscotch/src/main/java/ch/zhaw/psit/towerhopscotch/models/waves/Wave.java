@@ -1,11 +1,11 @@
 package ch.zhaw.psit.towerhopscotch.models.waves;
 
+import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.entities.enemies.*;
 import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
 import ch.zhaw.psit.towerhopscotch.models.maps.Map;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,13 +16,15 @@ public class Wave {
     private List<Enemy> hellEnemies;
     private List<Enemy> earthEnemies;
     private List<Enemy> heavenEnemies;
+    private Player player;
 
 
-    public Wave(Map map) {
+    public Wave(Map map, Player player) {
         this.map = map;
         hellEnemies = new ArrayList<>();
         earthEnemies = new ArrayList<>();
         heavenEnemies = new ArrayList<>();
+        this.player = player;
         generateEnemies(3);
     }
 
@@ -43,25 +45,25 @@ public class Wave {
             Enemy enemy = null;
             switch (enemyType) {
                 case 1:
-                    enemy = new Rat(layer, layer.getStartX(), startingHeight);
+                    enemy = new Rat(layer, layer.getStartX(), startingHeight, player);
                     break;
                 case 2:
-                    enemy = new Bat(layer, layer.getStartX(), startingHeight);
+                    enemy = new Bat(layer, layer.getStartX(), startingHeight, player);
                     break;
                 case 3:
-                    enemy = new Skeleton(layer, layer.getStartX(), startingHeight);
+                    enemy = new Skeleton(layer, layer.getStartX(), startingHeight, player);
                     break;
                 case 4:
-                    enemy = new Spider(layer, layer.getStartX(), startingHeight);
+                    enemy = new Spider(layer, layer.getStartX(), startingHeight, player);
                     break;
                 case 5:
-                    enemy = new Goblin(layer, layer.getStartX(), startingHeight);
+                    enemy = new Goblin(layer, layer.getStartX(), startingHeight, player);
                     break;
                 case 6:
-                    enemy = new Slime(layer, layer.getStartX(), startingHeight);
+                    enemy = new Slime(layer, layer.getStartX(), startingHeight, player);
                     break;
                 case 7:
-                    enemy = new Imp(layer, layer.getStartX(), startingHeight);
+                    enemy = new Imp(layer, layer.getStartX(), startingHeight, player);
                     break;
             }
             switch (layer.getLayerType()){

@@ -1,5 +1,6 @@
 package ch.zhaw.psit.towerhopscotch.models.waves;
 
+import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.maps.Map;
 
 import java.util.ArrayList;
@@ -7,16 +8,18 @@ import java.util.ArrayList;
 public class WaveQueue {
     private Map map;
     private ArrayList<Wave> queue;
+    private Player player;
 
-    public WaveQueue(Map map, int waveCount) {
+    public WaveQueue(Map map, int waveCount, Player player) {
         this.map = map;
+        this.player = player;
         queue = new ArrayList<>();
         generateWaves(waveCount);
     }
 
     private void generateWaves(int waveCount) {
         for(int i = 0; i < waveCount; i++) {
-            add(new Wave(map));
+            add(new Wave(map, player));
         }
     }
 
