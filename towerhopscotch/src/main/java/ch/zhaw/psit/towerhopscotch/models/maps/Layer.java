@@ -1,5 +1,7 @@
 package ch.zhaw.psit.towerhopscotch.models.maps;
 
+import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
+import ch.zhaw.psit.towerhopscotch.controllers.states.State;
 import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy;
 import ch.zhaw.psit.towerhopscotch.models.enums.LayerType;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
@@ -108,6 +110,51 @@ public class Layer {
         return TileList.getTile(tiles[(int) (x-offset) / Tile.TILE_WIDTH][(int) y / Tile.TILE_HEIGHT]);
     }
 
+    public ArrayList<Layer> getTeleportableLayers(float topLeftX, float topLeftY, float bottomRightX, float bottomRightY) {
+        ArrayList<Layer> teleportableLayers = new ArrayList<Layer>();
+        Layer hell = getMap().getHell();
+        Layer earth = getMap().getEarth();
+        Layer heaven = getMap().getHeaven();
+
+        if(!isPath(topLeftX, topLeftY) || !isPath(bottomRightX, bottomRightY))
+            return teleportableLayers;
+
+        switch(layerType) {
+            case HELL:
+                if(earth.isPath(topLeftX + Layer.LAYER_WIDTH + 10, topLeftY) &&
+                        earth.isPath(bottomRightX + Layer.LAYER_WIDTH + 10, bottomRightY)) {
+                    teleportableLayers.add(earth);
+                }
+                if(heaven.isPath(topLeftX + 2*Layer.LAYER_WIDTH + 20, topLeftY) &&
+                        heaven.isPath(bottomRightX + 2*Layer.LAYER_WIDTH + 20, bottomRightY)) {
+                    teleportableLayers.add(heaven);
+                }
+                break;
+            case EARTH:
+                if(hell.isPath(topLeftX - Layer.LAYER_WIDTH - 10, topLeftY) &&
+                        hell.isPath(bottomRightX - (Layer.LAYER_WIDTH + 10), bottomRightY)) {
+                    teleportableLayers.add(hell);
+                }
+                if(heaven.isPath(topLeftX + Layer.LAYER_WIDTH + 10, topLeftY) &&
+                        heaven.isPath(bottomRightX + Layer.LAYER_WIDTH + 10, bottomRightY)) {
+                    teleportableLayers.add(heaven);
+                }
+                break;
+            case HEAVEN:
+                if(hell.isPath(topLeftX - (2*Layer.LAYER_WIDTH + 20), topLeftY) &&
+                        hell.isPath(bottomRightX - (2*Layer.LAYER_WIDTH + 20), bottomRightY)) {
+                    teleportableLayers.add(hell);
+                }
+                if(earth.isPath(topLeftX - (Layer.LAYER_WIDTH + 10), topLeftY) &&
+                        earth.isPath(bottomRightX - (Layer.LAYER_WIDTH + 10), bottomRightY)) {
+                    teleportableLayers.add(earth);
+                }
+                break;
+        }
+
+        return teleportableLayers;
+    }
+
     private void initializeLayer(String layerContents){
         String[] tokens = layerContents.split("\\s+");
 
@@ -124,7 +171,7 @@ public class Layer {
         }
     }
 
-    private int calculateOffset() {
+    public int calculateOffset() {
         int multiplier = 0;
         switch(layerType) {
             case HELL: multiplier = 0; break;
@@ -147,6 +194,10 @@ public class Layer {
             }
         }
         return towerResult;
+    }
+
+    private Map getMap() {
+        return ((GameState) State.getState()).getMap();
     }
 
     public int getStartX() {

@@ -9,6 +9,7 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Map {
 
@@ -88,6 +89,26 @@ public class Map {
         hell = new Layer(LayerType.HELL, width, height, layerContents[1]);
         earth = new Layer(LayerType.EARTH, width, height, layerContents[2]);
         heaven = new Layer(LayerType.HEAVEN, width, height, layerContents[3]);
+    }
+
+    public Layer[] getOtherLayers(LayerType layerType) {
+        Layer[] layers = new Layer[2];
+        switch(layerType) {
+            case HELL:
+                layers[0] = earth;
+                layers[1] = heaven;
+                break;
+            case EARTH:
+                layers[0] = hell;
+                layers[1] = heaven;
+                break;
+            case HEAVEN:
+                layers[0] = hell;
+                layers[1] = earth;
+                break;
+        }
+        return layers;
+
     }
 
     public Layer getHell() {

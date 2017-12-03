@@ -1,12 +1,19 @@
 package ch.zhaw.psit.towerhopscotch.models.entities.enemies;
 
+import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
+import ch.zhaw.psit.towerhopscotch.controllers.states.State;
 import ch.zhaw.psit.towerhopscotch.models.entities.Entity;
 import ch.zhaw.psit.towerhopscotch.models.enums.Direction;
+import ch.zhaw.psit.towerhopscotch.models.enums.LayerType;
 import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
+import ch.zhaw.psit.towerhopscotch.models.maps.Map;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public abstract class Enemy extends Entity {
     public static final int DEFAULT_WIDTH = 32, DEFAULT_HEIGHT = 32;
@@ -41,6 +48,49 @@ public abstract class Enemy extends Entity {
 
         x += xMove;
         y += yMove;
+    }
+
+    public boolean teleport() {
+        Random random = new Random();
+        ArrayList<Layer> layers = onLayer.getTeleportableLayers(x, y, x + (width - 1), y + (height - 1));
+        if(layers.size() == 0)
+            return false;
+
+        int randomNum = 1 + (int)(Math.random() * 10000);
+        if(randomNum < 10) {
+            Layer selectedLayer = layers.get(random.nextInt(layers.size()));
+            setX(x + calculateTeleportOffset(onLayer.getLayerType(), selectedLayer.getLayerType()));
+
+            selectedLayer.addEnemy(this);
+            onLayer = selectedLayer;
+            return true;
+        }
+        return false;
+    }
+
+    private int calculateTeleportOffset(LayerType startLayer, LayerType endLayer) {
+        int offset = 0;
+        switch(startLayer) {
+            case HELL:
+                if(endLayer == LayerType.EARTH)
+                    offset = (Layer.LAYER_WIDTH + 10);
+                if(endLayer == LayerType.HEAVEN)
+                    offset = (2*Layer.LAYER_WIDTH + 20);
+                break;
+            case EARTH:
+                if(endLayer == LayerType.HELL)
+                    offset = -(Layer.LAYER_WIDTH + 10);
+                if(endLayer == LayerType.HEAVEN)
+                    offset = (Layer.LAYER_WIDTH + 10);
+                break;
+            case HEAVEN:
+                if(endLayer == LayerType.HELL)
+                    offset = -(2*Layer.LAYER_WIDTH + 20);
+                if(endLayer == LayerType.EARTH)
+                    offset = -(Layer.LAYER_WIDTH + 10);
+                break;
+        }
+        return offset;
     }
 
     private void changeDirection() {
