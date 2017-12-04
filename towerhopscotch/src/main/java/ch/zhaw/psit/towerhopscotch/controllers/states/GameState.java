@@ -66,14 +66,15 @@ public class GameState extends State {
 
         if (towerStrategy != null && selectedTile != null){
             if (selectedTile.isTowerPlaceable()){
-                towerStrategy.doTowerOperation(this, selectedTilePoint);
-                towerStrategy = null;
+                if (towerStrategy.doTowerOperation(this, selectedTilePoint)){
+                    towerStrategy = null;
+                }
                 selectedTile = null;
                 selectedTilePoint = null;
             }
         }
 
-        if (mouseManager.isLeftPressed()){
+        if (mouseManager.isLeftPressed() && towerStrategy != null){
             selectTile();
         }
 
@@ -86,7 +87,10 @@ public class GameState extends State {
 
         drawWavesPausedText(g);
         drawWavesRemainingText(g);
-        drawSelectedTileFrame(g);
+
+        if (towerStrategy != null){
+            towerStrategy.activeAction(this,g);
+        }
 
         menu.render(g);
     }
@@ -110,21 +114,22 @@ public class GameState extends State {
     }
 
     private void selectTile(){
-        towerStrategy = null;
-        Layer layer = map.getLayer(mouseManager.getMouseX(), mouseManager.getMouseY());
-        if (layer != null){
-            int offset = 0;
-            switch (layer.getLayerType()) {
-                case HELL: offset = 0;break;
-                case EARTH: offset = 10;break;
-                case HEAVEN: offset = 20;break;
+        if (map.isOnMap(mouseManager.getMouseX(), mouseManager.getMouseY())){
+            Layer layer = map.getLayer(mouseManager.getMouseX(), mouseManager.getMouseY());
+            if (layer != null){
+                int offset = 0;
+                switch (layer.getLayerType()) {
+                    case HELL: offset = 0;break;
+                    case EARTH: offset = 10;break;
+                    case HEAVEN: offset = 20;break;
+                }
+                int x = mouseManager.getMouseX();
+                x -= ((x-offset)%32);
+                int y = mouseManager.getMouseY();
+                y = y - (y%32);
+                selectedTilePoint = new Point(x,y);
+                selectedTile = layer.getTile(x,y);
             }
-            int x = mouseManager.getMouseX();
-            x -= ((x-offset)%32);
-            int y = mouseManager.getMouseY();
-            y = y - (y%32);
-            selectedTilePoint = new Point(x,y);
-            selectedTile = layer.getTile(x,y);
         }
     }
 

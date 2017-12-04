@@ -48,8 +48,8 @@ public class Assets {
         enemies.put("skeleton", spriteSheet.getSubimage(2 * width, 22 * height, width, height));
 
         // Get tower sprites
-        towers.put("tripleTower", spriteSheet.getSubimage(6 * width, 7 * height, width, height));
-        towers.put("doubleTower", spriteSheet.getSubimage(5 * width, 7 * height, width, height));
+        towers.put("doubleTower", spriteSheet.getSubimage(6 * width, 7 * height, width, height));
+        towers.put("tripleTower", spriteSheet.getSubimage(5 * width, 7 * height, width, height));
         towers.put("monoTower", spriteSheet.getSubimage(4 * width, 7 * height, width, height));
 
         // Various other sprites

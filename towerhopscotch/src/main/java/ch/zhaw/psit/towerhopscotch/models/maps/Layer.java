@@ -7,6 +7,7 @@ import ch.zhaw.psit.towerhopscotch.models.enums.LayerType;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
 import ch.zhaw.psit.towerhopscotch.models.tower.Tower;
+import ch.zhaw.psit.towerhopscotch.models.tower.TowerPosition;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class Layer {
     private LayerType layerType;
     private int width, height;
     private int[][] tiles;
-    private List<Tower> towers;
+    private List<TowerPosition> towers;
     private List<Enemy> enemies;
 
     public Layer (LayerType layerType, int width, int height, String layerContents){
@@ -36,10 +37,10 @@ public class Layer {
     }
 
     public void update(long absNanoTime) {
-        for (Tower tower : towers){
+        for (TowerPosition tower : towers){
             tower.update(absNanoTime, enemies);
         }
-        towers.removeIf(tower -> tower.isRemoved());
+        towers.removeIf(tower -> tower.getTower().isRemoved());
     }
 
     public void render(Graphics g) {
@@ -53,7 +54,7 @@ public class Layer {
             enemy.render(g);
         }
 
-        for (Tower tower : towers){
+        for (TowerPosition tower : towers){
             tower.render(g);
         }
     }
@@ -66,7 +67,7 @@ public class Layer {
         this.enemies = enemies;
     }
 
-    public void addTower(Tower tower){
+    public void addTower(TowerPosition tower){
         towers.add(tower);
     }
 
@@ -109,7 +110,11 @@ public class Layer {
     }
 
     public Tile getTile(float x, float y){
-        return TileList.getTile(tiles[(int) (x-offset) / Tile.TILE_WIDTH][(int) y / Tile.TILE_HEIGHT]);
+        Tile tile = null;
+        try {
+            tile = TileList.getTile(tiles[(int) (x-offset) / Tile.TILE_WIDTH][(int) y / Tile.TILE_HEIGHT]);
+        } catch (IndexOutOfBoundsException e){}
+        return tile;
     }
 
     public ArrayList<Layer> getTeleportableLayers(float topLeftX, float topLeftY, float bottomRightX, float bottomRightY) {
@@ -174,14 +179,18 @@ public class Layer {
     }
 
     public int calculateOffset() {
-        int multiplier = 0;
-        switch(layerType) {
-            case HELL: multiplier = 0; break;
-            case EARTH: multiplier = 1; break;
-            case HEAVEN: multiplier = 2; break;
-        }
-
+        int multiplier = getLayerLevel();
         return multiplier * width * Tile.TILE_WIDTH + 10 * multiplier;
+    }
+
+    public int getLayerLevel(){
+        int level = 0;
+        switch(layerType) {
+            case HELL: level = 0; break;
+            case EARTH: level = 1; break;
+            case HEAVEN: level = 2; break;
+        }
+        return level;
     }
 
     public LayerType getLayerType(){
@@ -189,13 +198,16 @@ public class Layer {
     }
 
     public Tower getTowerAtPosition(Point point){
-        Tower towerResult = null;
-        for (Tower tower: towers){
+        TowerPosition towerResult = null;
+        for (TowerPosition tower: towers){
             if (tower.getPosition().equals(point)){
                 towerResult = tower;
             }
         }
-        return towerResult;
+        if (towerResult != null){
+            return towerResult.getTower();
+        }
+            return null;
     }
 
     private Map getMap() {

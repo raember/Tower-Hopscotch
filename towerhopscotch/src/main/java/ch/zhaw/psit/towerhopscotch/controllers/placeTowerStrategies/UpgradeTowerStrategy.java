@@ -7,6 +7,11 @@ import ch.zhaw.psit.towerhopscotch.models.tower.Tower;
 import java.awt.*;
 
 public class UpgradeTowerStrategy implements TowerStrategy {
+    @Override
+    public void activeAction(GameState gameState, Graphics g) {
+
+    }
+
     public boolean doTowerOperation(GameState gameState, Point point) {
         Layer layer = gameState.getMap().getLayer((float) point.getX(),(float) point.getY());
         Tower tower = layer.getTowerAtPosition(point);

@@ -94,6 +94,10 @@ public class Map {
 
     }
 
+    public boolean isOnMap(float x, float y) {
+        return hell.isOnLayer(x,y) || earth.isOnLayer(x,y) || heaven.isOnLayer(x,y);
+    }
+
     public Layer getHell() {
         return hell;
     }

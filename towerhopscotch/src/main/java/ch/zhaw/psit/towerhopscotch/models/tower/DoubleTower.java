@@ -12,7 +12,6 @@ import java.awt.*;
  * Created by Raphael Emberger on 03.12.2017.
  */
 public class DoubleTower extends Tower {
-    private DoubleTower child;
 
     public DoubleTower() {
         super(20, Assets.towers.get("doubleTower"));
@@ -47,37 +46,4 @@ public class DoubleTower extends Tower {
         damageUpgrades.add(new IntUpgrade(500, 90));
     }
 
-    public void setChild(DoubleTower doubleTower) {
-        child = doubleTower;
-    }
-
-    @Override
-    protected void updateLeech() {
-        if (child != null && child.isRemoved()) {
-            this.remove();
-        }
-    }
-
-    @Override
-    public void remove() {
-        super.remove();
-        child.remove();
-    }
-
-    @Override
-    public boolean canBePlaced(GameState gameState) {
-        Point position = getPosition();
-        Map map = gameState.getMap();
-        Layer layer = map.getLayer((float) position.getX(), (float) position.getY());
-        if (layer == map.getHell()) {
-            Tile lowTile = layer.getTile((float) position.getX(), (float) position.getY());
-            Tile highTile = map.getEarth().getTile((float) position.getX() - Layer.LAYER_WIDTH - 10, (float) position.getY());
-            return lowTile.isFortress() && highTile.isFortress();
-        } else if (layer == map.getEarth()) {
-            Tile lowTile = layer.getTile((float) position.getX(), (float) position.getY());
-            Tile highTile = map.getHeaven().getTile((float) position.getX() - Layer.LAYER_WIDTH - 10, (float) position.getY());
-            return lowTile.isFortress() && highTile.isFortress();
-        }
-        return false;
-    }
 }

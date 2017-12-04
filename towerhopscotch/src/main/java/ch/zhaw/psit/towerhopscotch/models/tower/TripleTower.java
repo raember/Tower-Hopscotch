@@ -45,17 +45,4 @@ public class TripleTower extends Tower {
         damageUpgrades.add(new IntUpgrade(500, 90));
     }
 
-    @Override
-    public boolean canBePlaced(GameState gameState) {
-        Point position = getPosition();
-        Map map = gameState.getMap();
-        Layer layer = map.getLayer((float) position.getX(), (float) position.getY());
-        if (layer == map.getHell()) {
-            Tile lowTile = layer.getTile((float) position.getX(), (float) position.getY());
-            Tile midTile = map.getEarth().getTile((float) position.getX() - Layer.LAYER_WIDTH - 10, (float) position.getY());
-            Tile highTile = map.getEarth().getTile((float) position.getX() - 2 * (Layer.LAYER_WIDTH + 10), (float) position.getY());
-            return lowTile.isFortress() && midTile.isFortress() && highTile.isFortress();
-        }
-        return false;
-    }
 }

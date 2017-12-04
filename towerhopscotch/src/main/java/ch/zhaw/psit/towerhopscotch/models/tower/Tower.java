@@ -8,6 +8,7 @@ import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import com.sun.jmx.remote.internal.ArrayQueue;
 
+import javax.swing.text.Position;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -16,12 +17,10 @@ import java.util.stream.Collectors;
 
 public abstract class Tower {
     private int price;
-    private Point position = new Point(0,0);
     private long currentTime = System.nanoTime();
     private long nextAttack;
     private long shotDuration;
     private long shot;
-    private boolean isPlaced;
     private boolean isRemoved;
     private ArrayList<Enemy> shotEnemies = new ArrayList<Enemy>();
     private BufferedImage image;
@@ -39,8 +38,6 @@ public abstract class Tower {
         level = 1;
     }
 
-    public Point getPosition() {return position;}
-    public void setPosition(Point position) {this.position = position;}
 
     public FloatUpgrade getFireRangeUpgrade() {
         return fireRangeUpgrades.isEmpty() ? null : fireRangeUpgrades.get(0);
@@ -101,23 +98,23 @@ public abstract class Tower {
         return true;
     }
 
-    public boolean canReach(Point position) {
-        return this.position.distance(position) / Tile.TILE_WIDTH <= fireRange;
+    public boolean canReach(Point positionEnemy, Point towerPosition) {
+        return towerPosition.distance(positionEnemy) / Tile.TILE_WIDTH <= fireRange;
     }
 
-    public void update(long absNanoTime, List<Enemy> enemiesOnMap) {
+    public void update(long absNanoTime,Point towerPosition, List<Enemy> enemiesOnMap) {
         long deltaNanoTime = absNanoTime - currentTime;
         nextAttack = Math.max(nextAttack - deltaNanoTime, 0);
         currentTime = absNanoTime;
-        updateInternal(nextAttack == 0, filterEnemies(enemiesOnMap));
+        updateInternal(nextAttack == 0, filterEnemies(enemiesOnMap, towerPosition));
         updateLeech();
     }
 
     protected void updateLeech() {
     }
 
-    protected List<Enemy> filterEnemies(List<Enemy> enemies) {
-        return enemies.stream().filter(e -> canReach(new Point((int) e.getX(), (int) e.getY()))).collect(Collectors.toList());
+    protected List<Enemy> filterEnemies(List<Enemy> enemies, Point towerPosition) {
+        return enemies.stream().filter(e -> canReach(new Point((int) e.getX(), (int) e.getY()), towerPosition)).collect(Collectors.toList());
     }
 
     protected void updateInternal(boolean canShoot, List<Enemy> enemiesInVicinity) {
@@ -147,29 +144,19 @@ public abstract class Tower {
         nextAttack = fireFrequency;
     }
     
-    public void render(Graphics g) {
-        g.drawImage(image, (int) getPosition().getX(), (int) getPosition().getY(), Tile.TILE_WIDTH, Tile.TILE_HEIGHT, null);
-        Text.drawString(g, Integer.toString(level), (int) getPosition().getX() + Tile.TILE_WIDTH / 2, (int) getPosition().getY() + Tile.TILE_HEIGHT / 2, true, Color.WHITE, Assets.font16);
+    public void render(Graphics g, Point position) {
+        g.drawImage(image, (int) position.getX(), (int) position.getY(), Tile.TILE_WIDTH, Tile.TILE_HEIGHT, null);
+        Text.drawString(g, Integer.toString(level), (int) position.getX() + Tile.TILE_WIDTH / 2, (int) position.getY() + Tile.TILE_HEIGHT / 2, true, Color.WHITE, Assets.font16);
     }
-
-    public void preplace(Point position) {
-        isPlaced = false;
-        this.position = position;
-    }
-
-    public boolean place(int budget) {
-        isPlaced = budget >= price;
-        return isPlaced;
-    }
-
-    public abstract boolean canBePlaced(GameState gameState);
 
     public int getLevel() {
         return level;
     }
 
     public void levelUp() {
-        level++;
+        if (level < 9){
+            level++;
+        }
     }
 
     public void remove() {

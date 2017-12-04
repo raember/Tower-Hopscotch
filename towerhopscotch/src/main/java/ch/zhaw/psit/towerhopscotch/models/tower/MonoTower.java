@@ -42,12 +42,5 @@ public class MonoTower extends Tower {
         damageUpgrades.add(new IntUpgrade(500, 90));
     }
 
-    @Override
-    public boolean canBePlaced(GameState gameState) {
-        Point position = getPosition();
-        Map map = gameState.getMap();
-        Layer layer = map.getLayer((float) position.getX(), (float) position.getY());
-        Tile tile = layer.getTile((float) position.getX(), (float) position.getY());
-        return tile.isFortress();
-    }
+
 }
