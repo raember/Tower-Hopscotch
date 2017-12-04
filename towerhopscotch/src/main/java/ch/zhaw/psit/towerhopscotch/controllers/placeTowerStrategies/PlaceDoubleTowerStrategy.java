@@ -12,13 +12,14 @@ public class PlaceDoubleTowerStrategy implements TowerStrategy {
 
     public boolean doTowerOperation(GameState gameState, Point point) {
         Map map = gameState.getMap();
-        Layer lowerLayer = map.getLayer((float) point.getX(), (float) point.getY());
-        if (lowerLayer == map.getHeaven() || lowerLayer.getTowerAtPosition(point) != null) return false;
-        Layer upperLayer = map.getLayer((float) point.getX() - Layer.LAYER_WIDTH - 10, (float) point.getY());
+        Point lowerPoint = point;
+        Layer lowerLayer = map.getLayer((float) lowerPoint.x, (float) lowerPoint.y);
+        if (lowerLayer == map.getHeaven() ||
+                lowerLayer.getTowerAtPosition(lowerPoint) != null) return false;
 
-        Point upperPoint = new Point(point.x - Layer.LAYER_WIDTH - 10, point.y);
-        if (!upperLayer.getTile(upperPoint.x, upperPoint.y).isFortress() || upperLayer.getTowerAtPosition(upperPoint) != null)
-            return false;
+        Point upperPoint = new Point(lowerPoint.x + Layer.LAYER_WIDTH + 10, lowerPoint.y);
+        Layer upperLayer = map.getLayer((float) upperPoint.x, (float) upperPoint.y);
+        if (upperLayer.getTowerAtPosition(upperPoint) != null) return false;
 
         Player player = gameState.getPlayer();
         DoubleTower lowerTower = new DoubleTower();
@@ -28,7 +29,7 @@ public class PlaceDoubleTowerStrategy implements TowerStrategy {
         int price = lowerTower.getPrice();
         if (player.getGold().getAmount() >= price) {
             player.addGold(-price);
-            lowerTower.setPosition(point);
+            lowerTower.setPosition(lowerPoint);
             lowerLayer.addTower(lowerTower);
             upperTower.setPosition(upperPoint);
             upperLayer.addTower(upperTower);
