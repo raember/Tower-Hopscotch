@@ -2,13 +2,11 @@ package ch.zhaw.psit.towerhopscotch.models.tower;
 
 import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 import ch.zhaw.psit.towerhopscotch.GUI.Text;
-import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
 import ch.zhaw.psit.towerhopscotch.models.Gold;
 import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import com.sun.jmx.remote.internal.ArrayQueue;
 
-import javax.swing.text.Position;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -119,6 +117,7 @@ public abstract class Tower {
 
     protected void updateInternal(boolean canShoot, List<Enemy> enemiesInVicinity) {
         if (canShoot) {
+            shotEnemies.clear();
             boolean shotEnamies = false;
             for (Enemy enemy : enemiesInVicinity) {
                 shotEnamies |= shoot(enemy);
@@ -147,6 +146,12 @@ public abstract class Tower {
     public void render(Graphics g, Point position) {
         g.drawImage(image, (int) position.getX(), (int) position.getY(), Tile.TILE_WIDTH, Tile.TILE_HEIGHT, null);
         Text.drawString(g, Integer.toString(level), (int) position.getX() + Tile.TILE_WIDTH / 2, (int) position.getY() + Tile.TILE_HEIGHT / 2, true, Color.WHITE, Assets.font16);
+        g.setColor(Color.ORANGE);
+        int offset = Tile.TILE_WIDTH / 2;
+        for (Enemy enemy : shotEnemies) {
+            g.drawLine(position.x + offset, position.y + offset,
+                    (int) enemy.getX() + offset, (int) enemy.getY() + offset);
+        }
     }
 
     public int getLevel() {
