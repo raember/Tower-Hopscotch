@@ -23,6 +23,8 @@ public class PlaceMonoTowerStrategy extends PlaceTowerStrategy {
     @Override
     public void activeAction(GameState gameState, Graphics g) {
 
+        gameState.drawText(g,"SELECT POITION FOR MONO TOWER");
+
         Point point1 = gameState.getMouseManager().getPosition();
 
         Layer layer1 = getLayer(gameState, point1);

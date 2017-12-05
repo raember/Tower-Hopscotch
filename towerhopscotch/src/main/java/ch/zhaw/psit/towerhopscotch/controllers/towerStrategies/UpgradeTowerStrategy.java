@@ -18,7 +18,9 @@ public class UpgradeTowerStrategy implements TowerStrategy {
      * @param g Graphics
      */
     @Override
-    public void activeAction(GameState gameState, Graphics g) {}
+    public void activeAction(GameState gameState, Graphics g) {
+        gameState.drawText(g,"SELECT TOWER TO UPGRADE");
+    }
 
     /**
      * Upgrade Tower at Point
