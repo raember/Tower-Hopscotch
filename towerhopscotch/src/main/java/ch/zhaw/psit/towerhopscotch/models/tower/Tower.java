@@ -152,16 +152,18 @@ public abstract class Tower {
         Stroke stroke1 = new BasicStroke(4f, BasicStroke.CAP_BUTT,
                 BasicStroke.JOIN_MITER, 1.0f, dashingPattern2, 0.0f);
         
-        g.setColor(Color.RED);
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setStroke(stroke1);
+
         
         int offset = Tile.TILE_WIDTH / 2;
         for (Enemy enemy : shotEnemies) {
             Tower tower = enemy.getOnLayer().getTowerAtPosition(position);
             if (tower != null && tower.equals(this)){
-                g.drawLine(position.x + offset, position.y + offset,
+                Graphics2D g2 = (Graphics2D) g;
+                g2.setColor(Color.RED);
+                g2.setStroke(stroke1);
+                g2.drawLine(position.x + offset, position.y + offset,
                         (int) enemy.getX() + offset, (int) enemy.getY() + offset);
+                g2.setStroke(new BasicStroke(1));
             }
         }
     }
