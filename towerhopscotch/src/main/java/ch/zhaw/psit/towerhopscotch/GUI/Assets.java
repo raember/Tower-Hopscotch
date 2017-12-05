@@ -7,6 +7,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
+/**
+ * All the Graphic images
+ * @author Nicolas Eckhart, Stefan Bösch
+ */
 public class Assets {
 
     private static final int height = 16, width = 16;
@@ -22,6 +26,9 @@ public class Assets {
     public static Font font32;
     public static Font font128;
 
+    /**
+     * Initialize the assets
+     */
     public static void initialize() {
         BufferedImage spriteSheet = ImageUtil.loadImage("/textures/earth.png");
 

@@ -3,6 +3,10 @@ package ch.zhaw.psit.towerhopscotch.GUI;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * The Container for the frame and the canvas
+ * @author Nicolas Eckhart
+ */
 public class Display {
     private String title;
     private int width, height;
