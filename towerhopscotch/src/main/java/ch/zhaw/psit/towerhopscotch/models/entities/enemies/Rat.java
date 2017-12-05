@@ -7,7 +7,7 @@ import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
 import java.awt.*;
 
 public class Rat extends Enemy {
-    public Rat(Layer onLayer, float x, float y, Player player) {
+    public Rat(Layer onLayer, int x, int y, Player player) {
         super(onLayer, x, y, Enemy.DEFAULT_WIDTH, Enemy.DEFAULT_HEIGHT, 100, 1, 2.0f, player, 20);
     }
 
@@ -16,6 +16,6 @@ public class Rat extends Enemy {
     }
 
     public void render(Graphics g) {
-        renderEnemy(g,Assets.enemies.get("rat"));
+        renderEnemy(g, Assets.enemies.get("rat"));
     }
 }

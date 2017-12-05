@@ -59,14 +59,14 @@ public class GameState extends State {
         map.update(now);
         menu.update();
 
-        if(player.isDead())
+        if (player.isDead())
             State.setState(game.getGameOverState());
 
         choosePlaceTowerStrategy();
 
-        if (towerStrategy != null && selectedTile != null){
-            if (selectedTile.isTowerPlaceable()){
-                if (towerStrategy.doTowerOperation(this, selectedTilePoint)){
+        if (towerStrategy != null && selectedTile != null) {
+            if (selectedTile.isTowerPlaceable()) {
+                if (towerStrategy.doTowerOperation(this, selectedTilePoint)) {
                     towerStrategy = null;
                 }
                 selectedTile = null;
@@ -74,7 +74,7 @@ public class GameState extends State {
             }
         }
 
-        if (mouseManager.isLeftPressed() && towerStrategy != null){
+        if (mouseManager.isLeftPressed() && towerStrategy != null) {
             selectTile();
         }
 
@@ -88,14 +88,14 @@ public class GameState extends State {
         drawWavesPausedText(g);
         drawWavesRemainingText(g);
 
-        if (towerStrategy != null){
-            towerStrategy.activeAction(this,g);
+        if (towerStrategy != null) {
+            towerStrategy.activeAction(this, g);
         }
 
         menu.render(g);
     }
 
-    private void choosePlaceTowerStrategy(){
+    private void choosePlaceTowerStrategy() {
         if (menu.placeSimpleTowerClicked()) {
             towerStrategy = towerStrategyList.get(0);
         }
@@ -105,39 +105,45 @@ public class GameState extends State {
         if (menu.placeTripleTowerClicked()) {
             towerStrategy = towerStrategyList.get(2);
         }
-        if (menu.towerUpgradeButtonClicked()){
+        if (menu.towerUpgradeButtonClicked()) {
             towerStrategy = towerStrategyList.get(3);
         }
-        if (menu.towerDestroyButtonClicked()){
+        if (menu.towerDestroyButtonClicked()) {
             towerStrategy = towerStrategyList.get(4);
         }
     }
 
-    private void selectTile(){
-        if (map.isOnMap(mouseManager.getMouseX(), mouseManager.getMouseY())){
-            Layer layer = map.getLayer(mouseManager.getMouseX(), mouseManager.getMouseY());
-            if (layer != null){
+    private void selectTile() {
+        if (map.isOnMap(mouseManager.getPosition())) {
+            Layer layer = map.getLayer(mouseManager.getPosition());
+            if (layer != null) {
                 int offset = 0;
                 switch (layer.getLayerType()) {
-                    case HELL: offset = 0;break;
-                    case EARTH: offset = 10;break;
-                    case HEAVEN: offset = 20;break;
+                    case HELL:
+                        offset = 0;
+                        break;
+                    case EARTH:
+                        offset = 10;
+                        break;
+                    case HEAVEN:
+                        offset = 20;
+                        break;
                 }
                 int x = mouseManager.getMouseX();
-                x -= ((x-offset)%32);
+                x -= ((x - offset) % 32);
                 int y = mouseManager.getMouseY();
-                y = y - (y%32);
-                selectedTilePoint = new Point(x,y);
-                selectedTile = layer.getTile(x,y);
+                y = y - (y % 32);
+                selectedTilePoint = new Point(x, y);
+                selectedTile = layer.getTile(selectedTilePoint);
             }
         }
     }
 
     private void updateWaveQueue() {
-        if(currentWave == null || currentWave.waveDestroyed()) {
-            if(waveQueue.allWavesDestroyed()) {
+        if (currentWave == null || currentWave.waveDestroyed()) {
+            if (waveQueue.allWavesDestroyed()) {
                 State.setState(game.getVictoryState());
-            } else if(menu.callNextWaveClicked()) {
+            } else if (menu.callNextWaveClicked()) {
                 popWave();
             }
         } else {
@@ -147,14 +153,14 @@ public class GameState extends State {
         }
     }
 
-    private void popWave(){
+    private void popWave() {
         currentWave = waveQueue.pop();
         map.getHell().setEnemies(currentWave.getHellEnemies());
         map.getEarth().setEnemies(currentWave.getEarthEnemies());
         map.getHeaven().setEnemies(currentWave.getHeavenEnemies());
     }
 
-    private void checkIfEnemiesReachedDestination(Layer layer){
+    private void checkIfEnemiesReachedDestination(Layer layer) {
         Player player = getPlayer();
         Iterator<Enemy> iterator = layer.getEnemies().iterator();
         while (iterator.hasNext()) {
@@ -174,35 +180,23 @@ public class GameState extends State {
     }
 
     private void drawWavesPausedText(Graphics g) {
-        if(currentWave == null || currentWave.waveDestroyed())
+        if (currentWave == null || currentWave.waveDestroyed())
             Text.drawString(g, "WAVES PAUSED", game.getWidth() / 2, 50, true, Color.WHITE, Assets.font32);
     }
 
     private void drawWavesRemainingText(Graphics g) {
-        Text.drawString(g, getWavesRemaining() + " WAVES", game.getWidth()  - 100, 20, true, Color.BLACK, Assets.font32);
-        Text.drawString(g, "REMAINING", game.getWidth()  - 100, 50, true, Color.BLACK, Assets.font32);
-    }
-
-    private void drawSelectedTileFrame(Graphics g) {
-        if(selectedTilePoint != null) {
-            if(selectedTile.isTowerPlaceable()) {
-                g.setColor(Color.GREEN);
-            } else {
-                g.setColor(Color.RED);
-            }
-            g.drawRect(selectedTilePoint.x, selectedTilePoint.y, Tile.TILE_WIDTH, Tile.TILE_HEIGHT);
-            g.setColor(Color.BLACK);
-        }
+        Text.drawString(g, getWavesRemaining() + " WAVES", game.getWidth() - 100, 20, true, Color.BLACK, Assets.font32);
+        Text.drawString(g, "REMAINING", game.getWidth() - 100, 50, true, Color.BLACK, Assets.font32);
     }
 
     public int getWavesRemaining() {
-        if(currentWave == null || currentWave.waveDestroyed()) {
+        if (currentWave == null || currentWave.waveDestroyed()) {
             return waveQueue.size();
         }
         return waveQueue.size() + 1;
     }
 
-    public Game getGame(){
+    public Game getGame() {
         return game;
     }
 

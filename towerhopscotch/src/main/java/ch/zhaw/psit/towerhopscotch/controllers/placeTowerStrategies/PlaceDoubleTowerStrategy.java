@@ -3,66 +3,45 @@ package ch.zhaw.psit.towerhopscotch.controllers.placeTowerStrategies;
 import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
 import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
-import ch.zhaw.psit.towerhopscotch.models.maps.Map;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import ch.zhaw.psit.towerhopscotch.models.tower.DoubleTower;
 import ch.zhaw.psit.towerhopscotch.models.tower.TowerPosition;
 
 import java.awt.*;
 
-public class PlaceDoubleTowerStrategy implements TowerStrategy {
+public class PlaceDoubleTowerStrategy extends PlaceTowerStrategy {
 
     @Override
     public void activeAction(GameState gameState, Graphics g) {
 
-        int mouseX = gameState.getMouseManager().getMouseX();
-        int mouseY = gameState.getMouseManager().getMouseY();
+        Point point1 = gameState.getMouseManager().getPosition();
+        Point point2 = new Point(((int) point1.getX()) + 14 * 32 + 10, ((int) point1.getY()));
 
-        Layer layer1 = gameState.getMap().getLayer(mouseX, mouseY);
-        int mouseX2 = mouseX + 14 * 32 +10;
-        Layer layer2 = gameState.getMap().getLayer(mouseX2, mouseY);
+        Layer layer1 = getLayer(gameState, point1);
+        Layer layer2 = getLayer(gameState, point2);
 
-        if (layer1 != null && layer2 != null){
+        if (layer1 != null && layer2 != null) {
 
-            int offset1 = layer1.getLayerLevel() * 10;
-            mouseX -= ((mouseX-offset1)%32);
-            mouseY -= (mouseY%32);
+            point1 = calculateCorrectCoordinates(layer1,point1);
+            point2 = calculateCorrectCoordinates(layer2,point2);
+            Point[] points = {point1,point2};
 
-            int offset2 = layer2.getLayerLevel() * 10;
-            mouseX2 -= ((mouseX2-offset2)%32);
+            Tile tile1 = layer1.getTile(point1);
+            Tile tile2 = layer2.getTile(point2);
 
-            Tile tile1 = layer1.getTile(mouseX,mouseY);
-            Tile tile2 = layer2.getTile(mouseX2,mouseY);
-            if (tile1 != null && tile2 != null){
-                if (tile1.isTowerPlaceable() && layer1.getTowerAtPosition(new Point(mouseX,mouseY)) == null && tile2.isTowerPlaceable() && layer2.getTowerAtPosition(new Point(mouseX2,mouseY)) == null){
-                    g.setColor(placeable);
+            Color color;
+
+            if (tile1 != null && tile2 != null) {
+                if (checkIfPlaceable(point1, layer1, tile1)
+                        && checkIfPlaceable(point2, layer2, tile2)) {
+                    color = placeable;
                 } else {
-                    g.setColor(notPlaceable);
+                    color = notPlaceable;
                 }
-                g.fillRect(mouseX, mouseY, Tile.TILE_WIDTH, Tile.TILE_HEIGHT);
-                g.fillRect(mouseX2, mouseY, Tile.TILE_WIDTH, Tile.TILE_HEIGHT);
+                drawSquares(g,points,color);
             }
         }
     }
-
-
-
-    private boolean checkIfPlaceableAtPosition(GameState gameState,Point point){
-        int x = (int)point.getX();
-        int y = (int)point.getY();
-        Layer layer = gameState.getMap().getLayer((float)point.getX(),(float) point.getY());
-        if (layer != null){
-            int offset1 = layer.getLayerLevel() * 10;
-            x -= ((x-offset1)%32);
-            y -= (y%32);
-            Tile tile = layer.getTile(x,y);
-            if (tile.isTowerPlaceable() && layer.getTowerAtPosition(new Point(x,y)) == null){
-                return true;
-            }
-        }
-        return false;
-    }
-
 
     @Override
     public boolean doTowerOperation(GameState gameState, Point point) {
@@ -73,21 +52,19 @@ public class PlaceDoubleTowerStrategy implements TowerStrategy {
         int price = tower.getPrice();
         if (player.getGold().getAmount() >= price) {
 
+            Point point1 = point;
+            Point point2 = new Point(((int) point1.getX()) + 14 * 32 + 10, ((int) point1.getY()));
+            Point[] points = {point1,point2};
 
-            int mouseX = gameState.getMouseManager().getMouseX();
-            int mouseY = gameState.getMouseManager().getMouseY();
-            int mouseX2 = mouseX + 14 * 32 +10;
-
-
-            if (checkIfPlaceableAtPosition(gameState, new Point(mouseX,mouseY)) && checkIfPlaceableAtPosition(gameState, new Point(mouseX2,mouseY))){
+            if (checkIfPlaceableAtPositionForPoints(gameState, points)) {
 
                 player.addGold(-price);
 
                 TowerPosition towerPosition1 = new TowerPosition(point, tower);
-                TowerPosition towerPosition2 = new TowerPosition(new Point((int)point.getX() + 14 * 32 +10, (int)point.getY()),tower);
+                TowerPosition towerPosition2 = new TowerPosition(point2, tower);
 
-                Layer layer1 = gameState.getMap().getLayer(mouseX, mouseY);
-                Layer layer2 = gameState.getMap().getLayer(mouseX2, mouseY);
+                Layer layer1 = getLayer(gameState, point1);
+                Layer layer2 = getLayer(gameState, point2);
 
                 layer1.addTower(towerPosition1);
                 layer2.addTower(towerPosition2);

@@ -7,7 +7,7 @@ import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
 import java.awt.*;
 
 public class Spider extends Enemy {
-    public Spider(Layer onLayer, float x, float y, Player player) {
+    public Spider(Layer onLayer, int x, int y, Player player) {
         super(onLayer, x, y, Enemy.DEFAULT_WIDTH, Enemy.DEFAULT_HEIGHT, 100, 1, 1.0f, player, 10);
     }
 
@@ -16,6 +16,6 @@ public class Spider extends Enemy {
     }
 
     public void render(Graphics g) {
-        renderEnemy(g,Assets.enemies.get("spider"));
+        renderEnemy(g, Assets.enemies.get("spider"));
     }
 }

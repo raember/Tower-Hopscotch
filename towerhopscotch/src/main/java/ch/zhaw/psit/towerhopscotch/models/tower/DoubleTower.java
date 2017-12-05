@@ -1,12 +1,6 @@
 package ch.zhaw.psit.towerhopscotch.models.tower;
 
 import ch.zhaw.psit.towerhopscotch.GUI.Assets;
-import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
-import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
-import ch.zhaw.psit.towerhopscotch.models.maps.Map;
-import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
-
-import java.awt.*;
 
 /**
  * Created by Raphael Emberger on 03.12.2017.

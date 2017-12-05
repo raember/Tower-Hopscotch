@@ -18,7 +18,7 @@ public class WaveQueue {
     }
 
     private void generateWaves(int waveCount) {
-        for(int i = 0; i < waveCount; i++) {
+        for (int i = 0; i < waveCount; i++) {
             add(new Wave(map, player));
         }
     }

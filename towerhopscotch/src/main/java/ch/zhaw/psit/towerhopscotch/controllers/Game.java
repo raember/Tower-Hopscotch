@@ -1,8 +1,8 @@
 package ch.zhaw.psit.towerhopscotch.controllers;
 
-import ch.zhaw.psit.towerhopscotch.GUI.input.MouseManager;
 import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 import ch.zhaw.psit.towerhopscotch.GUI.Display;
+import ch.zhaw.psit.towerhopscotch.GUI.input.MouseManager;
 import ch.zhaw.psit.towerhopscotch.controllers.states.*;
 
 import java.awt.*;
@@ -65,7 +65,7 @@ public class Game implements Runnable {
             display.getCanvas().createBufferStrategy(3);
             return;
         }
-        display.getCanvas().setBackground(new Color(238,195,154));
+        display.getCanvas().setBackground(new Color(238, 195, 154));
 
         Graphics g = bufferStrategy.getDrawGraphics();
         g.clearRect(0, 0, width, height);

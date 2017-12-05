@@ -66,10 +66,16 @@ public class Wave {
                     enemy = new Imp(layer, layer.getStartX(), startingHeight, player);
                     break;
             }
-            switch (layer.getLayerType()){
-                case HELL: hellEnemies.add(enemy); break;
-                case EARTH: earthEnemies.add(enemy); break;
-                case HEAVEN: heavenEnemies.add(enemy); break;
+            switch (layer.getLayerType()) {
+                case HELL:
+                    hellEnemies.add(enemy);
+                    break;
+                case EARTH:
+                    earthEnemies.add(enemy);
+                    break;
+                case HEAVEN:
+                    heavenEnemies.add(enemy);
+                    break;
             }
         }
     }

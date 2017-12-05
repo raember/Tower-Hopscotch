@@ -14,13 +14,13 @@ public class TearDownTowerStrategy implements TowerStrategy {
 
     public boolean doTowerOperation(GameState gameState, Point point) {
 
-        Layer layer = gameState.getMap().getLayer((float) point.getX(),(float) point.getY());
+        Layer layer = gameState.getMap().getLayer(point);
         Tower tower = layer.getTowerAtPosition(point);
 
-        if (tower != null){
-            layer.removeTower(tower);
+        if (tower != null) {
+            tower.remove();
 
-            gameState.getPlayer().addGold(tower.getPrice()/2);
+            gameState.getPlayer().addGold(tower.getPrice() / 2);
 
             return true;
         }

@@ -8,13 +8,13 @@ public class TowerPosition {
     private Point position;
     private Tower tower;
 
-    public TowerPosition(Point position, Tower tower){
+    public TowerPosition(Point position, Tower tower) {
         this.position = position;
         this.tower = tower;
     }
 
-    public TowerPosition(){
-        this(new Point(0,0), null);
+    public TowerPosition() {
+        this(new Point(0, 0), null);
     }
 
     public Point getPosition() {
@@ -33,12 +33,12 @@ public class TowerPosition {
         this.tower = tower;
     }
 
-    public void render(Graphics g){
+    public void render(Graphics g) {
         tower.render(g, position);
     }
 
-    public void update(long absNanoTime, java.util.List<Enemy> enemiesOnMap){
-        tower.update(absNanoTime,position,enemiesOnMap);
+    public void update(long absNanoTime, java.util.List<Enemy> enemiesOnMap) {
+        tower.update(absNanoTime, position, enemiesOnMap);
     }
 
 }

@@ -20,7 +20,7 @@ public class Player {
 
     public boolean addGold(int amount) {
         int newValue = gold.getAmount() + amount;
-        if (newValue >= 0){
+        if (newValue >= 0) {
             gold.setAmount(newValue);
             return true;
         }

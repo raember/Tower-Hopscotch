@@ -7,7 +7,7 @@ import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
 import java.awt.*;
 
 public class Imp extends Enemy {
-    public Imp(Layer onLayer, float x, float y, Player player) {
+    public Imp(Layer onLayer, int x, int y, Player player) {
         super(onLayer, x, y, Enemy.DEFAULT_WIDTH, Enemy.DEFAULT_HEIGHT, 100, 2, 1.0f, player, 10);
     }
 
@@ -16,6 +16,6 @@ public class Imp extends Enemy {
     }
 
     public void render(Graphics g) {
-        renderEnemy(g,Assets.enemies.get("imp"));
+        renderEnemy(g, Assets.enemies.get("imp"));
     }
 }

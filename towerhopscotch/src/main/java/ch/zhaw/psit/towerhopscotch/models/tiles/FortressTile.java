@@ -1,7 +1,5 @@
 package ch.zhaw.psit.towerhopscotch.models.tiles;
 
-import ch.zhaw.psit.towerhopscotch.GUI.Assets;
-
 public class FortressTile extends Tile {
 
     FortressTile(int id) {

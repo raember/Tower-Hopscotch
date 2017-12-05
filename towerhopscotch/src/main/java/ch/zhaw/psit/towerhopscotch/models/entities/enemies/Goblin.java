@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class Goblin extends Enemy {
 
-    public Goblin(Layer onLayer, float x, float y, Player player) {
+    public Goblin(Layer onLayer, int x, int y, Player player) {
         super(onLayer, x, y, Enemy.DEFAULT_WIDTH, Enemy.DEFAULT_HEIGHT, 100, 2, 1.0f, player, 10);
     }
 
@@ -17,6 +17,6 @@ public class Goblin extends Enemy {
     }
 
     public void render(Graphics g) {
-        renderEnemy(g,Assets.enemies.get("goblin"));
+        renderEnemy(g, Assets.enemies.get("goblin"));
     }
 }

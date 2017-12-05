@@ -1,6 +1,5 @@
 package ch.zhaw.psit.towerhopscotch.controllers.placeTowerStrategies;
 
-import ch.zhaw.psit.towerhopscotch.GUI.input.MouseManager;
 import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
 import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
@@ -11,48 +10,58 @@ import ch.zhaw.psit.towerhopscotch.models.tower.TowerPosition;
 
 import java.awt.*;
 
-public class PlaceMonoTowerStrategy implements TowerStrategy {
+public class PlaceMonoTowerStrategy extends PlaceTowerStrategy {
 
     @Override
     public void activeAction(GameState gameState, Graphics g) {
 
-        int mouseX = gameState.getMouseManager().getMouseX();
-        int mouseY = gameState.getMouseManager().getMouseY();
+        Point point1 = gameState.getMouseManager().getPosition();
 
-        Layer layer = gameState.getMap().getLayer(mouseX, mouseY);
+        Layer layer1 = getLayer(gameState, point1);
 
-        if (layer != null){
+        if (layer1 != null) {
 
-            int offset = layer.getLayerLevel() * 10;
-            mouseX -= ((mouseX-offset)%32);
-            mouseY = mouseY - (mouseY%32);
+            point1 = calculateCorrectCoordinates(layer1,point1);
+            Point[] points = {point1};
 
-            Tile tile = layer.getTile(mouseX,mouseY);
-            if (tile != null){
-                if (tile.isTowerPlaceable() && layer.getTowerAtPosition(new Point(mouseX,mouseY)) == null){
-                    g.setColor(placeable);
+            Tile tile1 = layer1.getTile(point1);
+
+            Color color;
+
+            if (tile1 != null) {
+                if (checkIfPlaceable(point1, layer1, tile1)) {
+                    color = placeable;
                 } else {
-                    g.setColor(notPlaceable);
+                    color = notPlaceable;
                 }
-                g.fillRect(mouseX, mouseY, Tile.TILE_WIDTH, Tile.TILE_HEIGHT);
+                drawSquares(g,points,color);
             }
         }
     }
 
     @Override
     public boolean doTowerOperation(GameState gameState, Point point) {
-        Layer layer = gameState.getMap().getLayer((float) point.getX(),(float) point.getY());
-        if (layer.getTowerAtPosition(point) != null) return false;
 
         Player player = gameState.getPlayer();
-        Tower tower = new MonoTower();
-        int price = tower.getPrice();
+        MonoTower tower = new MonoTower();
 
+        int price = tower.getPrice();
         if (player.getGold().getAmount() >= price) {
-            player.addGold(-price);
-            TowerPosition towerPosition = new TowerPosition(point,tower);
-            layer.addTower(towerPosition);
-            return true;
+
+            Point point1 = point;
+            Point[] points = {point1};
+
+            if (checkIfPlaceableAtPositionForPoints(gameState, points)) {
+
+                player.addGold(-price);
+
+                TowerPosition towerPosition1 = new TowerPosition(point, tower);
+
+                Layer layer1 = getLayer(gameState, point1);
+
+                layer1.addTower(towerPosition1);
+                return true;
+            }
         }
         return false;
     }

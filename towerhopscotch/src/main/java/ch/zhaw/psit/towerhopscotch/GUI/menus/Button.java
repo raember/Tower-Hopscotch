@@ -23,7 +23,7 @@ public class Button {
     }
 
     public void update() {
-        if(width > 0 && height > 0) {
+        if (width > 0 && height > 0) {
             isClicked();
         }
     }
@@ -39,10 +39,10 @@ public class Button {
 
     public boolean isClicked() {
         MouseManager mouseManager = getMouseManager();
-        if(mouseManager.isLeftPressed()) {
+        if (mouseManager.isLeftPressed()) {
             int mouseX = mouseManager.getMouseX();
             int mouseY = mouseManager.getMouseY();
-            if((mouseX > rectX() && mouseX < rectX() + width) && (mouseY > y && mouseY < y + height)) {
+            if ((mouseX > rectX() && mouseX < rectX() + width) && (mouseY > y && mouseY < y + height)) {
                 buttonColor = new Color(0, 102, 0);
                 return true;
             }

@@ -32,14 +32,14 @@ public class Map {
         heaven.render(g);
     }
 
-    public Layer getLayer(float x, float y){
-        if (hell.isOnLayer(x,y)){
+    public Layer getLayer(Point point) {
+        if (hell.isOnLayer(point)) {
             return hell;
         }
-        if (earth.isOnLayer(x,y)){
+        if (earth.isOnLayer(point)) {
             return earth;
         }
-        if (heaven.isOnLayer(x,y)){
+        if (heaven.isOnLayer(point)) {
             return heaven;
         }
         return null;
@@ -76,7 +76,7 @@ public class Map {
 
     public Layer[] getOtherLayers(LayerType layerType) {
         Layer[] layers = new Layer[2];
-        switch(layerType) {
+        switch (layerType) {
             case HELL:
                 layers[0] = earth;
                 layers[1] = heaven;
@@ -94,8 +94,8 @@ public class Map {
 
     }
 
-    public boolean isOnMap(float x, float y) {
-        return hell.isOnLayer(x,y) || earth.isOnLayer(x,y) || heaven.isOnLayer(x,y);
+    public boolean isOnMap(Point point) {
+        return hell.isOnLayer(point) || earth.isOnLayer(point) || heaven.isOnLayer(point);
     }
 
     public Layer getHell() {

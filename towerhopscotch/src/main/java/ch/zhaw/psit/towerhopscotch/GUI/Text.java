@@ -10,7 +10,7 @@ public class Text {
         int x = xPos;
         int y = yPos + 25;
 
-        if(center){
+        if (center) {
             FontMetrics fm = g.getFontMetrics(font);
             x = xPos - fm.stringWidth(text) / 2;
             y = (yPos - fm.getHeight() / 2) + fm.getAscent();

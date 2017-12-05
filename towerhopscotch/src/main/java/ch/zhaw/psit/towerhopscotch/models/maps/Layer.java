@@ -26,7 +26,7 @@ public class Layer {
     private List<TowerPosition> towers;
     private List<Enemy> enemies;
 
-    public Layer (LayerType layerType, int width, int height, String layerContents){
+    public Layer(LayerType layerType, int width, int height, String layerContents) {
         this.layerType = layerType;
         this.width = width;
         this.height = height;
@@ -37,7 +37,7 @@ public class Layer {
     }
 
     public void update(long absNanoTime) {
-        for (TowerPosition tower : towers){
+        for (TowerPosition tower : towers) {
             tower.update(absNanoTime, enemies);
         }
         towers.removeIf(tower -> tower.getTower().isRemoved());
@@ -46,15 +46,15 @@ public class Layer {
     public void render(Graphics g) {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                TileList.getTile(tiles[x][y]).render(g,layerType,x * Tile.TILE_WIDTH + offset, y * Tile.TILE_HEIGHT);
+                TileList.getTile(tiles[x][y]).render(g, layerType, x * Tile.TILE_WIDTH + offset, y * Tile.TILE_HEIGHT);
             }
         }
 
-        for (Enemy enemy : enemies){
+        for (Enemy enemy : enemies) {
             enemy.render(g);
         }
 
-        for (TowerPosition tower : towers){
+        for (TowerPosition tower : towers) {
             tower.render(g);
         }
     }
@@ -67,93 +67,113 @@ public class Layer {
         this.enemies = enemies;
     }
 
-    public void addTower(TowerPosition tower){
+    public void addTower(TowerPosition tower) {
         towers.add(tower);
     }
 
-    public void removeTower(Tower tower){
+    public void removeTower(TowerPosition tower) {
         towers.remove(tower);
-        tower.remove();
     }
 
-    public void addEnemy(Enemy enemy){
+    public void addEnemy(Enemy enemy) {
         enemies.add(enemy);
     }
 
-    public void removeEnemy(Enemy enemy){
+    public void removeEnemy(Enemy enemy) {
         enemies.remove(enemy);
     }
 
-
-    public boolean isOnLayer(float x, float y) {
-        return !((x < 0) || (x >= Tile.TILE_WIDTH * width + offset) || (y < 0) || (y >= Tile.TILE_HEIGHT * height));
+    public boolean isOnLayer(Point point) {
+        return getTile(point) != null;
     }
 
+    //Adapter
     public boolean isBeneathMap(float x, float y) {
-        return (y > Tile.TILE_HEIGHT * height) && (x == startX);
+        return isBeneathMap(new Point((int)x,(int)y));
     }
 
-    public boolean isFortress(float x, float y) {
-        if (!isOnLayer(x, y))
+    public boolean isBeneathMap(Point point) {
+        return (point.getY() > Tile.TILE_HEIGHT * height) && (point.getX() == startX);
+    }
+
+    //Adapter
+    public boolean isFortress(float x, float y){
+        return isFortress(new Point((int)x,(int)y));
+    }
+
+    public boolean isFortress(Point point) {
+        if (!isOnLayer(point))
             return false;
 
-        Tile tile = TileList.getTile(tiles[(int) (x-offset) / Tile.TILE_WIDTH][(int) y / Tile.TILE_HEIGHT]);
+        Tile tile = TileList.getTile(tiles[(int) (point.getX() - offset) / Tile.TILE_WIDTH][(int) point.getY() / Tile.TILE_HEIGHT]);
         return tile.isFortress();
     }
 
-    public boolean isPath(float x, float y) {
-        if (!isOnLayer(x, y))
+    //Adapter
+    public boolean isPath(float x, float y){
+        return isPath(new Point((int)x,(int)y));
+    }
+
+    public boolean isPath(Point point) {
+        if (!isOnLayer(point))
             return false;
 
-        Tile tile = TileList.getTile(tiles[(int) (x-offset) / Tile.TILE_WIDTH][(int) y / Tile.TILE_HEIGHT]);
+        Tile tile = TileList.getTile(tiles[(int) (point.getX() - offset) / Tile.TILE_WIDTH][(int) point.getY() / Tile.TILE_HEIGHT]);
         return tile.isPath();
     }
 
-    public Tile getTile(float x, float y){
+    public Tile getTile(Point point) {
         Tile tile = null;
         try {
-            tile = TileList.getTile(tiles[(int) (x-offset) / Tile.TILE_WIDTH][(int) y / Tile.TILE_HEIGHT]);
-        } catch (IndexOutOfBoundsException e){}
+            tile = TileList.getTile(tiles[(int) (point.getX() - offset) / Tile.TILE_WIDTH][(int) point.getY() / Tile.TILE_HEIGHT]);
+        } catch (IndexOutOfBoundsException e) {
+
+        }
         return tile;
     }
 
-    public ArrayList<Layer> getTeleportableLayers(float topLeftX, float topLeftY, float bottomRightX, float bottomRightY) {
-        ArrayList<Layer> teleportableLayers = new ArrayList<Layer>();
+    //Adapter
+    public ArrayList<Layer> getTeleportableLayers(float xTop, float yTop, float xBottom, float yBottom) {
+        return getTeleportableLayers(new Point((int)xTop,(int)yTop), new Point((int)xBottom,(int)yBottom));
+    }
+
+    public ArrayList<Layer> getTeleportableLayers(Point top, Point bottom) {
+        ArrayList<Layer> teleportableLayers = new ArrayList<>();
         Layer hell = getMap().getHell();
         Layer earth = getMap().getEarth();
         Layer heaven = getMap().getHeaven();
 
-        if(!isPath(topLeftX, topLeftY) || !isPath(bottomRightX, bottomRightY))
+        if (!isPath(top) || !isPath(bottom))
             return teleportableLayers;
 
-        switch(layerType) {
+        switch (layerType) {
             case HELL:
-                if(earth.isPath(topLeftX + Layer.LAYER_WIDTH + 10, topLeftY) &&
-                        earth.isPath(bottomRightX + Layer.LAYER_WIDTH + 10, bottomRightY)) {
+                if (earth.isPath(new Point(((int) top.getX()) + Layer.LAYER_WIDTH + 10, ((int) top.getY()))) &&
+                        earth.isPath(new Point(((int) bottom.getX()) + Layer.LAYER_WIDTH + 10, ((int) bottom.getY())))) {
                     teleportableLayers.add(earth);
                 }
-                if(heaven.isPath(topLeftX + 2*Layer.LAYER_WIDTH + 20, topLeftY) &&
-                        heaven.isPath(bottomRightX + 2*Layer.LAYER_WIDTH + 20, bottomRightY)) {
+                if (heaven.isPath(new Point(((int) top.getX()) + 2 * Layer.LAYER_WIDTH + 20, ((int) top.getY()))) &&
+                        heaven.isPath(new Point(((int) bottom.getX()) + 2 * Layer.LAYER_WIDTH + 20, ((int) bottom.getY())))) {
                     teleportableLayers.add(heaven);
                 }
                 break;
             case EARTH:
-                if(hell.isPath(topLeftX - Layer.LAYER_WIDTH - 10, topLeftY) &&
-                        hell.isPath(bottomRightX - (Layer.LAYER_WIDTH + 10), bottomRightY)) {
+                if (hell.isPath(new Point(((int) top.getX()) - Layer.LAYER_WIDTH - 10, ((int) top.getY()))) &&
+                        hell.isPath(new Point(((int) bottom.getX()) - (Layer.LAYER_WIDTH + 10), ((int) bottom.getY())))) {
                     teleportableLayers.add(hell);
                 }
-                if(heaven.isPath(topLeftX + Layer.LAYER_WIDTH + 10, topLeftY) &&
-                        heaven.isPath(bottomRightX + Layer.LAYER_WIDTH + 10, bottomRightY)) {
+                if (heaven.isPath(new Point(((int) top.getX()) + Layer.LAYER_WIDTH + 10, ((int) top.getY()))) &&
+                        heaven.isPath(new Point(((int) bottom.getX()) + Layer.LAYER_WIDTH + 10, ((int) bottom.getY())))) {
                     teleportableLayers.add(heaven);
                 }
                 break;
             case HEAVEN:
-                if(hell.isPath(topLeftX - (2*Layer.LAYER_WIDTH + 20), topLeftY) &&
-                        hell.isPath(bottomRightX - (2*Layer.LAYER_WIDTH + 20), bottomRightY)) {
+                if (hell.isPath(new Point(((int) top.getX()) - (2 * Layer.LAYER_WIDTH + 20), ((int) top.getY()))) &&
+                        hell.isPath(new Point(((int) bottom.getX()) - (2 * Layer.LAYER_WIDTH + 20), ((int) bottom.getY())))) {
                     teleportableLayers.add(hell);
                 }
-                if(earth.isPath(topLeftX - (Layer.LAYER_WIDTH + 10), topLeftY) &&
-                        earth.isPath(bottomRightX - (Layer.LAYER_WIDTH + 10), bottomRightY)) {
+                if (earth.isPath(new Point(((int) top.getX()) - (Layer.LAYER_WIDTH + 10), ((int) top.getY()))) &&
+                        earth.isPath(new Point(((int) bottom.getX()) - (Layer.LAYER_WIDTH + 10), ((int) bottom.getY())))) {
                     teleportableLayers.add(earth);
                 }
                 break;
@@ -162,13 +182,13 @@ public class Layer {
         return teleportableLayers;
     }
 
-    private void initializeLayer(String layerContents){
+    private void initializeLayer(String layerContents) {
         String[] tokens = layerContents.split("\\s+");
 
         tiles = new int[width][height];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                int tileId = Integer.parseInt(tokens[(x + y * width)+1]);
+                int tileId = Integer.parseInt(tokens[(x + y * width) + 1]);
                 tiles[x][y] = tileId;
                 if (tileId == 7) {
                     startX = x * Tile.TILE_WIDTH + offset;
@@ -178,36 +198,42 @@ public class Layer {
         }
     }
 
-    public int calculateOffset() {
+    private int calculateOffset() {
         int multiplier = getLayerLevel();
         return multiplier * width * Tile.TILE_WIDTH + 10 * multiplier;
     }
 
-    public int getLayerLevel(){
+    public int getLayerLevel() {
         int level = 0;
-        switch(layerType) {
-            case HELL: level = 0; break;
-            case EARTH: level = 1; break;
-            case HEAVEN: level = 2; break;
+        switch (layerType) {
+            case HELL:
+                level = 0;
+                break;
+            case EARTH:
+                level = 1;
+                break;
+            case HEAVEN:
+                level = 2;
+                break;
         }
         return level;
     }
 
-    public LayerType getLayerType(){
+    public LayerType getLayerType() {
         return layerType;
     }
 
-    public Tower getTowerAtPosition(Point point){
+    public Tower getTowerAtPosition(Point point) {
         TowerPosition towerResult = null;
-        for (TowerPosition tower: towers){
-            if (tower.getPosition().equals(point)){
+        for (TowerPosition tower : towers) {
+            if (tower.getPosition().equals(point)) {
                 towerResult = tower;
             }
         }
-        if (towerResult != null){
+        if (towerResult != null) {
             return towerResult.getTower();
         }
-            return null;
+        return null;
     }
 
     private Map getMap() {

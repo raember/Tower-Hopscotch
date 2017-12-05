@@ -2,11 +2,11 @@ package ch.zhaw.psit.towerhopscotch.GUI.menus;
 
 import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 import ch.zhaw.psit.towerhopscotch.GUI.Text;
+import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
+import ch.zhaw.psit.towerhopscotch.controllers.states.State;
 import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
-import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
-import ch.zhaw.psit.towerhopscotch.controllers.states.State;
 
 import java.awt.*;
 
@@ -58,37 +58,37 @@ public class BuildMenu {
         return callNextWaveButton.isClicked();
     }
 
-    public boolean towerUpgradeButtonClicked(){
+    public boolean towerUpgradeButtonClicked() {
         return towerUpgradeButton.isClicked();
     }
 
-    public boolean towerDestroyButtonClicked(){
+    public boolean towerDestroyButtonClicked() {
         return towerDestroyButton.isClicked();
     }
 
-    public boolean placeSimpleTowerClicked(){
+    public boolean placeSimpleTowerClicked() {
         return placeSimpleTower.isClicked();
     }
 
-    public boolean placeDoubleTowerClicked(){
+    public boolean placeDoubleTowerClicked() {
         return placeDoubleTower.isClicked();
     }
 
-    public boolean placeTripleTowerClicked(){
+    public boolean placeTripleTowerClicked() {
         return placeTripleTower.isClicked();
     }
 
     private void drawMenuBackground(Graphics g) {
-        for(int y = 0; y < HEIGHT; y += Tile.TILE_HEIGHT) {
-            for(int x = 0; x < WIDTH; x += Tile.TILE_WIDTH) {
-                TileList.getTile(6).render(g,null, x, TOP + y);
+        for (int y = 0; y < HEIGHT; y += Tile.TILE_HEIGHT) {
+            for (int x = 0; x < WIDTH; x += Tile.TILE_WIDTH) {
+                TileList.getTile(6).render(g, null, x, TOP + y);
             }
         }
     }
 
     private void drawPlayerHealth(Graphics g) {
         g.drawImage(Assets.heart, xOffset(7), yOffset(1), Tile.TILE_WIDTH, Tile.TILE_HEIGHT, null);
-        Text.drawString(g, getPlayer().getHealth() + " / " + Player.MAX_HEALTH , xOffset(9), yOffset(1), false, Color.BLACK, Assets.font32);
+        Text.drawString(g, getPlayer().getHealth() + " / " + Player.MAX_HEALTH, xOffset(9), yOffset(1), false, Color.BLACK, Assets.font32);
     }
 
     private void drawPlayerGold(Graphics g) {

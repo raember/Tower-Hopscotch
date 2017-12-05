@@ -29,10 +29,10 @@ public class GameOverState extends GameState {
         mainMenuButton.update();
         newGameButton.update();
 
-        if(mainMenuButton.isClicked())
+        if (mainMenuButton.isClicked())
             State.setState(game.getMainMenuState());
 
-        if(newGameButton.isClicked()) {
+        if (newGameButton.isClicked()) {
             State gameState = game.getGameState();
             ((GameState) gameState).init();
             State.setState(gameState);
@@ -40,8 +40,8 @@ public class GameOverState extends GameState {
     }
 
     public void render(Graphics g) {
-        for(int y = 0; y < game.getHeight(); y += Tile.TILE_HEIGHT) {
-            for(int x = 0; x < game.getWidth(); x += Tile.TILE_WIDTH) {
+        for (int y = 0; y < game.getHeight(); y += Tile.TILE_HEIGHT) {
+            for (int x = 0; x < game.getWidth(); x += Tile.TILE_WIDTH) {
                 TileList.getTile(0).render(g, LayerType.HELL, x, y);
             }
         }

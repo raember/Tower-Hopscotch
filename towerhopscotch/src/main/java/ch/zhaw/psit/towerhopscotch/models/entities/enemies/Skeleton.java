@@ -7,7 +7,7 @@ import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
 import java.awt.*;
 
 public class Skeleton extends Enemy {
-    public Skeleton(Layer onLayer, float x, float y, Player player) {
+    public Skeleton(Layer onLayer, int x, int y, Player player) {
         super(onLayer, x, y, Enemy.DEFAULT_WIDTH, Enemy.DEFAULT_HEIGHT, 100, 2, 1.0f, player, 10);
     }
 
@@ -16,6 +16,6 @@ public class Skeleton extends Enemy {
     }
 
     public void render(Graphics g) {
-        renderEnemy(g,Assets.enemies.get("skeleton"));
+        renderEnemy(g, Assets.enemies.get("skeleton"));
     }
 }
