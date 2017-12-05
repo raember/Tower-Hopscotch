@@ -19,7 +19,7 @@ public abstract class PlaceTowerStrategy implements TowerStrategy {
         }
     }
 
-    void drawRange(Graphics g, Point[] points, Color color, float range) {
+    static void drawRange(Graphics g, Point[] points, Color color, float range) {
         g.setColor(color);
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(3));
@@ -40,7 +40,8 @@ public abstract class PlaceTowerStrategy implements TowerStrategy {
 
     Point calculateCorrectCoordinates(Layer layer, Point point){
         int offset = layer.getLayerLevel() * 10;
-        return new Point(((int) point.getX()) - ((((int) point.getX()) - offset)%32), (((int) point.getY()) - (((int) point.getY())%32)));
+        return new Point(((int) point.getX()) - ((((int) point.getX()) - offset) % Tile.TILE_WIDTH),
+                (((int) point.getY()) - (((int) point.getY()) % Tile.TILE_HEIGHT)));
     }
 
 
