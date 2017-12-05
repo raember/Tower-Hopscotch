@@ -146,7 +146,16 @@ public abstract class Tower {
     public void render(Graphics g, Point position) {
         g.drawImage(image, (int) position.getX(), (int) position.getY(), Tile.TILE_WIDTH, Tile.TILE_HEIGHT, null);
         Text.drawString(g, Integer.toString(level), (int) position.getX() + Tile.TILE_WIDTH / 2, (int) position.getY() + Tile.TILE_HEIGHT / 2, true, Color.WHITE, Assets.font16);
-        g.setColor(Color.ORANGE);
+        
+        
+        float[] dashingPattern2 = {10f, 4f};
+        Stroke stroke1 = new BasicStroke(4f, BasicStroke.CAP_BUTT,
+                BasicStroke.JOIN_MITER, 1.0f, dashingPattern2, 0.0f);
+        
+        g.setColor(Color.RED);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setStroke(stroke1);
+        
         int offset = Tile.TILE_WIDTH / 2;
         for (Enemy enemy : shotEnemies) {
             Tower tower = enemy.getOnLayer().getTowerAtPosition(position);
