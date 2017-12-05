@@ -5,7 +5,7 @@ import ch.zhaw.psit.towerhopscotch.GUI.Text;
 import ch.zhaw.psit.towerhopscotch.GUI.input.MouseManager;
 import ch.zhaw.psit.towerhopscotch.GUI.menus.BuildMenu;
 import ch.zhaw.psit.towerhopscotch.controllers.Game;
-import ch.zhaw.psit.towerhopscotch.controllers.placeTowerStrategies.*;
+import ch.zhaw.psit.towerhopscotch.controllers.towerStrategies.*;
 import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy;
 import ch.zhaw.psit.towerhopscotch.models.maps.Layer;

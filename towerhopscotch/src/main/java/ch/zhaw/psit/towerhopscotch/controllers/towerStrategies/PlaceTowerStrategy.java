@@ -1,4 +1,4 @@
-package ch.zhaw.psit.towerhopscotch.controllers.placeTowerStrategies;
+package ch.zhaw.psit.towerhopscotch.controllers.towerStrategies;
 
 import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
 import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
@@ -6,7 +6,11 @@ import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 
 import java.awt.*;
 
-public class PlaceTowerStrategy implements TowerStrategy {
+/**
+ * Base class for the PlaceTower strategies
+ * @author Stefan Bösch
+ */
+public abstract class PlaceTowerStrategy implements TowerStrategy {
 
     void drawSquares(Graphics g, Point[] points, Color color){
         g.setColor(color);
@@ -63,12 +67,8 @@ public class PlaceTowerStrategy implements TowerStrategy {
     }
 
     @Override
-    public void activeAction(GameState gameState, Graphics g) {
-
-    }
+    public abstract void activeAction(GameState gameState, Graphics g);
 
     @Override
-    public boolean doTowerOperation(GameState gameState, Point point) {
-        return false;
-    }
+    public abstract boolean doTowerOperation(GameState gameState, Point point);
 }
