@@ -11,9 +11,12 @@ import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
 
 import java.awt.*;
 
+/**
+ * If the Player has lost the game
+ * @author Nicolas Eckhart
+ */
 public class GameOverState extends GameState {
     private Game game;
-    private MouseManager mouseManager;
     private Button mainMenuButton;
     private Button newGameButton;
 
@@ -25,6 +28,9 @@ public class GameOverState extends GameState {
         newGameButton = new Button("New Game", game.getWidth() / 8 * 5 - 15, game.getHeight() / 3 * 2);
     }
 
+    /**
+     * Update the buttons and check if the buttons get clicked.
+     */
     public void update() {
         mainMenuButton.update();
         newGameButton.update();
@@ -39,6 +45,10 @@ public class GameOverState extends GameState {
         }
     }
 
+    /**
+     * Render the state
+     * @param g Graphics
+     */
     public void render(Graphics g) {
         for (int y = 0; y < game.getHeight(); y += Tile.TILE_HEIGHT) {
             for (int x = 0; x < game.getWidth(); x += Tile.TILE_WIDTH) {
@@ -48,9 +58,5 @@ public class GameOverState extends GameState {
         Text.drawString(g, "Game Over", game.getWidth() / 2, game.getHeight() / 2, true, Color.WHITE, Assets.font128);
         mainMenuButton.render(g);
         newGameButton.render(g);
-    }
-
-    public MouseManager getMouseManager() {
-        return mouseManager;
     }
 }

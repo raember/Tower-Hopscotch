@@ -11,19 +11,25 @@ import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
 
 import java.awt.*;
 
+/**
+ * If the Player has won
+ * @author Nicolas Eckhart
+ */
 public class VictoryState extends State {
     private Game game;
-    private MouseManager mouseManager;
     private Button mainMenuButton;
     private Button newGameButton;
 
     public VictoryState(Game game, MouseManager mouseManager) {
+        super(mouseManager);
         this.game = game;
-        this.mouseManager = mouseManager;
         mainMenuButton = new Button("Main Menu", game.getWidth() / 8 * 2, game.getHeight() / 3 * 2);
         newGameButton = new Button("New Game", game.getWidth() / 8 * 5 - 15, game.getHeight() / 3 * 2);
     }
 
+    /**
+     * @inheritDoc
+     */
     public void update() {
         mainMenuButton.update();
         newGameButton.update();
@@ -38,6 +44,9 @@ public class VictoryState extends State {
         }
     }
 
+    /**
+     * @inheritDoc
+     */
     public void render(Graphics g) {
         for (int y = 0; y < game.getHeight(); y += Tile.TILE_HEIGHT) {
             for (int x = 0; x < game.getWidth(); x += Tile.TILE_WIDTH) {
@@ -47,9 +56,5 @@ public class VictoryState extends State {
         Text.drawString(g, "Victory", game.getWidth() / 2, game.getHeight() / 2, true, Color.BLACK, Assets.font128);
         mainMenuButton.render(g);
         newGameButton.render(g);
-    }
-
-    public MouseManager getMouseManager() {
-        return mouseManager;
     }
 }

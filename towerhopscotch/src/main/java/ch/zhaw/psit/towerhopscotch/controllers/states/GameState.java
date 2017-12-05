@@ -18,9 +18,12 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * The state in which the main game runs
+ * @author Nicolas Eckhart, Stefan Bösch
+ */
 public class GameState extends State {
     private Game game;
-    private MouseManager mouseManager;
     private Player player;
     private Map map;
     private WaveQueue waveQueue;
@@ -34,11 +37,14 @@ public class GameState extends State {
     private Point selectedTilePoint;
 
     public GameState(Game game, MouseManager mouseManager) {
+        super(mouseManager);
         this.game = game;
-        this.mouseManager = mouseManager;
         init();
     }
 
+    /**
+     * Initialize the game
+     */
     public void init() {
         player = new Player();
         player.addGold(10000);
@@ -53,6 +59,9 @@ public class GameState extends State {
         towerStrategyList.add(new TearDownTowerStrategy());
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void update() {
         long now = System.nanoTime();
@@ -81,6 +90,9 @@ public class GameState extends State {
         updateWaveQueue();
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void render(Graphics g) {
         map.render(g);
@@ -90,11 +102,16 @@ public class GameState extends State {
 
         if (towerStrategy != null) {
             towerStrategy.activeAction(this, g);
+        } else {
+            drawText(g,"");
         }
 
         menu.render(g);
     }
 
+    /**
+     * Check which menubutton gets clicked
+     */
     private void choosePlaceTowerStrategy() {
         if (menu.placeSimpleTowerClicked()) {
             towerStrategy = towerStrategyList.get(0);
@@ -113,6 +130,9 @@ public class GameState extends State {
         }
     }
 
+    /**
+     * Select tile at current mouse position
+     */
     private void selectTile() {
         if (map.isOnMap(mouseManager.getPosition())) {
             Layer layer = map.getLayer(mouseManager.getPosition());
@@ -139,6 +159,9 @@ public class GameState extends State {
         }
     }
 
+    /**
+     * Check if wave is defeated
+     */
     private void updateWaveQueue() {
         if (currentWave == null || currentWave.waveDestroyed()) {
             if (waveQueue.allWavesDestroyed()) {
@@ -153,6 +176,9 @@ public class GameState extends State {
         }
     }
 
+    /**
+     * Get next wave
+     */
     private void popWave() {
         currentWave = waveQueue.pop();
         map.getHell().setEnemies(currentWave.getHellEnemies());
@@ -160,6 +186,10 @@ public class GameState extends State {
         map.getHeaven().setEnemies(currentWave.getHeavenEnemies());
     }
 
+    /**
+     * Check if all enemies on layer have reached the fortress
+     * @param layer Layer
+     */
     private void checkIfEnemiesReachedDestination(Layer layer) {
         Player player = getPlayer();
         Iterator<Enemy> iterator = layer.getEnemies().iterator();
@@ -179,36 +209,57 @@ public class GameState extends State {
         }
     }
 
+    /**
+     * Display wave-paused-text
+     * @param g Graphics
+     */
     private void drawWavesPausedText(Graphics g) {
         if (currentWave == null || currentWave.waveDestroyed())
             Text.drawString(g, "WAVES PAUSED", game.getWidth() / 2, 50, true, Color.WHITE, Assets.font32);
     }
 
+    /**
+     * Display text in the middle of the Screen
+     * @param g Graphics
+     * @param text Text
+     */
+    public void drawText(Graphics g, String text){
+        Text.drawString(g, text, game.getWidth() / 2, 300, true, new Color(255,50,50), Assets.font32);
+    }
+
+    /**
+     * Display number of remaining waves
+     * @param g Graphics
+     */
     private void drawWavesRemainingText(Graphics g) {
         Text.drawString(g, getWavesRemaining() + " WAVES", game.getWidth() - 100, 20, true, Color.BLACK, Assets.font32);
         Text.drawString(g, "REMAINING", game.getWidth() - 100, 50, true, Color.BLACK, Assets.font32);
     }
 
-    public int getWavesRemaining() {
+    /**
+     * Get number of remaining waves
+     * @return remainingWaves
+     */
+    private int getWavesRemaining() {
         if (currentWave == null || currentWave.waveDestroyed()) {
             return waveQueue.size();
         }
         return waveQueue.size() + 1;
     }
 
-    public Game getGame() {
-        return game;
-    }
-
+    /**
+     * Get Player
+     * @return Player
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * Get Map
+     * @return Map
+     */
     public Map getMap() {
         return map;
-    }
-
-    public MouseManager getMouseManager() {
-        return mouseManager;
     }
 }
