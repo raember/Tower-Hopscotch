@@ -1,4 +1,4 @@
-package ch.zhaw.psit.towerhopscotch.controllers.placeTowerStrategies;
+package ch.zhaw.psit.towerhopscotch.controllers.towerStrategies;
 
 import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
 import ch.zhaw.psit.towerhopscotch.models.Player;
@@ -11,6 +11,11 @@ import java.awt.*;
 
 public class PlaceTripleTowerStrategy extends PlaceTowerStrategy {
 
+    /**
+     * Draw placeable Gizmos for TripleTower placement
+     * @param gameState Gamestate
+     * @param g Graphics
+     */
     @Override
     public void activeAction(GameState gameState, Graphics g) {
 
@@ -48,6 +53,12 @@ public class PlaceTripleTowerStrategy extends PlaceTowerStrategy {
         }
     }
 
+    /**
+     * Place TripleTower at BasePosition
+     * @param gameState Gamestate
+     * @param point BasePosition
+     * @return sucessfullyCreated
+     */
     @Override
     public boolean doTowerOperation(GameState gameState, Point point) {
 

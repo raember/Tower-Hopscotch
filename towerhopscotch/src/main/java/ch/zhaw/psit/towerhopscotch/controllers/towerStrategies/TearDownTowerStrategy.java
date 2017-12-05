@@ -1,4 +1,4 @@
-package ch.zhaw.psit.towerhopscotch.controllers.placeTowerStrategies;
+package ch.zhaw.psit.towerhopscotch.controllers.towerStrategies;
 
 import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
 import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
@@ -7,11 +7,22 @@ import ch.zhaw.psit.towerhopscotch.models.tower.Tower;
 import java.awt.*;
 
 public class TearDownTowerStrategy implements TowerStrategy {
+
+    /**
+     * Not implemented
+     * @param gameState Gamestate
+     * @param g Graphics
+     */
     @Override
-    public void activeAction(GameState gameState, Graphics g) {
+    public void activeAction(GameState gameState, Graphics g) {}
 
-    }
-
+    /**
+     * Destroy Tower at Position
+     * @param gameState Gamestate
+     * @param point Position
+     * @return sucessfullyCreated
+     */
+    @Override
     public boolean doTowerOperation(GameState gameState, Point point) {
 
         Layer layer = gameState.getMap().getLayer(point);

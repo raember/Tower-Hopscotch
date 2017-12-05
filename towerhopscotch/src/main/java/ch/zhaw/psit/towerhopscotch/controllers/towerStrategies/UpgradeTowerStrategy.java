@@ -1,4 +1,4 @@
-package ch.zhaw.psit.towerhopscotch.controllers.placeTowerStrategies;
+package ch.zhaw.psit.towerhopscotch.controllers.towerStrategies;
 
 import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
 import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
@@ -7,11 +7,22 @@ import ch.zhaw.psit.towerhopscotch.models.tower.Tower;
 import java.awt.*;
 
 public class UpgradeTowerStrategy implements TowerStrategy {
+
+    /**
+     * Not implemented
+     * @param gameState Gamestate
+     * @param g Graphics
+     */
     @Override
-    public void activeAction(GameState gameState, Graphics g) {
+    public void activeAction(GameState gameState, Graphics g) {}
 
-    }
-
+    /**
+     * Upgrade Tower at Point
+     * @param gameState Gamestate
+     * @param point Point
+     * @return UpgradeSuccessfull
+     */
+    @Override
     public boolean doTowerOperation(GameState gameState, Point point) {
         Layer layer = gameState.getMap().getLayer(point);
         Tower tower = layer.getTowerAtPosition(point);
