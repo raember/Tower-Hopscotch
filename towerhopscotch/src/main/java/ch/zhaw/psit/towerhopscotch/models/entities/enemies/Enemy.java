@@ -64,6 +64,7 @@ public abstract class Enemy extends Entity {
 
             selectedLayer.addEnemy(this);
             onLayer = selectedLayer;
+            moveDirection = Direction.UP;
             return true;
         }
         return false;
