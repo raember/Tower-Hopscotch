@@ -9,6 +9,10 @@ import ch.zhaw.psit.towerhopscotch.models.tower.TripleTower;
 
 import java.awt.*;
 
+/**
+ * Strategy for placing TripleTower
+ * @author Stefan Bösch
+ */
 public class PlaceTripleTowerStrategy extends PlaceTowerStrategy {
 
     /**

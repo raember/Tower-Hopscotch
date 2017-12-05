@@ -6,6 +6,10 @@ import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 
 import java.awt.*;
 
+/**
+ * Base class for the PlaceTower strategies
+ * @author Stefan Bösch
+ */
 public abstract class PlaceTowerStrategy implements TowerStrategy {
 
     void drawSquares(Graphics g, Point[] points, Color color){

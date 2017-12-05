@@ -6,6 +6,10 @@ import ch.zhaw.psit.towerhopscotch.models.tower.Tower;
 
 import java.awt.*;
 
+/**
+ * Strategy for destroying Tower
+ * @author Stefan Bösch
+ */
 public class TearDownTowerStrategy implements TowerStrategy {
 
     /**

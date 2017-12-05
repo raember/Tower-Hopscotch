@@ -9,6 +9,10 @@ import ch.zhaw.psit.towerhopscotch.models.tower.TowerPosition;
 
 import java.awt.*;
 
+/**
+ * Strategy for placing MonoTower
+ * @author Stefan Bösch
+ */
 public class PlaceMonoTowerStrategy extends PlaceTowerStrategy {
 
     /**
