@@ -76,8 +76,8 @@ public class PlaceTripleTowerStrategy extends PlaceTowerStrategy {
         if (player.getGold().getAmount() >= price) {
 
             Point point1 = point;
-            Point point2 = new Point(((int) point1.getX()) + 14 * 32 + 10, ((int) point1.getY()));
-            Point point3 = new Point(((int) point1.getX()) + 2 * (14 * 32 + 10), ((int) point1.getY()));
+            Point point2 = new Point((((int) point1.getX()) + 14 * 32 + 10) % 1374, ((int) point1.getY()));
+            Point point3 = new Point((((int) point1.getX()) + 2 * (14 * 32 + 10)) % 1374, ((int) point1.getY()));
             Point[] points = {point1,point2,point3};
 
             if (checkIfPlaceableAtPositionForPoints(gameState, points)) {
