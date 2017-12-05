@@ -50,6 +50,7 @@ public class PlaceDoubleTowerStrategy extends PlaceTowerStrategy {
                     color = notPlaceable;
                 }
                 drawSquares(g,points,color);
+                drawRange(g, points, color, new DoubleTower().getFireRange());
             }
         }
     }

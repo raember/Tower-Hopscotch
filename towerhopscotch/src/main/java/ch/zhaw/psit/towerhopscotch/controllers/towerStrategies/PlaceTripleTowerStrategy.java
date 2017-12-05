@@ -55,6 +55,7 @@ public class PlaceTripleTowerStrategy extends PlaceTowerStrategy {
                     color = notPlaceable;
                 }
                 drawSquares(g,points,color);
+                drawRange(g, points, color, new TripleTower().getFireRange());
             }
         }
     }

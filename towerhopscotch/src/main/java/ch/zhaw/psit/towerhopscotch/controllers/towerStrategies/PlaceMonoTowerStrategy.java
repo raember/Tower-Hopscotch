@@ -31,7 +31,7 @@ public class PlaceMonoTowerStrategy extends PlaceTowerStrategy {
 
         if (layer1 != null) {
 
-            point1 = calculateCorrectCoordinates(layer1,point1);
+            point1 = calculateCorrectCoordinates(layer1, point1);
             Point[] points = {point1};
 
             Tile tile1 = layer1.getTile(point1);
@@ -44,7 +44,8 @@ public class PlaceMonoTowerStrategy extends PlaceTowerStrategy {
                 } else {
                     color = notPlaceable;
                 }
-                drawSquares(g,points,color);
+                drawSquares(g, points, color);
+                drawRange(g, points, color, new MonoTower().getFireRange());
             }
         }
     }

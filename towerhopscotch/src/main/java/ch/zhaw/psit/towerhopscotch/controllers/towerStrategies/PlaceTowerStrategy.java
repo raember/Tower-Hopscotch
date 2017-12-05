@@ -19,6 +19,17 @@ public abstract class PlaceTowerStrategy implements TowerStrategy {
         }
     }
 
+    static void drawRange(Graphics g, Point[] points, Color color, float range) {
+        g.setColor(color);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setStroke(new BasicStroke(3));
+        int rangeDiff = (int) range * Tile.TILE_WIDTH;
+        for (Point point : points) {
+            point.translate(Tile.TILE_WIDTH / 2 - rangeDiff, Tile.TILE_HEIGHT / 2 - rangeDiff);
+            g2.drawOval(point.x, point.y, 2 * rangeDiff, 2 * rangeDiff);
+        }
+    }
+
     boolean checkIfPlaceable(Point point, Layer layer, Tile tile1) {
         return tile1.isTowerPlaceable() && layer.getTowerAtPosition(point) == null;
     }
@@ -29,7 +40,8 @@ public abstract class PlaceTowerStrategy implements TowerStrategy {
 
     Point calculateCorrectCoordinates(Layer layer, Point point){
         int offset = layer.getLayerLevel() * 10;
-        return new Point(((int) point.getX()) - ((((int) point.getX()) - offset)%32), (((int) point.getY()) - (((int) point.getY())%32)));
+        return new Point(((int) point.getX()) - ((((int) point.getX()) - offset) % Tile.TILE_WIDTH),
+                (((int) point.getY()) - (((int) point.getY()) % Tile.TILE_HEIGHT)));
     }
 
 
@@ -40,9 +52,7 @@ public abstract class PlaceTowerStrategy implements TowerStrategy {
         if (layer != null) {
             point = calculateCorrectCoordinates(layer,point);
             Tile tile = layer.getTile(point);
-            if (tile.isTowerPlaceable() && layer.getTowerAtPosition(new Point(x, y)) == null) {
-                return true;
-            }
+            return tile.isTowerPlaceable() && layer.getTowerAtPosition(new Point(x, y)) == null;
         }
         return false;
     }
