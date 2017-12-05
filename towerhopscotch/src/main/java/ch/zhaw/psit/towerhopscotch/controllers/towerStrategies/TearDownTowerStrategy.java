@@ -13,7 +13,7 @@ import java.awt.*;
 public class TearDownTowerStrategy implements TowerStrategy {
 
     /**
-     * Not implemented
+     * Draw action text
      * @param gameState Gamestate
      * @param g Graphics
      */

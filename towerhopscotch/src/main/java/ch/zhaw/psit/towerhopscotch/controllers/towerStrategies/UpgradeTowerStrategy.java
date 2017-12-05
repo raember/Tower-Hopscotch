@@ -18,7 +18,7 @@ import java.awt.*;
 public class UpgradeTowerStrategy implements TowerStrategy {
 
     /**
-     * Not implemented
+     * Draw action text and show new range.
      *
      * @param gameState Gamestate
      * @param g         Graphics
