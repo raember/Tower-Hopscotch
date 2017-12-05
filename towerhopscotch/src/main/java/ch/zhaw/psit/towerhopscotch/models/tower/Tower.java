@@ -149,8 +149,11 @@ public abstract class Tower {
         g.setColor(Color.ORANGE);
         int offset = Tile.TILE_WIDTH / 2;
         for (Enemy enemy : shotEnemies) {
-            g.drawLine(position.x + offset, position.y + offset,
-                    (int) enemy.getX() + offset, (int) enemy.getY() + offset);
+            Tower tower = enemy.getOnLayer().getTowerAtPosition(position);
+            if (tower != null && tower.equals(this)){
+                g.drawLine(position.x + offset, position.y + offset,
+                        (int) enemy.getX() + offset, (int) enemy.getY() + offset);
+            }
         }
     }
 
