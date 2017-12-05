@@ -4,6 +4,10 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * Player for sound files
+ * @author Philipp Meier
+ */
 public class MusicPlayer implements Runnable {
 
     private ArrayList<String> musicFiles;
@@ -19,6 +23,10 @@ public class MusicPlayer implements Runnable {
             musicFiles.add(path + file + ".wav");
     }
 
+    /**
+     * Play the sound with the specified filename
+     * @param fileName Filename
+     */
     public void playSound(String fileName) {
         try {
             File soundFile = new File(fileName);
@@ -35,6 +43,9 @@ public class MusicPlayer implements Runnable {
         }
     }
 
+    /**
+     * Run thread
+     */
     @Override
     public void run() {
         playSound(musicFiles.get(currentSondIndex));
