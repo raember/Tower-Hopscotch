@@ -9,6 +9,7 @@ import ch.zhaw.psit.towerhopscotch.models.tower.LongUpgrade;
 import ch.zhaw.psit.towerhopscotch.models.tower.Tower;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Strategy for upgrading Tower
@@ -28,16 +29,16 @@ public class UpgradeTowerStrategy implements TowerStrategy {
 
         gameState.drawText(g,"SELECT TOWER TO UPGRADE");
 
-        Point point = gameState.getMouseManager().getPosition();
+        Point point1 = gameState.getMouseManager().getPosition();
 
-        Layer layer = gameState.getMap().getLayer(point);
+        Layer layer = gameState.getMap().getLayer(point1);
 
         if (layer != null) {
 
             int offset = layer.getLayerLevel() * 10;
-            point = new Point(((int) point.getX()) - ((((int) point.getX()) - offset) % Tile.TILE_WIDTH),
-                    (((int) point.getY()) - (((int) point.getY()) % Tile.TILE_HEIGHT)));
-            Tower tower = layer.getTowerAtPosition(point);
+            point1 = new Point(((int) point1.getX()) - ((((int) point1.getX()) - offset) % Tile.TILE_WIDTH),
+                    (((int) point1.getY()) - (((int) point1.getY()) % Tile.TILE_HEIGHT)));
+            Tower tower = layer.getTowerAtPosition(point1);
             if (tower != null) {
                 Color color = Color.RED;
                 FloatUpgrade rangeUpgrade = tower.getFireRangeUpgrade();
@@ -51,8 +52,23 @@ public class UpgradeTowerStrategy implements TowerStrategy {
                     color = Color.GREEN;
                 }
                 g.setColor(color);
-                g.drawString("Costs: " + price, point.x, point.y);
-                PlaceTowerStrategy.drawRange(g, new Point[]{point}, color, rangeUpgrade.getValue());
+                g.drawString("Costs: " + price, point1.x, point1.y);
+
+                ArrayList<Point> points = new ArrayList<>();
+                points.add(point1);
+
+                Point point2 = new Point((point1.x + 14 * 32 + 10) % 1374, point1.y);
+                Layer layer2 = gameState.getMap().getLayer(point2);
+                if (layer2 != null && tower.equals(layer2.getTowerAtPosition(point2))){
+                    points.add(point2);
+                }
+                Point point3 = new Point((point1.x + 2 * (14 * 32 + 10)) % 1374, point1.y);
+                Layer layer3 = gameState.getMap().getLayer(point3);
+                if (layer3 != null && tower.equals(layer3.getTowerAtPosition(point3))){
+                    points.add(point3);
+                }
+
+                PlaceTowerStrategy.drawRange(g, points.toArray(new Point[points.size()]), color, rangeUpgrade.getValue());
             }
         }
     }
