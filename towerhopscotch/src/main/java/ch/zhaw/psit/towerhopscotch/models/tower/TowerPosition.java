@@ -4,17 +4,19 @@ import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy;
 
 import java.awt.*;
 
+/**
+ * The position for a tower on a layer
+ * @author Stefan Bösch
+ */
 public class TowerPosition {
     private Point position;
     private Tower tower;
+    private Canon canon;
 
     public TowerPosition(Point position, Tower tower) {
         this.position = position;
         this.tower = tower;
-    }
-
-    public TowerPosition() {
-        this(new Point(0, 0), null);
+        this.canon = new Canon(tower);
     }
 
     public Point getPosition() {
@@ -33,12 +35,23 @@ public class TowerPosition {
         this.tower = tower;
     }
 
+    /**
+     * Render the tower and the cannon
+     * @param g Graphics
+     */
     public void render(Graphics g) {
+        canon.render(g, position);
         tower.render(g, position);
     }
 
+    /**
+     * Update the Tower and the canon
+     * @param absNanoTime
+     * @param enemiesOnMap
+     */
     public void update(long absNanoTime, java.util.List<Enemy> enemiesOnMap) {
-        tower.update(absNanoTime, position, enemiesOnMap);
+        canon.update(absNanoTime, position, enemiesOnMap);
+        tower.update();
     }
 
 }

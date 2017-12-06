@@ -1,7 +1,8 @@
 package ch.zhaw.psit.towerhopscotch.models.tower;
 
 /**
- * Created by Raphael Emberger on 13.11.2017.
+ * A upgrade for a tower
+ * @author Raphael Emberger
  */
 public abstract class TowerUpgrade {
     private int price;

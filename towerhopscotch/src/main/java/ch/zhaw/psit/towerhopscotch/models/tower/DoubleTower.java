@@ -3,7 +3,8 @@ package ch.zhaw.psit.towerhopscotch.models.tower;
 import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 
 /**
- * Created by Raphael Emberger on 03.12.2017.
+ * Represents a DoubeTower which derives from tower
+ * @author Raphael Emberger
  */
 public class DoubleTower extends Tower {
 

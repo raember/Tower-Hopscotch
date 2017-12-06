@@ -13,14 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The class represents the tower on the map and is the superclass for the different towers
+ * The tower can be upgraded and rendered
+ * @author Raphael Emberger, Stefan Bösch
+ */
 public abstract class Tower {
     private int price;
-    private long currentTime = System.nanoTime();
-    private long nextAttack;
-    private long shotDuration;
-    private long shot;
     private boolean isRemoved;
-    private ArrayList<Enemy> shotEnemies = new ArrayList<Enemy>();
     private BufferedImage image;
     protected ArrayQueue<FloatUpgrade> fireRangeUpgrades = new ArrayQueue<FloatUpgrade>(10);
     private float fireRange = Float.MIN_VALUE;
@@ -36,7 +36,6 @@ public abstract class Tower {
         level = 1;
     }
 
-
     public FloatUpgrade getFireRangeUpgrade() {
         return fireRangeUpgrades.isEmpty() ? null : fireRangeUpgrades.get(0);
     }
@@ -50,23 +49,54 @@ public abstract class Tower {
     protected void setFireRange(float value) {
         fireRange = value;
     }
+
     public long getFireFrequency() {return fireFrequency;}
 
     protected void setFireFrequency(long value) {
         fireFrequency = value;
     }
+
     public int getDamage() {return damage;}
 
     protected void setDamage(int value) {
         damage = value;
     }
+
     public int getPrice() {return price;}
 
     public IntUpgrade getDamageUpgrade() {
         return damageUpgrades.isEmpty() ? null : damageUpgrades.get(0);
     }
 
-    public boolean tryPurchaseFireRangeUpgrade(Gold gold) {
+    /**
+     * Upgrade range, frequency, and the damage for the tower
+     * @param gold Gold from the player
+     * @return If the upgrades where made
+     */
+    public boolean upgradeAll(Gold gold){
+        FloatUpgrade rangeUpgrade = getFireRangeUpgrade();
+        LongUpgrade frequencyUpgrade = getFireFrequencyUpgrade();
+        IntUpgrade damageUpgrade = getDamageUpgrade();
+        int price = rangeUpgrade.getPrice() + frequencyUpgrade.getPrice() + damageUpgrade.getPrice();
+        if (rangeUpgrade != null && gold.getAmount() >= price){
+            boolean success1 = tryPurchaseDamageUpgrade(gold);
+            boolean success2 = tryPurchaseFireRangeUpgrade(gold);
+            boolean success3 = tryPurchaseFireFrequencyUpgrade(gold);
+
+            if (success1 && success2 && success3) {
+                levelUp();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Try to upgrade the fire range
+     * @param gold The gold from the player
+     * @return True if the upgrade was successfull
+     */
+    private boolean tryPurchaseFireRangeUpgrade(Gold gold) {
         FloatUpgrade upgrade = getFireRangeUpgrade();
         if (upgrade == null || !upgrade.isAffordable(gold.getAmount())) return false;
         fireRange = upgrade.getValue();
@@ -76,7 +106,12 @@ public abstract class Tower {
         return true;
     }
 
-    public boolean tryPurchaseFireFrequencyUpgrade(Gold gold) {
+    /**
+     * Try to upgrade the fire frequency
+     * @param gold The gold from the player
+     * @return True if the upgrade was successfull
+     */
+    private boolean tryPurchaseFireFrequencyUpgrade(Gold gold) {
         LongUpgrade upgrade = getFireFrequencyUpgrade();
         if (upgrade == null || !upgrade.isAffordable(gold.getAmount())) return false;
         fireFrequency = upgrade.getValue();
@@ -86,7 +121,12 @@ public abstract class Tower {
         return true;
     }
 
-    public boolean tryPurchaseDamageUpgrade(Gold gold) {
+    /**
+     * Try to upgrade the damage
+     * @param gold The gold from the player
+     * @return True if the upgrade was successfull
+     */
+    private boolean tryPurchaseDamageUpgrade(Gold gold) {
         IntUpgrade upgrade = getDamageUpgrade();
         if (upgrade == null || !upgrade.isAffordable(gold.getAmount())) return false;
         damage = upgrade.getValue();
@@ -96,83 +136,26 @@ public abstract class Tower {
         return true;
     }
 
-    public boolean canReach(Point positionEnemy, Point towerPosition) {
-        return towerPosition.distance(positionEnemy) / Tile.TILE_WIDTH <= fireRange;
-    }
+    public void update() {}
 
-    public void update(long absNanoTime,Point towerPosition, List<Enemy> enemiesOnMap) {
-        long deltaNanoTime = absNanoTime - currentTime;
-        nextAttack = Math.max(nextAttack - deltaNanoTime, 0);
-        currentTime = absNanoTime;
-        updateInternal(nextAttack == 0, filterEnemies(enemiesOnMap, towerPosition));
-        updateLeech();
-    }
-
-    protected void updateLeech() {
-    }
-
-    protected List<Enemy> filterEnemies(List<Enemy> enemies, Point towerPosition) {
-        return enemies.stream().filter(e -> canReach(new Point((int) e.getX(), (int) e.getY()), towerPosition)).collect(Collectors.toList());
-    }
-
-    protected void updateInternal(boolean canShoot, List<Enemy> enemiesInVicinity) {
-        if (canShoot) {
-            shotEnemies.clear();
-            boolean shotEnamies = false;
-            for (Enemy enemy : enemiesInVicinity) {
-                shotEnamies |= shoot(enemy);
-            }
-            if (shotEnamies) resetCooldown();
-        }
-    }
-
-    protected void attack(Enemy enemy) {
-        if (shoot(enemy)) resetCooldown();
-    }
-
-    protected boolean shoot(Enemy enemy) {
-        if (nextAttack == 0) {
-            enemy.setHealth(enemy.getHealth() - damage);
-            shotEnemies.add(enemy);
-            return true;
-        }
-        return false;
-    }
-
-    protected void resetCooldown() {
-        nextAttack = fireFrequency;
-    }
-    
+    /**
+     * Render the Tower at the position
+     * @param g Graphics
+     * @param position Tower position
+     */
     public void render(Graphics g, Point position) {
         g.drawImage(image, (int) position.getX(), (int) position.getY(), Tile.TILE_WIDTH, Tile.TILE_HEIGHT, null);
-        Text.drawString(g, Integer.toString(level), (int) position.getX() + Tile.TILE_WIDTH / 2, (int) position.getY() + Tile.TILE_HEIGHT / 2, true, Color.WHITE, Assets.font16);
-        
-        
-        float[] dashingPattern2 = {10f, 4f};
-        Stroke stroke1 = new BasicStroke(4f, BasicStroke.CAP_BUTT,
-                BasicStroke.JOIN_MITER, 1.0f, dashingPattern2, 0.0f);
-        
-
-        
-        int offset = Tile.TILE_WIDTH / 2;
-        for (Enemy enemy : shotEnemies) {
-            Tower tower = enemy.getOnLayer().getTowerAtPosition(position);
-            if (tower != null && tower.equals(this)){
-                Graphics2D g2 = (Graphics2D) g;
-                g2.setColor(Color.RED);
-                g2.setStroke(stroke1);
-                g2.drawLine(position.x + offset, position.y + offset,
-                        (int) enemy.getX() + offset, (int) enemy.getY() + offset);
-                g2.setStroke(new BasicStroke(1));
-            }
-        }
+        Text.drawString(g, Integer.toString(getLevel()), (int) position.getX() + Tile.TILE_WIDTH / 2, (int) position.getY() + Tile.TILE_HEIGHT / 2, true, Color.WHITE, Assets.font16);
     }
 
     public int getLevel() {
         return level;
     }
 
-    public void levelUp() {
+    /**
+     * Increase tower level
+     */
+    private void levelUp() {
         if (level < 9){
             level++;
         }

@@ -2,6 +2,10 @@ package ch.zhaw.psit.towerhopscotch.models.tower;
 
 import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 
+/**
+ * Represents a MonoTower which derives from tower
+ * @author Raphael Emberger
+ */
 public class MonoTower extends Tower {
     public MonoTower() {
         super(20, Assets.towers.get("monoTower"));
