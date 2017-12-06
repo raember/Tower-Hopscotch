@@ -5,7 +5,7 @@ package ch.zhaw.psit.towerhopscotch.controllers;
  * @author Nicolas Eckhart
  */
 class Clock {
-    private static int FPS = 60;
+    private static int FPS = 80;
     private double timePerTick = 1000000000 / FPS;
     private double deltaTime;
     private long lastTime, timer;

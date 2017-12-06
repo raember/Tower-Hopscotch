@@ -5,7 +5,7 @@ import ch.zhaw.psit.towerhopscotch.GUI.Assets;
 public class MonoTower extends Tower {
     public MonoTower() {
         super(20, Assets.towers.get("monoTower"));
-        setFireFrequency(2000000000);
+        setFireFrequency(200000000);
         fireFrequencyUpgrades.add(new LongUpgrade(10, 1800000000));
         fireFrequencyUpgrades.add(new LongUpgrade(25, 1600000000));
         fireFrequencyUpgrades.add(new LongUpgrade(40, 1400000000));
@@ -25,7 +25,7 @@ public class MonoTower extends Tower {
         fireRangeUpgrades.add(new FloatUpgrade(310, 4.5f));
         fireRangeUpgrades.add(new FloatUpgrade(500, 5f));
 
-        setDamage(10);
+        setDamage(5);
         damageUpgrades.add(new IntUpgrade(10, 15));
         damageUpgrades.add(new IntUpgrade(25, 20));
         damageUpgrades.add(new IntUpgrade(40, 25));
