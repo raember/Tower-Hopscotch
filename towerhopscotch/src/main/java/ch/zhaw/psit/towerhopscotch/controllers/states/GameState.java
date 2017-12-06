@@ -83,6 +83,10 @@ public class GameState extends State {
             }
         }
 
+        if (mouseManager.isRightPressed()){
+            towerStrategy = null;
+        }
+
         if (mouseManager.isLeftPressed() && towerStrategy != null) {
             selectTile();
         }
