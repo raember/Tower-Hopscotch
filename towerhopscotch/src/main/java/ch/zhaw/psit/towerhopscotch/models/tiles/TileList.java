@@ -1,10 +1,10 @@
 package ch.zhaw.psit.towerhopscotch.models.tiles;
 
+/**
+ * Each tile is initialized once in the static instance list.
+ * With method getTile a tile instance can be gotten via its ID.
+ */
 public class TileList {
-    /*
-     * Each tile is initialized once in the static instance list.
-     * With method getTile a tile instance can be gotten via its ID.
-     */
 
     public static Tile[] instanceList = new Tile[256];
     public static Tile grassTile = new GrassTile(0);
@@ -19,6 +19,11 @@ public class TileList {
     public static Tile templeTile = new TempleTile(9);
     public static Tile unknownTile = new UnknownTile(255);
 
+    /**
+     * Get the tile with the id
+     * @param id ID
+     * @return the tile with de id
+     */
     public static Tile getTile(int id) {
         Tile tile = instanceList[id];
         if (tile == null)
