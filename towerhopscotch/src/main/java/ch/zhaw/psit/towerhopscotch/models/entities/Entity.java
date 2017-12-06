@@ -7,6 +7,10 @@ import ch.zhaw.psit.towerhopscotch.controllers.states.State;
 
 import java.awt.*;
 
+/**
+ * This class represents an entity
+ * @author Nicolas Eckhart
+ */
 public abstract class Entity {
 
     protected float x, y;
@@ -21,8 +25,15 @@ public abstract class Entity {
         this.height = height;
     }
 
+    /**
+     * Update the object
+     */
     public abstract void update();
 
+    /**
+     * Render the object
+     * @param g Graphics
+     */
     public abstract void render(Graphics g);
 
     public float getX() {
