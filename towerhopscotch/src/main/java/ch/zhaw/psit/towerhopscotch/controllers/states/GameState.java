@@ -47,7 +47,7 @@ public class GameState extends State {
      */
     public void init() {
         player = new Player();
-        player.addGold(500);
+        player.addGold(180);
         map = new Map("src/main/resources/maps/map1.txt");
         waveQueue = new WaveQueue(map, 5, player);
         menu = new BuildMenu();
