@@ -1,8 +1,5 @@
 package ch.zhaw.psit.towerhopscotch.models.maps;
 
-import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
-import ch.zhaw.psit.towerhopscotch.controllers.states.State;
-import ch.zhaw.psit.towerhopscotch.models.Player;
 import ch.zhaw.psit.towerhopscotch.models.enums.LayerType;
 
 import java.awt.*;
@@ -10,6 +7,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * This class represents the whole map with it layers
+ * @author Nicolas Eckhart, Stefan Bösch
+ */
 public class Map {
 
     private Layer hell;
@@ -20,18 +21,31 @@ public class Map {
         initializeMap(filePath);
     }
 
+    /**
+     * Update the layers
+     * @param absNanoTime absNanoTime
+     */
     public void update(long absNanoTime) {
         hell.update(absNanoTime);
         earth.update(absNanoTime);
         heaven.update(absNanoTime);
     }
 
+    /**
+     * Render the layers
+     * @param g Graphics
+     */
     public void render(Graphics g) {
         hell.render(g);
         earth.render(g);
         heaven.render(g);
     }
 
+    /**
+     * Get the layer at the specified point
+     * @param point Point on map
+     * @return Layer where the point is located
+     */
     public Layer getLayer(Point point) {
         if (hell.isOnLayer(point)) {
             return hell;
@@ -45,6 +59,10 @@ public class Map {
         return null;
     }
 
+    /**
+     * Initialize the map and the layers
+     * @param filePath the path to the map file
+     */
     private void initializeMap(String filePath) {
         int width = 0;
         int height = 0;
@@ -74,26 +92,11 @@ public class Map {
         heaven = new Layer(LayerType.HEAVEN, width, height, layerContents[3]);
     }
 
-    public Layer[] getOtherLayers(LayerType layerType) {
-        Layer[] layers = new Layer[2];
-        switch (layerType) {
-            case HELL:
-                layers[0] = earth;
-                layers[1] = heaven;
-                break;
-            case EARTH:
-                layers[0] = hell;
-                layers[1] = heaven;
-                break;
-            case HEAVEN:
-                layers[0] = hell;
-                layers[1] = earth;
-                break;
-        }
-        return layers;
-
-    }
-
+    /**
+     * Check if point is on one of the layers
+     * @param point Point
+     * @return If the point is on a layer
+     */
     public boolean isOnMap(Point point) {
         return hell.isOnLayer(point) || earth.isOnLayer(point) || heaven.isOnLayer(point);
     }
@@ -108,9 +111,5 @@ public class Map {
 
     public Layer getHeaven() {
         return heaven;
-    }
-
-    private Player getPlayer() {
-        return ((GameState) State.getState()).getPlayer();
     }
 }
