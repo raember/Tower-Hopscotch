@@ -14,6 +14,7 @@ import java.util.Random;
 
 /**
  * Represents an enemy which tries to attack the base from the player
+ * @author Nicolas Eckhart
  */
 public abstract class Enemy extends Entity {
     public static final int DEFAULT_WIDTH = 32, DEFAULT_HEIGHT = 32;
