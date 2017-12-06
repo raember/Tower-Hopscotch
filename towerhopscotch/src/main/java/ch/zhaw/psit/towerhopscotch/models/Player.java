@@ -1,5 +1,9 @@
 package ch.zhaw.psit.towerhopscotch.models;
 
+/**
+ * Class player which stores the gold and the health from the player.
+ * @author Nicolas Eckhart
+ */
 public class Player {
     public static final int MAX_HEALTH = 20;
     private int health;

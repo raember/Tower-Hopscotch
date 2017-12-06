@@ -1,5 +1,9 @@
 package ch.zhaw.psit.towerhopscotch.models;
 
+/**
+ * Class for the Gold from the player
+ * @author Stefan Bösch
+ */
 public class Gold {
     int amount = 0;
 
