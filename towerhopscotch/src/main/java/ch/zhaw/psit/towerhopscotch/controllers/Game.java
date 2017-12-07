@@ -152,6 +152,11 @@ public class Game implements Runnable {
         return gameState;
     }
 
+    public State createNewGameState(){
+        gameState = new GameState(this, mouseManager);;
+        return getGameState();
+    }
+
     public State getGameOverState() {
         return gameOverState;
     }

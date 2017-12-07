@@ -31,7 +31,7 @@ public class MainMenuState extends State {
         newGameButton.update();
 
         if (newGameButton.isClicked()) {
-            State gameState = game.getGameState();
+            State gameState = game.createNewGameState();
             ((GameState) gameState).init();
             State.setState(gameState);
         }

@@ -39,7 +39,7 @@ public class GameOverState extends GameState {
             State.setState(game.getMainMenuState());
 
         if (newGameButton.isClicked()) {
-            State gameState = game.getGameState();
+            State gameState = game.createNewGameState();
             ((GameState) gameState).init();
             State.setState(gameState);
         }
