@@ -201,11 +201,8 @@ public class GameState extends State {
             Enemy enemy = iterator.next();
             enemy.update();
 
-            /* Teleportation disabled for now.
-            if (enemy.teleport()) {
+            if (enemy.teleport())
                 iterator.remove();
-            }
-            */
 
             // Remove enemy if it has reached the players fortress
             if (enemy.reachedDestination()) {

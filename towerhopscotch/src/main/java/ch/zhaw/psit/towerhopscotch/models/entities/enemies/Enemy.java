@@ -9,8 +9,7 @@ import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Represents an enemy which tries to attack the base from the player
@@ -26,6 +25,7 @@ public abstract class Enemy extends Entity {
     protected Direction moveDirection;
     protected Player player;
     protected int reward;
+    protected int currentPositionHeat;
 
     public Enemy(Layer onLayer, float x, float y, int width, int height, int health, int damage, float speed, Player player, int reward) {
         super(onLayer, x, y, width, height);
@@ -37,15 +37,15 @@ public abstract class Enemy extends Entity {
         yMove = 0;
         this.player = player;
         this.reward = reward;
+        currentPositionHeat = 1;
     }
 
     /**
-     * Move the position from the enemy
+     * Updates the enemies coordinates based on its current location on the layer..
      */
     public void move() {
         xMove = 0;
         yMove = 0;
-
 
         if (movementPossible(moveDirection)) {
             setMovementForDirection();
@@ -59,8 +59,10 @@ public abstract class Enemy extends Entity {
     }
 
     /**
-     * teleport to a different layer
-     * @return teleported
+     * Teleports the enemy onto a different layer if there is a tile on his current x and y
+     * coordinates on the target layer. Teleportation occurs randomly.
+     *
+     * @return boolean if teleported or not
      */
     public boolean teleport() {
         Random random = new Random();
@@ -107,47 +109,24 @@ public abstract class Enemy extends Entity {
     }
 
     private void changeDirection() {
-        Direction currentDirection = moveDirection;
+        HashMap<Direction, Integer> possibleDirectionsWithHeat = new HashMap<Direction, Integer>();
+        if(upwardsPossible())
+            possibleDirectionsWithHeat.put(Direction.UP, getHeatForDirection(Direction.UP));
+        if(leftwardsPossible())
+            possibleDirectionsWithHeat.put(Direction.LEFT, getHeatForDirection(Direction.LEFT));
+        if(rightwardsPossible())
+            possibleDirectionsWithHeat.put(Direction.RIGHT, getHeatForDirection(Direction.RIGHT));
+        if(downwardsPossible())
+            possibleDirectionsWithHeat.put(Direction.DOWN, getHeatForDirection(Direction.DOWN));
 
-        if (currentDirection == Direction.UP) {
-            if (leftwardsPossible()) {
-                moveDirection = Direction.LEFT;
-            } else if (rightwardsPossible()) {
-                moveDirection = Direction.RIGHT;
-            }
-        } else if (currentDirection == Direction.DOWN) {
-            if (leftwardsPossible()) {
-                moveDirection = Direction.LEFT;
-            } else if (rightwardsPossible()) {
-                moveDirection = Direction.RIGHT;
-            }
-        } else if (currentDirection == Direction.LEFT) {
-            if (upwardsPossible()) {
-                moveDirection = Direction.UP;
-            } else if (downwardsPossible()) {
-                moveDirection = Direction.DOWN;
-            }
-        } else if (currentDirection == Direction.RIGHT) {
-            if (upwardsPossible()) {
-                moveDirection = Direction.UP;
-            } else if (downwardsPossible()) {
-                moveDirection = Direction.DOWN;
+        // Out of all possible directions, select the path with the highest value on the heat map.
+        int maximumHeat = Collections.max(possibleDirectionsWithHeat.values());
+        for(Direction direction : possibleDirectionsWithHeat.keySet()) {
+            if(possibleDirectionsWithHeat.get(direction) == maximumHeat) {
+                moveDirection = direction;
+                break;
             }
         }
-    }
-
-    private boolean movementPossible(Direction direction) {
-        switch (direction) {
-            case UP:
-                return upwardsPossible();
-            case LEFT:
-                return leftwardsPossible();
-            case RIGHT:
-                return rightwardsPossible();
-            case DOWN:
-                return downwardsPossible();
-        }
-        return false;
     }
 
     private void setMovementForDirection() {
@@ -167,21 +146,52 @@ public abstract class Enemy extends Entity {
         }
     }
 
+    private boolean movementPossible(Direction direction) {
+        if(onLayer.isBeneathMap(x, y))
+            return true;
+
+        switch (direction) {
+            case UP:
+                return upwardsPossible();
+            case LEFT:
+                return leftwardsPossible();
+            case RIGHT:
+                return rightwardsPossible();
+            case DOWN:
+                return downwardsPossible();
+        }
+
+        return false;
+    }
+
     private boolean upwardsPossible() {
-        // Enemies spawn below the map so they come in one at a time
-        return onLayer.isBeneathMap(x, y) || (onLayer.isPath(x, y - speed) && onLayer.isPath(x + (width - 1), y - speed));
+        return currentPositionHeat <= onLayer.getHeatValue(x, y - speed);
     }
 
     private boolean leftwardsPossible() {
-        return onLayer.isPath(x - speed, y) && onLayer.isPath(x - speed, y + (height - 1));
+        return currentPositionHeat <= onLayer.getHeatValue(x - speed, y);
     }
 
     private boolean rightwardsPossible() {
-        return onLayer.isPath(x + (width - 1) + speed, y) && onLayer.isPath(x + (width - 1) + speed, y + (height - 1));
+        return currentPositionHeat <= onLayer.getHeatValue(x + (width - 1) + speed, y);
     }
 
     private boolean downwardsPossible() {
-        return onLayer.isPath(x, y + (height - 1) + speed) && onLayer.isPath(x + (width - 1), y + (height - 1) + speed);
+        return currentPositionHeat <= onLayer.getHeatValue(x, y + (height - 1) + speed);
+    }
+
+    private int getHeatForDirection(Direction direction) {
+        switch (direction) {
+            case UP:
+                return onLayer.getHeatValue(x, y - speed);
+            case LEFT:
+                return onLayer.getHeatValue(x - speed, y);
+            case RIGHT:
+                return onLayer.getHeatValue(x + (width - 1) + speed, y);
+            case DOWN:
+                return onLayer.getHeatValue(x, y + (height - 1) + speed);
+        }
+        return 0;
     }
 
     /**
@@ -204,16 +214,8 @@ public abstract class Enemy extends Entity {
         }
     }
 
-    public float getSpeed() {
-        return speed;
-    }
-
     public int getDamage() {
         return damage;
-    }
-
-    public void setSpeed(float speed) {
-        this.speed = speed;
     }
 
     /**
