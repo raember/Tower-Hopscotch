@@ -3,6 +3,7 @@ package ch.zhaw.psit.towerhopscotch.controllers.towerStrategies;
 import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
 import ch.zhaw.psit.towerhopscotch.models.maps.Layer;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
+import ch.zhaw.psit.towerhopscotch.models.tower.Tower;
 
 import java.awt.*;
 
@@ -28,6 +29,11 @@ public abstract class PlaceTowerStrategy implements TowerStrategy {
             point.translate(Tile.TILE_WIDTH / 2 - rangeDiff, Tile.TILE_HEIGHT / 2 - rangeDiff);
             g2.drawOval(point.x, point.y, 2 * rangeDiff, 2 * rangeDiff);
         }
+    }
+
+    void drawText(Graphics g, Point point, Color color, Tower tower){
+        g.setColor(color);
+        g.drawString("Costs: " + tower.getPrice(), point.x, point.y);
     }
 
     boolean checkIfPlaceable(Point point, Layer layer, Tile tile1) {
