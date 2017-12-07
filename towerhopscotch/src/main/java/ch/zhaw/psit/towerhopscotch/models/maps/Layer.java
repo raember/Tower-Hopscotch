@@ -4,6 +4,7 @@ import ch.zhaw.psit.towerhopscotch.controllers.states.GameState;
 import ch.zhaw.psit.towerhopscotch.controllers.states.State;
 import ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy;
 import ch.zhaw.psit.towerhopscotch.models.enums.LayerType;
+import ch.zhaw.psit.towerhopscotch.models.maps.heatmap.HeatMap;
 import ch.zhaw.psit.towerhopscotch.models.tiles.Tile;
 import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
 import ch.zhaw.psit.towerhopscotch.models.tower.Tower;
@@ -29,6 +30,7 @@ public class Layer {
     private int[][] tiles;
     private List<TowerPosition> towers;
     private List<Enemy> enemies;
+    private HeatMap heatMap;
 
     public Layer(LayerType layerType, int width, int height, String layerContents) {
         this.layerType = layerType;
@@ -38,6 +40,7 @@ public class Layer {
         towers = new ArrayList<>();
         enemies = new ArrayList<>();
         initializeLayer(layerContents);
+        heatMap = new HeatMap(this);
     }
 
     /**
@@ -61,6 +64,9 @@ public class Layer {
                 TileList.getTile(tiles[x][y]).render(g, layerType, x * Tile.TILE_WIDTH + offset, y * Tile.TILE_HEIGHT);
             }
         }
+
+        // activate for debugging heat map only
+        heatMap.render(g);
 
         for (Enemy enemy : enemies) {
             enemy.render(g);
@@ -250,26 +256,6 @@ public class Layer {
         return multiplier * width * Tile.TILE_WIDTH + 10 * multiplier;
     }
 
-    public int getLayerLevel() {
-        int level = 0;
-        switch (layerType) {
-            case HELL:
-                level = 0;
-                break;
-            case EARTH:
-                level = 1;
-                break;
-            case HEAVEN:
-                level = 2;
-                break;
-        }
-        return level;
-    }
-
-    public LayerType getLayerType() {
-        return layerType;
-    }
-
     /**
      * Get the tower at the specified position
      * @param point Point
@@ -292,11 +278,55 @@ public class Layer {
         return ((GameState) State.getState()).getMap();
     }
 
+    public LayerType getLayerType() {
+        return layerType;
+    }
+
+    public int getHeatValue(float x, float y) {
+        return heatMap.getHeatValue((int) (x - offset) / Tile.TILE_WIDTH, (int) y / Tile.TILE_HEIGHT);
+    }
+
+    public int getLayerLevel() {
+        int level = 0;
+        switch (layerType) {
+            case HELL:
+                level = 0;
+                break;
+            case EARTH:
+                level = 1;
+                break;
+            case HEAVEN:
+                level = 2;
+                break;
+        }
+        return level;
+    }
+
     public int getStartX() {
         return startX;
     }
 
+    public Point getStartPointTile() {
+        return new Point((startX - offset) / Tile.TILE_WIDTH, startY / Tile.TILE_HEIGHT);
+    }
+
     public int getStartY() {
         return startY;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getOffset() {
+        return offset;
+    }
+
+    public int[][] getTiles() {
+        return tiles;
     }
 }
