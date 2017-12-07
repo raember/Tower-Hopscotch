@@ -40,17 +40,21 @@ public class PlaceDoubleTowerStrategy extends PlaceTowerStrategy {
             Tile tile1 = layer1.getTile(point1);
             Tile tile2 = layer2.getTile(point2);
 
-            Color color;
+            Color colorTile;
+            Color colorRange;
 
             if (tile1 != null && tile2 != null) {
                 if (checkIfPlaceable(point1, layer1, tile1)
                         && checkIfPlaceable(point2, layer2, tile2)) {
-                    color = placeable;
+                    colorTile = placeable;
+                    colorRange = Color.GREEN;
                 } else {
-                    color = notPlaceable;
+                    colorTile = notPlaceable;
+                    colorRange = Color.RED;
                 }
-                drawSquares(g,points,color);
-                drawRange(g, points, color, new DoubleTower().getFireRange());
+                drawSquares(g,points,colorTile);
+                drawRange(g, points, colorRange, new DoubleTower().getFireRange());
+                drawText(g,point1,colorRange,new DoubleTower());
             }
         }
     }

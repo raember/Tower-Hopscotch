@@ -44,18 +44,22 @@ public class PlaceTripleTowerStrategy extends PlaceTowerStrategy {
             Tile tile2 = layer2.getTile(point2);
             Tile tile3 = layer3.getTile(point3);
 
-            Color color;
+            Color colorTile;
+            Color colorRange;
 
             if (tile1 != null && tile2 != null && tile3 != null) {
                 if (checkIfPlaceable(point1, layer1, tile1)
                         && checkIfPlaceable(point2, layer2, tile2)
                         && checkIfPlaceable(point3, layer3, tile3)) {
-                    color = placeable;
+                    colorTile = placeable;
+                    colorRange = Color.GREEN;
                 } else {
-                    color = notPlaceable;
+                    colorTile = notPlaceable;
+                    colorRange = Color.RED;
                 }
-                drawSquares(g,points,color);
-                drawRange(g, points, color, new TripleTower().getFireRange());
+                drawSquares(g,points,colorTile);
+                drawRange(g, points, colorRange, new TripleTower().getFireRange());
+                drawText(g,point1,colorRange,new TripleTower());
             }
         }
     }

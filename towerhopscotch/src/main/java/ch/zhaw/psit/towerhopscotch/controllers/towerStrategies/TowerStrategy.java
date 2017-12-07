@@ -9,8 +9,8 @@ import java.awt.*;
  */
 public interface TowerStrategy {
 
-    Color placeable = new Color(0, 200, 0, 50);
-    Color notPlaceable = new Color(200, 0, 0, 50);
+    Color placeable = new Color(0, 200, 0, 70);
+    Color notPlaceable = new Color(200, 0, 0, 70);
 
     /**
      * Draw placeable Gizmos
