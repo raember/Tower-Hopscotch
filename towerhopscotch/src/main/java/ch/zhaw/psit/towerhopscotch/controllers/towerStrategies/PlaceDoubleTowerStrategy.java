@@ -9,6 +9,10 @@ import ch.zhaw.psit.towerhopscotch.models.tower.TowerPosition;
 
 import java.awt.*;
 
+/**
+ * Strategy for placing DoubleTower
+ * @author Stefan Bösch
+ */
 public class PlaceDoubleTowerStrategy extends PlaceTowerStrategy {
 
     /**
@@ -18,6 +22,8 @@ public class PlaceDoubleTowerStrategy extends PlaceTowerStrategy {
      */
     @Override
     public void activeAction(GameState gameState, Graphics g) {
+
+        gameState.drawText(g,"SELECT POITION FOR DOUBLE TOWER");
 
         Point point1 = gameState.getMouseManager().getPosition();
         Point point2 = new Point(((int) point1.getX()) + 14 * 32 + 10, ((int) point1.getY()));
@@ -44,6 +50,7 @@ public class PlaceDoubleTowerStrategy extends PlaceTowerStrategy {
                     color = notPlaceable;
                 }
                 drawSquares(g,points,color);
+                drawRange(g, points, color, new DoubleTower().getFireRange());
             }
         }
     }

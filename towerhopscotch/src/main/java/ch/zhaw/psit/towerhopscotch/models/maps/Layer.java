@@ -13,6 +13,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class represents a layer on the map
+ * @author Stefan Bösch, Nicolas Eckhart
+ */
 public class Layer {
     public final static int LAYER_WIDTH = 448;
     public final static int LAYER_HEIGHT = 640;
@@ -36,6 +40,10 @@ public class Layer {
         initializeLayer(layerContents);
     }
 
+    /**
+     * Update the layer with its towers and check if a tower was removed
+     * @param absNanoTime absNanoTime
+     */
     public void update(long absNanoTime) {
         for (TowerPosition tower : towers) {
             tower.update(absNanoTime, enemies);
@@ -43,6 +51,10 @@ public class Layer {
         towers.removeIf(tower -> tower.getTower().isRemoved());
     }
 
+    /**
+     * Render the tiles, enemies and the towers on this layer
+     * @param g Graphics
+     */
     public void render(Graphics g) {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -59,6 +71,10 @@ public class Layer {
         }
     }
 
+    /**
+     * Get all enemies on this layer
+     * @return Enemies on this layer
+     */
     public List<Enemy> getEnemies() {
         return enemies;
     }
@@ -71,10 +87,6 @@ public class Layer {
         towers.add(tower);
     }
 
-    public void removeTower(TowerPosition tower) {
-        towers.remove(tower);
-    }
-
     public void addEnemy(Enemy enemy) {
         enemies.add(enemy);
     }
@@ -83,24 +95,37 @@ public class Layer {
         enemies.remove(enemy);
     }
 
+    /**
+     * Check if the point is on the layer
+     * @param point Point
+     * @return True if on Layer
+     */
     public boolean isOnLayer(Point point) {
         return getTile(point) != null;
     }
 
-    //Adapter
     public boolean isBeneathMap(float x, float y) {
         return isBeneathMap(new Point((int)x,(int)y));
     }
 
+    /**
+     * Check if the point is beneath map
+     * @param point Point
+     * @return True if beneath map
+     */
     public boolean isBeneathMap(Point point) {
         return (point.getY() > Tile.TILE_HEIGHT * height) && (point.getX() == startX);
     }
 
-    //Adapter
     public boolean isFortress(float x, float y){
         return isFortress(new Point((int)x,(int)y));
     }
 
+    /**
+     * Check if the tile at the point is the fortress
+     * @param point Point
+     * @return True if point is fortress
+     */
     public boolean isFortress(Point point) {
         if (!isOnLayer(point))
             return false;
@@ -109,11 +134,15 @@ public class Layer {
         return tile.isFortress();
     }
 
-    //Adapter
     public boolean isPath(float x, float y){
         return isPath(new Point((int)x,(int)y));
     }
 
+    /**
+     * Check if the tile at the point is a path
+     * @param point Point
+     * @return True if point is a path
+     */
     public boolean isPath(Point point) {
         if (!isOnLayer(point))
             return false;
@@ -122,6 +151,11 @@ public class Layer {
         return tile.isPath();
     }
 
+    /**
+     * Get the tile at the point
+     * @param point Point
+     * @return Tile at point
+     */
     public Tile getTile(Point point) {
         Tile tile = null;
         try {
@@ -132,11 +166,16 @@ public class Layer {
         return tile;
     }
 
-    //Adapter
     public ArrayList<Layer> getTeleportableLayers(float xTop, float yTop, float xBottom, float yBottom) {
         return getTeleportableLayers(new Point((int)xTop,(int)yTop), new Point((int)xBottom,(int)yBottom));
     }
 
+    /**
+     * Check to which layers an enemy can teleport
+     * @param top top point
+     * @param bottom bottom point
+     * @return teleportable layers
+     */
     public ArrayList<Layer> getTeleportableLayers(Point top, Point bottom) {
         ArrayList<Layer> teleportableLayers = new ArrayList<>();
         Layer hell = getMap().getHell();
@@ -182,6 +221,10 @@ public class Layer {
         return teleportableLayers;
     }
 
+    /**
+     * Initialize the layer
+     * @param layerContents the map file content for the layer
+     */
     private void initializeLayer(String layerContents) {
         String[] tokens = layerContents.split("\\s+");
 
@@ -198,6 +241,10 @@ public class Layer {
         }
     }
 
+    /**
+     * Calculate the offset from the spacing
+     * @return Offset
+     */
     private int calculateOffset() {
         int multiplier = getLayerLevel();
         return multiplier * width * Tile.TILE_WIDTH + 10 * multiplier;
@@ -223,6 +270,11 @@ public class Layer {
         return layerType;
     }
 
+    /**
+     * Get the tower at the specified position
+     * @param point Point
+     * @return Tower at point
+     */
     public Tower getTowerAtPosition(Point point) {
         TowerPosition towerResult = null;
         for (TowerPosition tower : towers) {

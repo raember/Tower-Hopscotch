@@ -6,6 +6,10 @@ import ch.zhaw.psit.towerhopscotch.models.enums.LayerType;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Represents a field ont the map
+ * @author Nicolas Eckhart, Stefan Bösch
+ */
 public class Tile {
     public static final int TILE_WIDTH = 32, TILE_HEIGHT = 32;
 
@@ -23,6 +27,13 @@ public class Tile {
         TileList.instanceList[id] = this;
     }
 
+    /**
+     * Render the Tile with the correct layer theme at the specified position
+     * @param g Graphics
+     * @param layerType The layer on which the tile is located
+     * @param x Coordinate X
+     * @param y Coordinate Y
+     */
     public void render(Graphics g, LayerType layerType, int x, int y) {
         BufferedImage texture = null;
         if (layerType != null) {
@@ -52,6 +63,10 @@ public class Tile {
         return false;
     }
 
+    /**
+     * Is the player allowed to place a tower on this type of tile
+     * @return Tower is placeable on this Tile
+     */
     public boolean isTowerPlaceable() {
         return false;
     }

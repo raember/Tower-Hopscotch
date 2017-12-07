@@ -12,6 +12,10 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Represents an enemy which tries to attack the base from the player
+ * @author Nicolas Eckhart
+ */
 public abstract class Enemy extends Entity {
     public static final int DEFAULT_WIDTH = 32, DEFAULT_HEIGHT = 32;
 
@@ -35,6 +39,9 @@ public abstract class Enemy extends Entity {
         this.reward = reward;
     }
 
+    /**
+     * Move the position from the enemy
+     */
     public void move() {
         xMove = 0;
         yMove = 0;
@@ -51,6 +58,10 @@ public abstract class Enemy extends Entity {
         y += yMove;
     }
 
+    /**
+     * teleport to a different layer
+     * @return teleported
+     */
     public boolean teleport() {
         Random random = new Random();
         ArrayList<Layer> layers = onLayer.getTeleportableLayers(x, y, x + (width - 1), y + (height - 1));
@@ -173,6 +184,10 @@ public abstract class Enemy extends Entity {
         return onLayer.isPath(x, y + (height - 1) + speed) && onLayer.isPath(x + (width - 1), y + (height - 1) + speed);
     }
 
+    /**
+     * Has the enemy reached the player base
+     * @return reached base
+     */
     public boolean reachedDestination() {
         return onLayer.isFortress(x, y + (height - 1)) && onLayer.isFortress(x + (width - 1), y + (height - 1));
     }
@@ -201,6 +216,11 @@ public abstract class Enemy extends Entity {
         this.speed = speed;
     }
 
+    /**
+     * Render the enemy with the given image
+     * @param g Graphics
+     * @param img The Image to render
+     */
     protected void renderEnemy(Graphics g, BufferedImage img){
         g.drawImage(img, (int) x, (int) y, width, height, null);
         g.setColor(Color.GREEN);

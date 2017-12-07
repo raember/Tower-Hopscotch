@@ -7,6 +7,10 @@ import ch.zhaw.psit.towerhopscotch.controllers.states.State;
 
 import java.awt.*;
 
+/**
+ * Custom Button
+ * @author Nicolas Eckhart
+ */
 public class Button {
     private String text;
     private int x;
@@ -22,12 +26,19 @@ public class Button {
         buttonColor = Color.BLACK;
     }
 
+    /**
+     * Check if clicked
+     */
     public void update() {
         if (width > 0 && height > 0) {
             isClicked();
         }
     }
 
+    /**
+     * Render the button
+     * @param g Graphics
+     */
     public void render(Graphics g) {
         width = (text.split("").length * 23) + 20;
         height = 32;
@@ -37,6 +48,10 @@ public class Button {
         Text.drawString(g, text, x, y, false, Color.WHITE, Assets.font32);
     }
 
+    /**
+     * Chekc if the Button is clicked
+     * @return
+     */
     public boolean isClicked() {
         MouseManager mouseManager = getMouseManager();
         if (mouseManager.isLeftPressed()) {

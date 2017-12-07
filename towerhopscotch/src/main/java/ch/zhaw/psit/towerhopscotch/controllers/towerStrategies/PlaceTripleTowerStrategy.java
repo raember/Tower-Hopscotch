@@ -9,6 +9,10 @@ import ch.zhaw.psit.towerhopscotch.models.tower.TripleTower;
 
 import java.awt.*;
 
+/**
+ * Strategy for placing TripleTower
+ * @author Stefan Bösch
+ */
 public class PlaceTripleTowerStrategy extends PlaceTowerStrategy {
 
     /**
@@ -19,9 +23,11 @@ public class PlaceTripleTowerStrategy extends PlaceTowerStrategy {
     @Override
     public void activeAction(GameState gameState, Graphics g) {
 
+        gameState.drawText(g,"SELECT POITION FOR TRIPLE TOWER");
+
         Point point1 = gameState.getMouseManager().getPosition();
-        Point point2 = new Point(((int) point1.getX()) + 14 * 32 + 10, ((int) point1.getY()));
-        Point point3 = new Point(((int) point1.getX()) + 2 * (14 * 32 + 10), ((int) point1.getY()));
+        Point point2 = new Point((((int) point1.getX()) + 14 * 32 + 10) % 1374, ((int) point1.getY()));
+        Point point3 = new Point((((int) point1.getX()) + 2 * (14 * 32 + 10)) % 1374, ((int) point1.getY()));
 
         Layer layer1 = getLayer(gameState, point1);
         Layer layer2 = getLayer(gameState, point2);
@@ -49,6 +55,7 @@ public class PlaceTripleTowerStrategy extends PlaceTowerStrategy {
                     color = notPlaceable;
                 }
                 drawSquares(g,points,color);
+                drawRange(g, points, color, new TripleTower().getFireRange());
             }
         }
     }
@@ -69,8 +76,8 @@ public class PlaceTripleTowerStrategy extends PlaceTowerStrategy {
         if (player.getGold().getAmount() >= price) {
 
             Point point1 = point;
-            Point point2 = new Point(((int) point1.getX()) + 14 * 32 + 10, ((int) point1.getY()));
-            Point point3 = new Point(((int) point1.getX()) + 2 * (14 * 32 + 10), ((int) point1.getY()));
+            Point point2 = new Point((((int) point1.getX()) + 14 * 32 + 10) % 1374, ((int) point1.getY()));
+            Point point3 = new Point((((int) point1.getX()) + 2 * (14 * 32 + 10)) % 1374, ((int) point1.getY()));
             Point[] points = {point1,point2,point3};
 
             if (checkIfPlaceableAtPositionForPoints(gameState, points)) {

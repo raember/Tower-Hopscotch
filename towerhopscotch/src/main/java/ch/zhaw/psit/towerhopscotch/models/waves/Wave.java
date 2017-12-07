@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * A wave contains the enemies on their layers.
+ * @author Nicolas Eckhart, Stefan Bösch
+ */
 public class Wave {
     private Map map;
 
@@ -28,12 +32,21 @@ public class Wave {
         generateEnemies(3);
     }
 
+    /**
+     * Generate specific count of enemies on each layer
+     * @param count Count
+     */
     private void generateEnemies(int count) {
         generateEnemiesOnLayer(map.getHell(), count);
         generateEnemiesOnLayer(map.getEarth(), count);
         generateEnemiesOnLayer(map.getHeaven(), count);
     }
 
+    /**
+     * Generate enemies on layer
+     * @param layer Layer
+     * @param count Count
+     */
     private void generateEnemiesOnLayer(Layer layer, int count) {
         // Enemies are generated below the screen all with the same x position as the starting tile
         // but varying y positions.
@@ -80,16 +93,12 @@ public class Wave {
         }
     }
 
+    /**
+     * Check if there are no enemies on the layers
+     * @return All enemies destroyed
+     */
     public boolean waveDestroyed() {
         return map.getHell().getEnemies().size() + map.getEarth().getEnemies().size() + map.getHeaven().getEnemies().size() == 0;
-    }
-
-    public List<Enemy> getAllEnemies() {
-        List<Enemy> enemies = new ArrayList<>();
-        enemies.addAll(map.getHell().getEnemies());
-        enemies.addAll(map.getEarth().getEnemies());
-        enemies.addAll(map.getHeaven().getEnemies());
-        return enemies;
     }
 
     public List<Enemy> getHellEnemies() {

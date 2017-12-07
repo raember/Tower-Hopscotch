@@ -1,0 +1,16 @@
+ch.zhaw.psit.towerhopscotch
+ch.zhaw.psit.towerhopscotch.GUI
+ch.zhaw.psit.towerhopscotch.GUI.input
+ch.zhaw.psit.towerhopscotch.GUI.menus
+ch.zhaw.psit.towerhopscotch.controllers
+ch.zhaw.psit.towerhopscotch.controllers.states
+ch.zhaw.psit.towerhopscotch.controllers.towerStrategies
+ch.zhaw.psit.towerhopscotch.models
+ch.zhaw.psit.towerhopscotch.models.entities
+ch.zhaw.psit.towerhopscotch.models.entities.enemies
+ch.zhaw.psit.towerhopscotch.models.enums
+ch.zhaw.psit.towerhopscotch.models.maps
+ch.zhaw.psit.towerhopscotch.models.tiles
+ch.zhaw.psit.towerhopscotch.models.tower
+ch.zhaw.psit.towerhopscotch.models.waves
+ch.zhaw.psit.towerhopscotch.util

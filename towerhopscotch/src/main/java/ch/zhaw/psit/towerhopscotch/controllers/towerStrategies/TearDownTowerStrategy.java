@@ -6,15 +6,21 @@ import ch.zhaw.psit.towerhopscotch.models.tower.Tower;
 
 import java.awt.*;
 
+/**
+ * Strategy for destroying Tower
+ * @author Stefan Bösch
+ */
 public class TearDownTowerStrategy implements TowerStrategy {
 
     /**
-     * Not implemented
+     * Draw action text
      * @param gameState Gamestate
      * @param g Graphics
      */
     @Override
-    public void activeAction(GameState gameState, Graphics g) {}
+    public void activeAction(GameState gameState, Graphics g) {
+        gameState.drawText(g,"SELECT TOWER TO DESTROY");
+    }
 
     /**
      * Destroy Tower at Position

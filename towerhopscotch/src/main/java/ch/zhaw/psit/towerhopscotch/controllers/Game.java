@@ -8,6 +8,10 @@ import ch.zhaw.psit.towerhopscotch.controllers.states.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
+/**
+ * The class which contains the display and the frame limiter
+ * @author Nicolas Eckhart
+ */
 public class Game implements Runnable {
     private Display display;
     private String title;
@@ -33,6 +37,9 @@ public class Game implements Runnable {
         mouseManager = new MouseManager();
     }
 
+    /**
+     * Initialize
+     */
     private void init() {
         // Initialize the display, initialize the game clock and the assets
         display = new Display(title, width, height);
@@ -54,11 +61,17 @@ public class Game implements Runnable {
         State.setState(mainMenuState);
     }
 
+    /**
+     * Update the active state
+     */
     private void update() {
         if (State.getState() != null)
             State.getState().update();
     }
 
+    /**
+     * Create the Graphics and render the state
+     */
     private void render() {
         BufferStrategy bufferStrategy = display.getCanvas().getBufferStrategy();
         if (bufferStrategy == null) {
@@ -77,6 +90,9 @@ public class Game implements Runnable {
         g.dispose();
     }
 
+    /**
+     * Run the thread
+     */
     public void run() {
         init();
 
@@ -97,6 +113,9 @@ public class Game implements Runnable {
         stop();
     }
 
+    /**
+     * Start the thread
+     */
     public synchronized void start() {
         if (running)
             return;
@@ -106,6 +125,9 @@ public class Game implements Runnable {
         thread.start();
     }
 
+    /**
+     * Stop the thread
+     */
     public synchronized void stop() {
         if (!running)
             return;
@@ -116,10 +138,6 @@ public class Game implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public MouseManager getMouseManager() {
-        return mouseManager;
     }
 
     public int getWidth() {

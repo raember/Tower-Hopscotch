@@ -10,6 +10,10 @@ import ch.zhaw.psit.towerhopscotch.models.tiles.TileList;
 
 import java.awt.*;
 
+/**
+ * The Buildmenu at the bottom of the screen
+ * @author Nicolas Eckhart, Stefan Bösch
+ */
 public class BuildMenu {
     public final static int TOP = 640;
     public final static int WIDTH = 3 * 448 + 20;
@@ -32,6 +36,9 @@ public class BuildMenu {
         placeTripleTower = new Button("3", xOffset(5), yOffset(1));
     }
 
+    /**
+     * Update the buttons
+     */
     public void update() {
         towerUpgradeButton.update();
         towerDestroyButton.update();
@@ -41,6 +48,10 @@ public class BuildMenu {
         placeTripleTower.update();
     }
 
+    /**
+     * Render the menu
+     * @param g Graphics
+     */
     public void render(Graphics g) {
         drawMenuBackground(g);
         drawPlayerHealth(g);

@@ -1,7 +1,11 @@
 package ch.zhaw.psit.towerhopscotch.controllers;
 
+/**
+ * The class which controls the framrate
+ * @author Nicolas Eckhart
+ */
 class Clock {
-    private static int FPS = 60;
+    private static int FPS = 80;
     private double timePerTick = 1000000000 / FPS;
     private double deltaTime;
     private long lastTime, timer;
@@ -14,6 +18,9 @@ class Clock {
         ticks = 0;
     }
 
+    /**
+     * Refresh timestamps
+     */
     void tick() {
         long currentTime = System.nanoTime();
         deltaTime += (currentTime - lastTime) / timePerTick;
@@ -25,9 +32,7 @@ class Clock {
         return deltaTime;
     }
 
-    void increaseTicks() {
-        ticks++;
-    }
+    void increaseTicks() {ticks++;}
 
     void decreaseDeltaTime() {
         deltaTime--;

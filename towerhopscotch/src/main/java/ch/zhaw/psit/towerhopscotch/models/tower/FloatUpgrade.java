@@ -1,7 +1,7 @@
 package ch.zhaw.psit.towerhopscotch.models.tower;
 
 /**
- * Created by Raphael Emberger on 13.11.2017.
+ * @author Raphael Emberger
  */
 public final class FloatUpgrade extends TowerUpgrade {
     private float value;

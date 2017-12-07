@@ -2,7 +2,22 @@ package ch.zhaw.psit.towerhopscotch.GUI;
 
 import java.awt.*;
 
+/**
+ * Custom text
+ * @author Nicolas Eckhart
+ */
 public class Text {
+
+    /**
+     * Draw a String at the specified position.
+     * @param g Graphics
+     * @param text Text
+     * @param xPos Poition X
+     * @param yPos Position Y
+     * @param center Centered
+     * @param color Color
+     * @param font Font
+     */
     public static void drawString(Graphics g, String text, int xPos, int yPos, boolean center, Color color, Font font) {
         g.setColor(color);
         g.setFont(font);

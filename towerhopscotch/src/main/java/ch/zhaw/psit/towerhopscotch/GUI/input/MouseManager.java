@@ -5,6 +5,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+/**
+ * The mouse manager
+ * @author Nicolas Eckhart
+ */
 public class MouseManager implements MouseListener, MouseMotionListener {
 
     private boolean leftPressed, rightPressed;
@@ -49,25 +53,26 @@ public class MouseManager implements MouseListener, MouseMotionListener {
         position.setLocation(e.getX(), e.getY());
     }
 
-    public void mouseEntered(MouseEvent e) {
+    /**
+     * Not implemented
+     * @param e MouseEvent
+     */
+    public void mouseEntered(MouseEvent e) {}
 
-    }
+    /**
+     * Not implemented
+     * @param e MouseEvent
+     */
+    public void mouseExited(MouseEvent e) {}
 
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    public void mouseDragged(MouseEvent e) {
-
-    }
+    /**
+     * Not implemented
+     * @param e MouseEvent
+     */
+    public void mouseDragged(MouseEvent e) {}
 
     public void mouseClicked(MouseEvent e) {
         lastClickX = e.getX();
         lastClickY = e.getY();
-    }
-
-    public void resetClick() {
-        lastClickX = 0;
-        lastClickY = 0;
     }
 }
