@@ -18,7 +18,8 @@ public class FontLoader {
      */
     public static Font loadFont(String path, float size) {
         try {
-            return Font.createFont(Font.TRUETYPE_FONT, new File(ImageUtil.class.getResource(path).getFile())).deriveFont(Font.PLAIN, size);
+            Font base = Font.createFont(Font.TRUETYPE_FONT, FontLoader.class.getClassLoader().getResourceAsStream(path));
+            return base.deriveFont(Font.PLAIN, size);
         } catch (FontFormatException e) {
             e.printStackTrace();
             System.exit(1);

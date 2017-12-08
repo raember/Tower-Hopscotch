@@ -6,6 +6,7 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * This class represents the whole map with it layers
@@ -68,7 +69,7 @@ public class Map {
         int height = 0;
         StringBuilder fileContents = new StringBuilder();
         try {
-            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(filePath)));
             String line;
 
             line = br.readLine();

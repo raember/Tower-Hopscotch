@@ -30,7 +30,7 @@ public class Assets {
      * Initialize the assets
      */
     public static void initialize() {
-        BufferedImage spriteSheet = ImageUtil.loadImage("/textures/earth.png");
+        BufferedImage spriteSheet = ImageUtil.loadImage("textures/earth.png");
 
         // Get tile images
         earthTiles.put("grass", spriteSheet.getSubimage(2 * width, 5 * height, width, height));
@@ -64,12 +64,12 @@ public class Assets {
         treasure = spriteSheet.getSubimage(4 * width, 8 * height, width, height);
 
         // Load fonts
-        font16 = FontLoader.loadFont("/fonts/slkscr.ttf", 16);
-        font32 = FontLoader.loadFont("/fonts/slkscr.ttf", 32);
-        font128 = FontLoader.loadFont("/fonts/slkscr.ttf", 128);
+        font16 = FontLoader.loadFont("fonts/slkscr.ttf", 16);
+        font32 = FontLoader.loadFont("fonts/slkscr.ttf", 32);
+        font128 = FontLoader.loadFont("fonts/slkscr.ttf", 128);
 
 
-        spriteSheet = ImageUtil.loadImage("/textures/hell.png");
+        spriteSheet = ImageUtil.loadImage("textures/hell.png");
 
         // Get tile images
         hellTiles.put("grass", spriteSheet.getSubimage(2 * width, 5 * height, width, height));
@@ -85,7 +85,7 @@ public class Assets {
         hellTiles.put("temple", spriteSheet.getSubimage(7 * width, 6 * height, width, height));
 
 
-        spriteSheet = ImageUtil.loadImage("/textures/heaven.png");
+        spriteSheet = ImageUtil.loadImage("textures/heaven.png");
 
         // Get tile images
         heavenTiles.put("grass", spriteSheet.getSubimage(2 * width, 5 * height, width, height));
