@@ -83,3 +83,5 @@ towerhopscotch/.idea/workspace.xml
 towerhopscotch/.idea/*
 towerhopscotch/.project
 towerhopscotch/.settings/org.eclipse.jdt.core.prefs
+soapui*
+global-groovy.log
