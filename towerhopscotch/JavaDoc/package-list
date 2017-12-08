@@ -10,6 +10,7 @@ ch.zhaw.psit.towerhopscotch.models.entities
 ch.zhaw.psit.towerhopscotch.models.entities.enemies
 ch.zhaw.psit.towerhopscotch.models.enums
 ch.zhaw.psit.towerhopscotch.models.maps
+ch.zhaw.psit.towerhopscotch.models.maps.heatmap
 ch.zhaw.psit.towerhopscotch.models.tiles
 ch.zhaw.psit.towerhopscotch.models.tower
 ch.zhaw.psit.towerhopscotch.models.waves
