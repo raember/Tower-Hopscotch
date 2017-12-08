@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="5.0" y="0.0">ch.zhaw.psit.towerhopscotch.GUI.menus.Button</node>
+    <node x="0.0" y="389.0">ch.zhaw.psit.towerhopscotch.GUI.menus.BuildMenu</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ch.zhaw.psit.towerhopscotch.GUI.menus.BuildMenu" target="ch.zhaw.psit.towerhopscotch.GUI.menus.Button">
+      <point x="-68.25" y="-279.5" />
+      <point x="68.25" y="364.0" />
+      <point x="70.75" y="364.0" />
+      <point x="-65.75" y="169.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="0.0" y="0.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="25.0" y="0.0">ch.zhaw.psit.towerhopscotch.models.maps.heatmap.HeatMapPoint</node>
+    <node x="0.0" y="279.0">ch.zhaw.psit.towerhopscotch.models.maps.heatmap.HeatMap</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.maps.heatmap.HeatMap" target="ch.zhaw.psit.towerhopscotch.models.maps.heatmap.HeatMapPoint">
+      <point x="0.0" y="-147.5" />
+      <point x="0.0" y="114.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="0.0" y="0.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1177.0" y="769.0">ch.zhaw.psit.towerhopscotch.models.entities.enemies.Spider</node>
+    <node x="620.5" y="0.0">ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy</node>
+    <node x="942.0" y="769.0">ch.zhaw.psit.towerhopscotch.models.entities.enemies.Slime</node>
+    <node x="450.00000000000006" y="769.0">ch.zhaw.psit.towerhopscotch.models.entities.enemies.Goblin</node>
+    <node x="223.0" y="769.0">ch.zhaw.psit.towerhopscotch.models.entities.enemies.Imp</node>
+    <node x="691.0" y="769.0">ch.zhaw.psit.towerhopscotch.models.entities.enemies.Skeleton</node>
+    <node x="0.0" y="769.0">ch.zhaw.psit.towerhopscotch.models.entities.enemies.Bat</node>
+    <node x="1416.0" y="769.0">ch.zhaw.psit.towerhopscotch.models.entities.enemies.Rat</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.entities.enemies.Goblin" target="ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy">
+      <point x="55.25" y="-48.0" />
+      <point x="615.75" y="739.0" />
+      <point x="766.6428571428571" y="739.0" />
+      <point x="-39.85714285714289" y="334.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.entities.enemies.Spider" target="ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy">
+      <point x="-54.75" y="-48.0" />
+      <point x="1231.75" y="719.0" />
+      <point x="899.5" y="719.0" />
+      <point x="93.0" y="334.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.entities.enemies.Rat" target="ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy">
+      <point x="-50.75" y="-48.0" />
+      <point x="1466.75" y="699.0" />
+      <point x="952.6428571428571" y="699.0" />
+      <point x="146.1428571428571" y="334.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.entities.enemies.Skeleton" target="ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy">
+      <point x="-57.75" y="-48.0" />
+      <point x="748.75" y="749.0" />
+      <point x="793.2142857142858" y="749.0" />
+      <point x="-13.28571428571422" y="334.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.entities.enemies.Slime" target="ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy">
+      <point x="-53.75" y="-48.0" />
+      <point x="995.75" y="739.0" />
+      <point x="846.3571428571429" y="739.0" />
+      <point x="39.85714285714289" y="334.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.entities.enemies.Bat" target="ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy">
+      <point x="-50.75" y="-48.0" />
+      <point x="50.75" y="689.0" />
+      <point x="633.7857142857142" y="689.0" />
+      <point x="-172.71428571428578" y="334.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.entities.enemies.Imp" target="ch.zhaw.psit.towerhopscotch.models.entities.enemies.Enemy">
+      <point x="-51.75" y="-48.0" />
+      <point x="274.75" y="709.0" />
+      <point x="686.9285714285714" y="709.0" />
+      <point x="-119.57142857142856" y="334.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="0.0" y="0.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

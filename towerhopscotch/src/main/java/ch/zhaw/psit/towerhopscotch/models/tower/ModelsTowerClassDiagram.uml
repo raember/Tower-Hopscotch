@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="227.38809523809525" y="1363.0">ch.zhaw.psit.towerhopscotch.models.tower.DoubleTower</node>
+    <node x="774.6880952380952" y="1363.0">ch.zhaw.psit.towerhopscotch.models.tower.MonoTower</node>
+    <node x="136.18809523809523" y="169.0">ch.zhaw.psit.towerhopscotch.models.tower.FloatUpgrade</node>
+    <node x="472.68809523809523" y="1608.0">ch.zhaw.psit.towerhopscotch.models.tower.TowerPosition</node>
+    <node x="351.18809523809523" y="169.0">ch.zhaw.psit.towerhopscotch.models.tower.IntUpgrade</node>
+    <node x="544.1880952380952" y="169.0">ch.zhaw.psit.towerhopscotch.models.tower.LongUpgrade</node>
+    <node x="325.87976190476195" y="416.0">ch.zhaw.psit.towerhopscotch.models.tower.Tower</node>
+    <node x="64.38809523809527" y="1363.0">ch.zhaw.psit.towerhopscotch.models.tower.TripleTower</node>
+    <node x="431.68809523809523" y="1219.0">ch.zhaw.psit.towerhopscotch.models.tower.Canon</node>
+    <node x="337.18809523809523" y="0.0">ch.zhaw.psit.towerhopscotch.models.tower.TowerUpgrade</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.DoubleTower" target="ch.zhaw.psit.towerhopscotch.models.tower.Tower">
+      <point x="60.39999999999998" y="-25.5" />
+      <point x="363.28809523809525" y="1189.0" />
+      <point x="446.62976190476195" y="1189.0" />
+      <point x="-51.75" y="356.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.TripleTower" target="ch.zhaw.psit.towerhopscotch.models.tower.IntUpgrade">
+      <point x="-28.600000000000023" y="-25.5" />
+      <point x="107.28809523809525" y="1189.0" />
+      <point x="68.7880952380952" y="1189.0" />
+      <point x="68.7880952380952" y="346.0" />
+      <point x="368.4880952380952" y="346.0" />
+      <point x="-69.20000000000005" y="48.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.TowerPosition" target="ch.zhaw.psit.towerhopscotch.models.tower.Canon">
+      <point x="30.0" y="-125.5" />
+      <point x="622.6880952380952" y="1583.0" />
+      <point x="673.1880952380952" y="1583.0" />
+      <point x="80.5" y="169.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.TowerPosition" target="ch.zhaw.psit.towerhopscotch.models.tower.Tower">
+      <point x="90.0" y="-125.5" />
+      <point x="682.6880952380952" y="1583.0" />
+      <point x="764.1880952380952" y="1583.0" />
+      <point x="764.1880952380952" y="1189.0" />
+      <point x="584.629761904762" y="1189.0" />
+      <point x="86.25" y="356.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.TripleTower" target="ch.zhaw.psit.towerhopscotch.models.tower.LongUpgrade">
+      <point x="0.0" y="-25.5" />
+      <point x="135.88809523809527" y="1199.0" />
+      <point x="118.28809523809525" y="1199.0" />
+      <point x="118.28809523809525" y="366.0" />
+      <point x="563.7880952380953" y="366.0" />
+      <point x="-78.4" y="48.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.IntUpgrade" target="ch.zhaw.psit.towerhopscotch.models.tower.TowerUpgrade">
+      <point x="43.25" y="-48.5" />
+      <point x="480.93809523809523" y="149.0" />
+      <point x="454.43809523809523" y="149.0" />
+      <point x="16.75" y="59.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.Tower" target="ch.zhaw.psit.towerhopscotch.models.tower.LongUpgrade">
+      <point x="143.75" y="-356.5" />
+      <point x="642.129761904762" y="396.0" />
+      <point x="681.3880952380953" y="396.0" />
+      <point x="39.19999999999999" y="48.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.DoubleTower" target="ch.zhaw.psit.towerhopscotch.models.tower.LongUpgrade">
+      <point x="0.0" y="-25.5" />
+      <point x="302.8880952380953" y="1149.0" />
+      <point x="283.68809523809523" y="1149.0" />
+      <point x="283.68809523809523" y="376.0" />
+      <point x="602.9880952380953" y="376.0" />
+      <point x="-39.19999999999999" y="48.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.DoubleTower" target="ch.zhaw.psit.towerhopscotch.models.tower.IntUpgrade">
+      <point x="-30.19999999999999" y="-25.5" />
+      <point x="272.68809523809523" y="1149.0" />
+      <point x="259.3380952380952" y="1149.0" />
+      <point x="259.3380952380952" y="356.0" />
+      <point x="403.0880952380952" y="356.0" />
+      <point x="-34.60000000000002" y="48.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.MonoTower" target="ch.zhaw.psit.towerhopscotch.models.tower.IntUpgrade">
+      <point x="29.0" y="-25.5" />
+      <point x="876.1880952380952" y="1199.0" />
+      <point x="887.104761904762" y="1199.0" />
+      <point x="887.104761904762" y="296.0" />
+      <point x="506.88809523809516" y="296.0" />
+      <point x="69.19999999999993" y="48.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.FloatUpgrade" target="ch.zhaw.psit.towerhopscotch.models.tower.TowerUpgrade">
+      <point x="48.75" y="-48.5" />
+      <point x="282.43809523809523" y="149.0" />
+      <point x="387.43809523809523" y="149.0" />
+      <point x="-50.25" y="59.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.MonoTower" target="ch.zhaw.psit.towerhopscotch.models.tower.LongUpgrade">
+      <point x="58.0" y="-25.5" />
+      <point x="905.1880952380952" y="1199.0" />
+      <point x="962.9428571428571" y="1199.0" />
+      <point x="962.9428571428571" y="286.0" />
+      <point x="720.5880952380952" y="286.0" />
+      <point x="78.39999999999995" y="48.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.Tower" target="ch.zhaw.psit.towerhopscotch.models.tower.FloatUpgrade">
+      <point x="-143.75" y="-356.5" />
+      <point x="354.62976190476195" y="326.0" />
+      <point x="233.68809523809523" y="326.0" />
+      <point x="0.0" y="48.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.TripleTower" target="ch.zhaw.psit.towerhopscotch.models.tower.Tower">
+      <point x="28.600000000000023" y="-25.5" />
+      <point x="164.4880952380953" y="1159.0" />
+      <point x="343.12976190476195" y="1159.0" />
+      <point x="-155.25" y="356.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.TripleTower" target="ch.zhaw.psit.towerhopscotch.models.tower.FloatUpgrade">
+      <point x="-57.19999999999993" y="-25.5" />
+      <point x="78.68809523809534" y="1199.0" />
+      <point x="26.0" y="1199.0" />
+      <point x="26.0" y="336.0" />
+      <point x="155.68809523809523" y="336.0" />
+      <point x="-78.0" y="48.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.Tower" target="ch.zhaw.psit.towerhopscotch.models.tower.IntUpgrade">
+      <point x="-28.75" y="-356.5" />
+      <point x="469.62976190476195" y="356.0" />
+      <point x="437.68809523809523" y="356.0" />
+      <point x="0.0" y="48.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.MonoTower" target="ch.zhaw.psit.towerhopscotch.models.tower.FloatUpgrade">
+      <point x="0.0" y="-25.5" />
+      <point x="847.1880952380952" y="1199.0" />
+      <point x="865.1880952380952" y="1199.0" />
+      <point x="865.1880952380952" y="306.0" />
+      <point x="311.68809523809523" y="306.0" />
+      <point x="78.0" y="48.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.LongUpgrade" target="ch.zhaw.psit.towerhopscotch.models.tower.TowerUpgrade">
+      <point x="49.0" y="-48.5" />
+      <point x="691.1880952380952" y="139.0" />
+      <point x="521.4380952380952" y="139.0" />
+      <point x="83.75" y="59.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.Canon" target="ch.zhaw.psit.towerhopscotch.models.tower.Tower">
+      <point x="-80.5" y="-169.5" />
+      <point x="512.1880952380952" y="1199.0" />
+      <point x="515.629761904762" y="1199.0" />
+      <point x="17.25" y="356.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.MonoTower" target="ch.zhaw.psit.towerhopscotch.models.tower.Tower">
+      <point x="-58.0" y="-25.5" />
+      <point x="789.1880952380952" y="1179.0" />
+      <point x="619.129761904762" y="1179.0" />
+      <point x="120.75" y="356.5" />
+    </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models.tower.DoubleTower" target="ch.zhaw.psit.towerhopscotch.models.tower.FloatUpgrade">
+      <point x="-60.400000000000006" y="-25.5" />
+      <point x="242.48809523809524" y="1149.0" />
+      <point x="248.3380952380952" y="1149.0" />
+      <point x="248.3380952380952" y="336.0" />
+      <point x="194.68809523809523" y="336.0" />
+      <point x="-39.0" y="48.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5258116019159127" x="494.5" y="929.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
