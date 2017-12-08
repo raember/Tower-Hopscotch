@@ -66,7 +66,7 @@ public class Layer {
         }
 
         // activate for debugging heat map only
-        heatMap.render(g);
+        // heatMap.render(g);
 
         for (Enemy enemy : enemies) {
             enemy.render(g);
