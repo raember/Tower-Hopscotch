@@ -152,11 +152,6 @@ public class Game implements Runnable {
         return gameState;
     }
 
-    public State createNewGameState(){
-        gameState = new GameState(this, mouseManager);;
-        return getGameState();
-    }
-
     public State getGameOverState() {
         return gameOverState;
     }
@@ -167,5 +162,10 @@ public class Game implements Runnable {
 
     public State getVictoryState() {
         return victoryState;
+    }
+
+    public State createNewGameState() {
+        gameState = new GameState(this, mouseManager);
+        return getGameState();
     }
 }

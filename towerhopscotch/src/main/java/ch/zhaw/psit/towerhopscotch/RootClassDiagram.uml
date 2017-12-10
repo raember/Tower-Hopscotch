@@ -4,7 +4,7 @@
   <OriginalElement />
   <nodes>
     <node x="48.5" y="79.0">ch.zhaw.psit.towerhopscotch.GUI</node>
-    <node x="300.75" y="15.867838541666664">ch.zhaw.psit.towerhopscotch.models</node>
+    <node x="300.75" y="0.0">ch.zhaw.psit.towerhopscotch.models</node>
     <node x="49.5" y="0.0">ch.zhaw.psit.towerhopscotch.util</node>
     <node x="30.0" y="158.0">ch.zhaw.psit.towerhopscotch.controllers</node>
     <node x="46.75" y="257.0">ch.zhaw.psit.towerhopscotch.Launcher</node>
@@ -15,6 +15,13 @@
       <point x="0.0" y="-14.5" />
       <point x="0.0" y="14.5" />
     </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.models" target="ch.zhaw.psit.towerhopscotch.models">
+      <point x="-39.333333333333336" y="14.5" />
+      <point x="320.4166666666667" y="49.0" />
+      <point x="280.75" y="49.0" />
+      <point x="280.75" y="24.166666666666664" />
+      <point x="-59.0" y="9.666666666666666" />
+    </edge>
     <edge source="ch.zhaw.psit.towerhopscotch.controllers" target="ch.zhaw.psit.towerhopscotch.controllers">
       <point x="-50.625" y="14.5" />
       <point x="46.875" y="207.0" />
@@ -22,30 +29,21 @@
       <point x="10.0" y="179.75" />
       <point x="-67.5" y="7.25" />
     </edge>
+    <edge source="ch.zhaw.psit.towerhopscotch.controllers" target="ch.zhaw.psit.towerhopscotch.GUI">
+      <point x="45.0" y="-14.5" />
+      <point x="142.5" y="133.0" />
+      <point x="130.16666666666666" y="133.0" />
+      <point x="32.66666666666666" y="14.5" />
+    </edge>
     <edge source="ch.zhaw.psit.towerhopscotch.Launcher" target="ch.zhaw.psit.towerhopscotch.controllers">
       <point x="-42.25" y="-25.5" />
       <point x="89.0" y="237.0" />
       <point x="114.375" y="237.0" />
       <point x="16.875" y="14.5" />
     </edge>
-    <edge source="ch.zhaw.psit.towerhopscotch.controllers" target="ch.zhaw.psit.towerhopscotch.GUI">
-      <point x="-45.0" y="-14.5" />
-      <point x="52.5" y="133.0" />
-      <point x="64.83333333333334" y="133.0" />
-      <point x="-32.66666666666666" y="14.5" />
-    </edge>
-    <edge source="ch.zhaw.psit.towerhopscotch.models" target="ch.zhaw.psit.towerhopscotch.models">
-      <point x="-39.333333333333336" y="14.5" />
-      <point x="320.4166666666667" y="64.86783854166666" />
-      <point x="280.75" y="64.86783854166666" />
-      <point x="280.75" y="40.03450520833333" />
-      <point x="-59.0" y="9.666666666666666" />
-    </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.7000000000000002" x="257.6470588235294" y="141.76470588235293" />
-  <SelectedNodes>
-    <node>ch.zhaw.psit.towerhopscotch.controllers</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="1.0" x="209.5" y="154.0" />
+  <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>
