@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>700</x>
+      <y>480</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>menus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>930</x>
+      <y>480</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>input</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>610</x>
+      <y>150</y>
+      <w>330</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>Assets
+--
+-height: int
+-width: int
++earthTiles: HashMap&lt;String, BufferedImage&gt;
++hellTiles: HashMap&lt;String, BufferedImage&gt;
++heavenTiles: HashMap&lt;String, BufferedImage&gt;
++enemies: HashMap&lt;String, BufferedImage&gt;
++towers: HashMap&lt;String, BufferedImage&gt;
++heart: BufferedImage
++treasure: BufferedImage
++font16: Font
++font32: Font
++font128: Font
+--
++initialize(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>660</y>
+      <w>220</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>Display
+--
+-title: String
+-width: int
+-height: int
+-canvas: Canvas
+-frame: JFrame
+--
++Display(String, int, int): Display
+-createDisplay(): void
++getCanvas(): Canvas
++getFrame(): JFrame</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>150</x>
+      <y>480</y>
+      <w>410</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Text
+--
++drawString(Graphics, String, int, int, boolean, Color, Font): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>380</y>
+      <w>30</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>830</x>
+      <y>500</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>550</x>
+      <y>500</y>
+      <w>170</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;10.0</additional_attributes>
+  </element>
+</diagram>

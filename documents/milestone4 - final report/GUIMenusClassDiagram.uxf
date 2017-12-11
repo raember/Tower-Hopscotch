@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>50</y>
+      <w>260</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>Button
+--
+-text: String
+-x: int
+-y: int
+-width: int
+-height: int
+-buttonColor: Color
+--
++Button(String, int, int): Button
++update(): boid
++render(Graphics): void
++isClicked(): boolean
+-getMouseManager(): MouseManager
+-rectX(): int
++setX(int): void
++setY(int): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>400</y>
+      <w>260</w>
+      <h>420</h>
+    </coordinates>
+    <panel_attributes>BuildMenu
+--
++TOP: int
++WIDTH: int
++HEIGHT: int
+-towerUpgradeButton: Button
+-towerDestroyButton: Button
+-callNextWaveButton: Button
+-placeSimpleTower: Button
+-placeDoubleTower: Button
+-placeTripleTower: Button
+--
++BuildMenu(): BuildMenu
++update(): void
++render(Graphics): void
++callNextWaveClicked(): boolean
++towerUpgradeClicked(): boolean
++towerDestroyClicked(): boolean
++placeSimpleTowerClicked(): boolean
++placeDoubleTowerClicked(): boolean
++placeTripleTowerClicked(): boolean
+-drawMenuBackground(Graphics): void
+-drawPlayerHealth(Graphics): void
+-drawPlayerGold(Graphics): void
+-yOffset(int): int
+-xOffset(int): int
+-getPlayer(): Player</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>290</x>
+      <y>300</y>
+      <w>30</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+</diagram>

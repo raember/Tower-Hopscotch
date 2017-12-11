@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>670</x>
+      <y>110</y>
+      <w>470</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+TowerStrategy
+--
++placeable: Color
++notPlaceable: Color
+--
++activeAction(GameState, Graphics): void
++doTowerOperation(GameState, Point): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>310</x>
+      <y>300</y>
+      <w>440</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>/PlaceTowerStrategy/
+--
+~drawSquares(Graphics, Point[], Color): void
+~drawRange(Graphics, Point[], Color, float): void
+~drawText(Graphics, Point, Color, float): void
+~checkIfPlaceable(Point, Layer, Tile): boolean
+~getLayer(GameState, Point): Layer
+~calculateCorrectCoordinates(Layer, Point): Point
+~checkIfPlaceableAtPosition(GameState, Point): boolean
+~checkIfPlaceableAtPositionForPoints(GameState, Point[]): boolean
++activeAction(GameState, Graphics): void
++doTowerOperation(GameState, Point): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>140</x>
+      <y>580</y>
+      <w>340</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>PlaceMonoTowerStrategy
+--
++activeAction(GameState, Graphics): void
++doTowerOperation(GameState, Point): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>330</x>
+      <y>670</y>
+      <w>340</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>PlaceDoubleTowerStrategy
+--
++activeAction(GameState, Graphics): void
++doTowerOperation(GameState, Point): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>760</y>
+      <w>340</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>PlaceTripleTowerStrategy
+--
++activeAction(GameState, Graphics): void
++doTowerOperation(GameState, Point): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>760</x>
+      <y>550</y>
+      <w>340</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>TearDownTowerStrategy
+--
++activeAction(GameState, Graphics): void
++doTowerOperation(GameState, Point): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>940</x>
+      <y>650</y>
+      <w>340</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>UpgradeTowerStrategy
+--
++activeAction(GameState, Graphics): void
++doTowerOperation(GameState, Point): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>920</x>
+      <y>220</y>
+      <w>30</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;330.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1110</x>
+      <y>220</y>
+      <w>30</w>
+      <h>450</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;430.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>220</y>
+      <w>30</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>330</x>
+      <y>480</y>
+      <w>30</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>490</x>
+      <y>480</y>
+      <w>30</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>480</y>
+      <w>30</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;280.0</additional_attributes>
+  </element>
+</diagram>

@@ -25,45 +25,17 @@
       <point x="845.5" y="148.0" />
       <point x="78.5" y="59.0" />
     </edge>
-    <edge source="ch.zhaw.psit.towerhopscotch.controllers.towerStrategies.UpgradeTowerStrategy" target="ch.zhaw.psit.towerhopscotch.controllers.towerStrategies.PlaceTowerStrategy">
-      <point x="-78.5" y="-36.5" />
-      <point x="1080.5" y="447.0" />
-      <point x="757.5508658008657" y="447.0" />
-      <point x="177.8571428571429" y="124.5" />
-    </edge>
-    <edge source="ch.zhaw.psit.towerhopscotch.controllers.towerStrategies.PlaceTripleTowerStrategy" target="ch.zhaw.psit.towerhopscotch.controllers.towerStrategies.TowerStrategy">
-      <point x="104.66666666666663" y="-36.5" />
-      <point x="929.6666666666667" y="158.0" />
-      <point x="793.1666666666666" y="158.0" />
-      <point x="26.16666666666663" y="59.0" />
-    </edge>
     <edge source="ch.zhaw.psit.towerhopscotch.controllers.towerStrategies.PlaceDoubleTowerStrategy" target="ch.zhaw.psit.towerhopscotch.controllers.towerStrategies.PlaceTowerStrategy">
       <point x="104.66666666666669" y="-36.5" />
       <point x="595.6666666666667" y="467.0" />
       <point x="579.6937229437231" y="467.0" />
       <point x="1.1368683772161603E-13" y="124.5" />
     </edge>
-    <edge source="ch.zhaw.psit.towerhopscotch.controllers.towerStrategies.PlaceMonoTowerStrategy" target="ch.zhaw.psit.towerhopscotch.controllers.towerStrategies.TowerStrategy">
-      <point x="-104.66666666666663" y="-36.5" />
-      <point x="52.33333333333337" y="467.0" />
-      <point x="147.80952380952385" y="467.0" />
-      <point x="147.80952380952385" y="138.0" />
-      <point x="636.1666666666666" y="138.0" />
-      <point x="-130.83333333333337" y="59.0" />
-    </edge>
     <edge source="ch.zhaw.psit.towerhopscotch.controllers.towerStrategies.TearDownTowerStrategy" target="ch.zhaw.psit.towerhopscotch.controllers.towerStrategies.TowerStrategy">
       <point x="0.0" y="-36.5" />
       <point x="1405.0" y="138.0" />
       <point x="897.8333333333334" y="138.0" />
       <point x="130.83333333333337" y="59.0" />
-    </edge>
-    <edge source="ch.zhaw.psit.towerhopscotch.controllers.towerStrategies.PlaceDoubleTowerStrategy" target="ch.zhaw.psit.towerhopscotch.controllers.towerStrategies.TowerStrategy">
-      <point x="-104.66666666666669" y="-36.5" />
-      <point x="386.33333333333337" y="447.0" />
-      <point x="361.6937229437229" y="447.0" />
-      <point x="361.6937229437229" y="148.0" />
-      <point x="688.5" y="148.0" />
-      <point x="-78.5" y="59.0" />
     </edge>
     <edge source="ch.zhaw.psit.towerhopscotch.controllers.towerStrategies.PlaceTowerStrategy" target="ch.zhaw.psit.towerhopscotch.controllers.towerStrategies.TowerStrategy">
       <point x="0.0" y="-124.5" />
@@ -78,7 +50,7 @@
       <point x="59.285714285714334" y="124.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.7999999999999997" x="653.6414141414143" y="322.4291264291267" />
+  <settings layout="Hierarchic Group" zoom="0.7999999999999997" x="654.0" y="322.0" />
   <SelectedNodes>
     <node>ch.zhaw.psit.towerhopscotch.controllers.towerStrategies.PlaceDoubleTowerStrategy</node>
   </SelectedNodes>

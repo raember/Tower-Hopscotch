@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>370</x>
+      <y>310</y>
+      <w>330</w>
+      <h>440</h>
+    </coordinates>
+    <panel_attributes>GameState
+--
+-game: Game
+-player: PLayer
+-map: Map
+-waveQueue: WaveQueue
+-currentWave: Wave
+-menu: BuildMenu
+-towerStrategyList: ArrayList&lt;TowerStrategy&gt;
+-towerStrategy: TowerStrategy
+-selectedTile: Tile
+-selectedTilePoint: Point
+--
++GameState(Game, MouseManager): GameState
++init(): void
++update(): void
++render(Graphics): void
+-choosePlaceTowerStrategy(): void
+-selectTile(): void
+-updateWaveQueue(): void
+-popWave(): void
+-checkIfEnemiesReachedDestination(Layer): void
+-drawWavesPausedText(Graphics): void
++drawText(Graphics, String): void
+-drawWavesRemainingText(Graphics): void
+-getWavesRemaining(): int
++getPlayer(): Player
++getMap(): Map</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>750</x>
+      <y>60</y>
+      <w>270</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>/State/
+--
+-currentState: State
+#mouseManager: MouseManager
+--
++State(MouseManager): State
++setState(State): void
++getState(): State
++update(): void
++render(Graphics): void
++getMouseManager(): MouseManager</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>740</x>
+      <y>310</y>
+      <w>270</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>MainMenuState
+--
+-game: Game
+-newGameButton: Button
+--
++MainMenuState(Game, MouseManager)
++update(): void
++render(Graphics): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1060</x>
+      <y>310</y>
+      <w>270</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>VictoryState
+--
+-game: Game
+-mainMenuButton: Button
+-newGameButton: Button
+--
++VictoryState(Game, MouseManager)
++update(): void
++render(Graphics): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>830</y>
+      <w>270</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>GameOverState
+--
+-game: Game
+-mainMenuButton: Button
+-newGameButton: Button
+--
++GameOverState(Game, MouseManager)
++update(): void
++render(Graphics): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>220</y>
+      <w>30</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>220</y>
+      <w>350</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;330.0;50.0;330.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>520</x>
+      <y>220</y>
+      <w>380</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>360.0;10.0;360.0;50.0;10.0;50.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>520</x>
+      <y>740</y>
+      <w>30</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+</diagram>
