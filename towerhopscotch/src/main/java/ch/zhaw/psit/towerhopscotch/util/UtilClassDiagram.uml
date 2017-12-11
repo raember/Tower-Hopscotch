@@ -10,7 +10,9 @@
   <notes />
   <edges />
   <settings layout="Hierarchic Group" zoom="1.0" x="0.0" y="0.0" />
-  <SelectedNodes />
+  <SelectedNodes>
+    <node>ch.zhaw.psit.towerhopscotch.util.MusicPlayer</node>
+  </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>190</x>
+      <y>110</y>
+      <w>250</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>HeatMapPoint
+--
+-point: Point
+-previousHeatValue: int
+--
++HeatMapPoint(int, int, int): HeatMapPoint
++HeatMapPoint(Point, int): HeatMapPoint
++getPreviousHeatValue(): int
++setPreviousHeatValue(int): void
++getPoint(): Point
++x(): int
++y(): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>180</x>
+      <y>370</y>
+      <w>270</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>HeatMap
+--
+-layer: Layer
+-width: int
+-height: int
+-heatMap: int[][]
+-updatingPoints: Queue&lt;HeatMapPoint&gt;
+--
++HeatMap(Layer): HeatMap
++render(Graphics): void
+-initialize(): void
+.updateNeighbours(HeatMapPoint): void
+-isPath(HeatMapPoint): boolean
+-isUnset(HeatMapPoint): boolean
++getHeatValue(int, int): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>280</y>
+      <w>30</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+</diagram>

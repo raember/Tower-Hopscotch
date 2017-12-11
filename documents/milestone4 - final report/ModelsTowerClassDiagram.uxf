@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>10</y>
+      <w>240</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>/TowerUpgrade/
+--
+-price: int
+--
+#TowerUpgrade(int): TowerUpgrade
++getPrice(): int
++isAffordable(int): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>300</x>
+      <y>240</y>
+      <w>260</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>LongUpgrade
+--
+-value: long
+--
++LongUpgrade(int, long): LongUpgrade
++getValue(): long</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>610</x>
+      <y>240</y>
+      <w>220</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>IntUpgrade
+--
+-value: int
+--
++IntUpgrade(int, int): IntUpgrade
++getValue(): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>880</x>
+      <y>240</y>
+      <w>310</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>DoubleUpgrade
+--
+-value: double
+--
++DoubleUpgrade(int, double): DoubleUpgrade
++getValue(): double</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>560</x>
+      <y>490</y>
+      <w>340</w>
+      <h>530</h>
+    </coordinates>
+    <panel_attributes>/Tower/
+--
+-price: int
+-isRemoved: boolean
+-image: BufferedImage
+#fireRangeUpgrades ArrayQueue&lt;FloatUpgrade&gt;
+-fireRange: float
+#fireFrequencyUpgrades ArrayQueue&lt;longUpgrade&gt;
+-fireFrequency: long
+#damageUpgrades ArrayQueue&lt;IntUpgrade&gt;
+-damage: int
+-level
+--
+#Tower(int, BufferedImage): Tower
++getFireRangeUpgrade(): FloatUpgrade
++getFireRange(): float
+#setFireRange(float): void
++getFireFrequencyUpgrade(): LongUpgrade
++getFireFrequency(): long
+#setFireFrequency(long): void
++getDamageUpgrade(): IntUpgrade
++getDamage(): int
+#setDamage(int): void
++getPrice(): int
++upgradeAll(Gold): boolean
+-tryPurchaseFireRangeUpgrade(Gold): boolean
+-tryPurchaseFireFrequencyUpgrade(Gold): boolean
+-tryPurchaseDamageUpgrade(Gold): boolean
++update(): void
++render(Graphics, Point): void
++getLevel(): int
+-levelUp(): void
++remove(): void
++isRemoved: boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>190</x>
+      <y>490</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>MonoTower
+--
++MonoTower(): MonoTower</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>590</y>
+      <w>210</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>DoubleTower
+--
++DoubleTower(): DoubleTower</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>190</x>
+      <y>690</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>TripleTower
+--
++TripleTower(): TripleTower</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>990</x>
+      <y>490</y>
+      <w>320</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>Canon
+--
+-tower: Tower
+-currentTime: long
+-nextAttack: long
+-shotEnemy: Enemy
+--
++Canon(Tower): Canon
++update(): void
++update(long, Point, List&lt;Enemy&gt;): void
+-filterEnemies(List&lt;Enemy&gt;, Point): void
+-canReach(Point, Point): boolean
+-shootAt(Enemy): boolean
+-resetCooldown(): void
+-shoot(boolean, List&lt;Enemy&gt;): void
+-enemyWithLowestHealth(List&lt;Enemy&gt;): Enemy
++render(Graphics, Point): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>990</x>
+      <y>820</y>
+      <w>320</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>TowerPosition
+--
+-position: Point
+-tower: Tower
+-canon: Canon
+--
++TowerPosition(Point, Tower): TowerPosition
++getPosition(): Point
++setPosition(Point): void
++getTower(): Tower
++setTower(Tower): void
++render(Graphics): void
++update(long, List&lt;Enemy&gt;): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>370</x>
+      <y>490</y>
+      <w>210</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>190.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>370</x>
+      <y>600</y>
+      <w>210</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>190.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>370</x>
+      <y>700</y>
+      <w>210</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>190.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>890</x>
+      <y>500</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1140</x>
+      <y>740</y>
+      <w>30</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>710</x>
+      <y>100</y>
+      <w>30</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>710</x>
+      <y>100</y>
+      <w>340</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;320.0;80.0;320.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>100</y>
+      <w>320</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>300.0;10.0;300.0;80.0;10.0;80.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>710</x>
+      <y>310</y>
+      <w>30</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>710</x>
+      <y>310</y>
+      <w>340</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>320.0;10.0;320.0;100.0;10.0;100.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>310</y>
+      <w>320</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;300.0;100.0;300.0;180.0</additional_attributes>
+  </element>
+</diagram>

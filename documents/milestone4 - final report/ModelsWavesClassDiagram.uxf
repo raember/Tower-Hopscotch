@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>150</x>
+      <y>140</y>
+      <w>290</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>Wave
+--
+-map: Map
+-hellEnemies: List&lt;Enemy&gt;
+-earthEnemies: List&lt;Enemy&gt;
+-heavenEnemies: List&lt;Enemy&gt;
+-player: Player
+--
++Wave(Map, Player): Map
+-generateEnemies(int): void
+-generateEnemiesOnLayer(Layer, int): void
++waveDestroyed(): boolean
++getHellEnemies(): List&lt;Enemy&gt;
++getEarthEnemies(): List&lt;Enemy&gt;
++getHeavenEnemies(): List&lt;Enemy&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>150</x>
+      <y>460</y>
+      <w>290</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>WaveQueue
+--
+-map: Map
+-queue: ArrayList&lt;Wave&gt;
+-player: Player
+--
++WaveQueue(Map, int, Player): WaveQueue
+-generateWaves(int): void
++add(Wave): void
++top(): Wave
++pop(): Wave
++size(): int
++allWavesDestroyed(): boolean
+-lastIndex(): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>360</y>
+      <w>30</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+</diagram>

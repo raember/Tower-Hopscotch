@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>620</x>
+      <y>270</y>
+      <w>240</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>MusicPlayer
+--
+-musicFiles: ArrayList&lt;String&gt;
+-currentSoundIndex: int
+--
++MusicPlayer(String...): MusicPlayer
++playSound(String): void
++run(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>620</x>
+      <y>450</y>
+      <w>240</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>ImageUtil
+--
++loadImage(String): BufferedImage</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>620</x>
+      <y>560</y>
+      <w>240</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>FontLoader
+--
++loadFont(String, float): Font</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

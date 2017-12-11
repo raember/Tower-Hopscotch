@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>350</x>
+      <y>150</y>
+      <w>200</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>Map
+--
+-hell: Layer
+-earth: Layer
+-heaven: Layer
+--
++Map(String): Map
++update(long): void
++render(Graphics): void
++getLayer(Point): Layer
+-initializeMap(String): void
++isOnMap(Point): boolean
++getHell(): Layer
++getEarth(): Layer
++getHeaven(): Layer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>480</y>
+      <w>410</w>
+      <h>740</h>
+    </coordinates>
+    <panel_attributes>Layer
+--
++LAYER_WIDTH: int
++LAYER_HEIGHT: int
+-startX: int
+-startY: int
+-offset: int
+-layerType: LayerType
+-width: int
+-height: int
+-tiles: int[][]
+-towers: List&lt;TowerPosition&gt;
+-enemies: List&lt;Enemy&gt;
+-heatMap: HeatMap
+--
++Layer(LayerType, int, int, String): Layer
++update(long): void
++render(Graphics): void
++getEnemies(): List&lt;Enemy&gt;
++setEnemies(List&lt;Enemy&gt;): void
++addTower(TowerPosition): void
++addEnemy(Enemy): void
++removeEnemy(Enemy): void
++isOnLayer(Point): boolean
++isBeneathMap(float, float): boolean
++isBeneathMap(Point): boolean
++isFortress(float, float): boolean
++isFortress(Point): boolean
++isPath(float, float): boolean
++isPath(Point): boolean
++getTile(Point): Tile
++getTeleportableLayers(float, float, float, float): ArrayList&lt;Layer&gt;
++getTeleportableLayers(Point, Point): ArrayList&lt;Layer&gt;
+-initializeLayer(String): void
+-calculateOffset(): int
++getTowerAtPosition(Point): Tower
+-getMap(): Map
++getLayerType(): LayerType
++getHeatValue(float, float): int
++getLayerLevel(): int
++getStartX(): int
++getStartPointTile(): Point
++getStartY(): int
++getWidth(): int
++getHeight(): int
++getOffset(): int
++getTiles(): int[][]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>170</x>
+      <y>260</y>
+      <w>100</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>heatmap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>430</x>
+      <y>370</y>
+      <w>30</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>210</x>
+      <y>300</y>
+      <w>30</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+</diagram>

@@ -7,16 +7,11 @@
     <node x="0.0" y="0.0">ch.zhaw.psit.towerhopscotch.models.waves.Wave</node>
   </nodes>
   <notes />
-  <edges>
-    <edge source="ch.zhaw.psit.towerhopscotch.models.waves.WaveQueue" target="ch.zhaw.psit.towerhopscotch.models.waves.Wave">
-      <point x="75.33333333333331" y="-136.5" />
-      <point x="217.83333333333331" y="320.0" />
-      <point x="237.5" y="320.0" />
-      <point x="95.0" y="147.5" />
-    </edge>
-  </edges>
+  <edges />
   <settings layout="Hierarchic Group" zoom="1.0" x="0.0" y="0.0" />
-  <SelectedNodes />
+  <SelectedNodes>
+    <node>ch.zhaw.psit.towerhopscotch.models.waves.WaveQueue</node>
+  </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>
